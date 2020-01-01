@@ -27,6 +27,26 @@ public abstract class Entity {
 	public abstract void render(Graphics g);
 	
 	
+	public boolean checkEntityCollsions(float xOffset, float yOffset) { //x and y offset are for moving (tempX, tempY)
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { //loops each of the entities
+			if(e.equals(this))
+				continue;
+			if(e.getCollisonBounds(0f,0f).intersects(this.getCollisonBounds(xOffset, yOffset))) //the the 2 bounds are intersects
+				return true;
+			
+		}
+		return false; //if the loop has exited = no collision
+	}
+	
+	
+	
+	
+	public Rectangle getCollisonBounds(float xOffset, float yOffset) { //returning the position of the bounding box of an entity
+		return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width, bounds.height);
+	}
+	
+	
+	
 	//getters and setters
 
 	public float getX() {

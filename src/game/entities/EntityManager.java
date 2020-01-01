@@ -13,11 +13,13 @@ public class EntityManager {
 	private ArrayList<Entity> entities; //the array of all of our entities (infinite)
 	
 	
+	
 	public EntityManager(Handler handler, Player player) {
 		this.handler = handler;
 		this.player = player;
 		
 		entities = new ArrayList<Entity>();
+		addEntity(player);
 	}
 	
 	
@@ -26,7 +28,6 @@ public class EntityManager {
 			Entity e = entities.get(i);
 			e.tick();
 		}
-		player.tick();
 	}
 	
 	
@@ -35,7 +36,6 @@ public class EntityManager {
 			Entity e = entities.get(i);
 			e.render(g);
 		}
-		player.render(g);
 	}
 
 

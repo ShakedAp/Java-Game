@@ -109,6 +109,11 @@ public class World {
 	
 	
 
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+
 	public int getWidth() {
 		return width;
 	}
