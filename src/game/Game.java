@@ -13,6 +13,7 @@ import game.display.Display;
 import game.gfx.Assets;
 import game.gfx.GameCamera;
 import game.input.KeyManager;
+import game.input.MouseManager;
 import game.states.GameState;
 import game.states.MenuState;
 import game.states.State;
@@ -37,7 +38,8 @@ public class Game implements Runnable {
 	private State menuState;
 	
 	//input
-	private KeyManager KeyManager;
+	private KeyManager keyManager;
+	private MouseManager mouseManager;
 	
 	//camera
 	private GameCamera gameCamera;
@@ -50,14 +52,21 @@ public class Game implements Runnable {
 		this.title = title;
 		this.width = width;
 		this.height = height;
-		KeyManager = new KeyManager();
+		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 	}
 	
 	
 	private void init() {
 		//creating a window
 		display = new Display(title, width, height);
-		display.getJframe().addKeyListener(KeyManager); //getting the key-listener to our window
+		display.getJframe().addKeyListener(keyManager); //adding the key-listener to our window
+		
+		display.getJframe().addMouseListener(mouseManager); //getting the mouse-listener and motion-listener to our window and canvas
+		display.getJframe().addMouseMotionListener(mouseManager);
+		display.getCanvas().addMouseListener(mouseManager); 
+		display.getCanvas().addMouseMotionListener(mouseManager);
+		
 		Assets.init(); //initializing all of the assets
 		
 		handler = new Handler(this);
@@ -69,7 +78,7 @@ public class Game implements Runnable {
 	}
 	
 	private void tick() { 
-		KeyManager.tick();
+		keyManager.tick();
 		
 		if (State.getState() != null) // if we have an actual state on, do the tick method
 			State.getState().tick();
@@ -143,8 +152,13 @@ public class Game implements Runnable {
 	
 	//getters
 	public KeyManager getKeyManager() {
-		return KeyManager;
+		return keyManager;
 	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
+	}
+	
 	
 	public GameCamera getGameCamera() {
 		return gameCamera;

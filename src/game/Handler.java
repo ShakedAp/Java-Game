@@ -2,6 +2,7 @@ package game;
 
 import game.gfx.GameCamera;
 import game.input.KeyManager;
+import game.input.MouseManager;
 import game.worlds.World;
 
 public class Handler {
@@ -19,6 +20,10 @@ public class Handler {
 	//GETTERS SETTERS
 	public KeyManager getKeyManager() {
 		return game.getKeyManager();
+	}
+	
+	public MouseManager getMouseManager() {
+		return game.getMouseManager();
 	}
 	
 	public GameCamera getGameCamera() {
