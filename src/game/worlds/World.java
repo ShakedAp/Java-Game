@@ -25,9 +25,6 @@ public class World {
 		//ENTITIES
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entityManager.addEntity(new Tree(handler, 100, 100));
-		entityManager.addEntity(new Tree(handler, 100, 200));
-		entityManager.addEntity(new Tree(handler, 100, 300));
-		entityManager.addEntity(new Tree(handler, 100, 400));
 		
 		
 		

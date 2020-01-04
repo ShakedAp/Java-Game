@@ -8,7 +8,7 @@ public class Assets {
 	
 	public static BufferedImage dirt, grass, stone, tree; //creating the list of all the images we want to have 
 	
-	public static BufferedImage[] player_down, player_up, player_left, player_right, player_idle;
+	public static BufferedImage[] player_down, player_up, player_left, player_right, player_idle, btn_start;
 	
 	public static void init() {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png")); //loading the sprite sheet (by loading the image)
@@ -18,10 +18,15 @@ public class Assets {
 		player_left = new BufferedImage[2];
 		player_right= new BufferedImage[2];
 		player_idle= new BufferedImage[1];
-		
+		btn_start = new BufferedImage[2];
+
 		
 		
 		//cropping the sprite sheets just ONCE to reduce lag using the SpriteSheet method
+		
+		
+		btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
+		btn_start[1] = sheet.crop(width * 6, height * 5, width * 2, height);
 		
 		
 		//player animation
