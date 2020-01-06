@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import game.Handler;
 import game.ui.UIManager;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
@@ -11,6 +12,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 	private boolean leftPressed, rightPressed;
 	private int mouseX, mouseY;
 	private UIManager uiManager; //all of the objects we have
+
 	
 	public MouseManager() {
 		
@@ -64,7 +66,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 	
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		mouseX = e.getX();
+		mouseX = e.getY();
 		mouseY = e.getY();
 		
 		if(uiManager != null) 

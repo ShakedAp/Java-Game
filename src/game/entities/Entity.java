@@ -7,9 +7,12 @@ import game.Handler;
 
 public abstract class Entity {
 	
+	public static final int DEFAULT_HEALTH = 100;
+	
 	protected Handler handler;
 	protected float x, y; //the x and y of the entity
 	protected int width, height; //the width and height of the entity
+	protected int health;
 	protected Rectangle bounds; //collisions bounds
 	
 	public Entity(Handler handler, float x, float y, int width, int height) {
@@ -18,6 +21,7 @@ public abstract class Entity {
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		health = DEFAULT_HEALTH;
 		
 		bounds = new Rectangle(0, 0, width, height); //creating a full image bounding by default
 	}

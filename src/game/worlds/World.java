@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import game.Handler;
 import game.entities.EntityManager;
 import game.entities.creatures.Player;
+import game.entities.statics.Rock;
 import game.entities.statics.Tree;
 import game.tiles.Tile;
 import game.utils.Utils;
@@ -25,7 +26,7 @@ public class World {
 		//ENTITIES
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entityManager.addEntity(new Tree(handler, 100, 100));
-		
+		entityManager.addEntity(new Rock(handler, 100, 300));
 		
 		
 		loadWorld(path);

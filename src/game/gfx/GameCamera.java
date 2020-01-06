@@ -1,6 +1,4 @@
 package game.gfx;
-
-import game.Game;
 import game.Handler;
 import game.entities.Entity;
 import game.tiles.Tile;
@@ -41,8 +39,7 @@ public class GameCamera {
 	public void centerOnEntity(Entity e){
 		xOffset = e.getX() - handler.getWidth() / 2 +  e.getWidth() / 2; //making the player centered on the screen (not on the edge) 
 		yOffset = e.getY() - handler.getHeight() / 2 + e.getHeight() / 2;
-		removeBlankSpace();
-		
+		removeBlankSpace();		
 	}
 	
 	

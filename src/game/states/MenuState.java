@@ -36,6 +36,14 @@ public class MenuState extends State{
 	@Override
 	public void render(Graphics g) {
 		uiManager.render(g);
+		
+		
+		
+		
+		
+		//temporary code
+		handler.getMouseManager().setUiManager(null);
+		State.setState(handler.getGame().gameState);
 	}
 
 }

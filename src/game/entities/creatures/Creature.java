@@ -6,18 +6,16 @@ import game.tiles.Tile;
 
 public abstract class Creature extends Entity{
 
-	public static final int DEFAULT_HEALTH = 100; //setting our default health and speed, width, height
+	 //setting our default speed, width, height
 	public static final float DEFAULT_SPEED = 3.0f;
 	public static final int DEFAULT_CEATURE_WIDTH = 64,
 							DEFAULT_CEATURE_HEIGHT = 64;
 
 	
-	protected int health;
 	protected float speed, xMove, yMove; //setting our movement variables
 	
 	public Creature(Handler handler ,float x, float y, int width, int height) {
 		super(handler, x, y, width, height); //passing these variables to the extended class
-		health = DEFAULT_HEALTH;
 		speed = DEFAULT_SPEED;
 		xMove = 0;
 		yMove = 0;
