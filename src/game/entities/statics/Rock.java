@@ -27,5 +27,9 @@ public class Rock extends StaticEntity{
 		g.drawImage(Assets.rock,(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 
 	}
-
+	
+	@Override
+	public void die() {
+		
+	}
 }

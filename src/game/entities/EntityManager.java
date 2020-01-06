@@ -37,8 +37,11 @@ public class EntityManager {
 		for (int i = 0; i < entities.size(); i++) { //ticking each entity in the game
 			Entity e = entities.get(i);
 			e.tick();
+			if(!e.isActive()) //if the entity dies
+				entities.remove(e);
 		}
 		entities.sort(renderSorter); //sorting all of the entities for render order
+		
 	}
 	
 	
@@ -53,9 +56,6 @@ public class EntityManager {
 	public void addEntity(Entity e) {
 		entities.add(e);
 	}
-	
-	
-	
 	
 	
 	//GETTERS SETTERS

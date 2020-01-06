@@ -20,7 +20,6 @@ public class Tree extends StaticEntity {
 	@Override
 	public void tick() {
 
-		
 	}
 
 	@Override
@@ -28,4 +27,10 @@ public class Tree extends StaticEntity {
 		g.drawImage(Assets.tree,(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 	}
 
+	@Override
+	public void die() {
+		
+	}
+	
+	
 }
