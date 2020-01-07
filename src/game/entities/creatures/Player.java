@@ -20,9 +20,9 @@ public class Player extends Creature {
 	private Animation animRight;
 	private Animation animIdle;
 	private int animSpeed = 500;
-	//Attack timer
-	private long lastAttackTimer, attackCooldown = 400, attackTimer = attackCooldown; 
-	
+	//Attack timers
+	private long lastMeleeAttackTimer, meleeAttackCooldown = 400, meleeAttackTimer = meleeAttackCooldown; 
+	private long lastGunAttackTimer, gunAttackCooldown = 400, gunAttackTimer = gunAttackCooldown; 
 	
 	
 	public Player(Handler handler, float x, float y) {
@@ -70,20 +70,36 @@ public class Player extends Creature {
 		animIdle.update();
 		//Attack
 		checkMeleeAttacks();
-		
-		float mx = handler.getMouseManager().getMouseX();
-		float my = handler.getMouseManager().getMouseY();
-		
-		if(handler.getMouseManager().isLeftPressed())
-			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x , y, mx, my, 8, 8));
-		System.out.println(mx + "     " + my);
+		checkGunAttacks();
 	}
+	
+	private void checkGunAttacks() {
+		//mouse X and Y
+		float mx = handler.getMouseManager().getMouseX() - handler.getGameCamera().getxOffset();
+		float my = handler.getMouseManager().getMouseY() - handler.getGameCamera().getyOffset();
+			
+		gunAttackTimer += System.currentTimeMillis() - lastGunAttackTimer; //gun cooldown
+		lastGunAttackTimer = System.currentTimeMillis();
+		if(gunAttackTimer < gunAttackCooldown)
+			return;
+		
+		
+		if(handler.getMouseManager().isLeftPressed()) //if left button is pressed -> get mouse position and shoot
+			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x,y,mx,my, 30));
+		else
+			return;
+		gunAttackTimer = 0;
+		
+		
+		
+	}
+	
 	
 	private void checkMeleeAttacks() {
 		//Attack cooldown
-		attackTimer += System.currentTimeMillis() - lastAttackTimer;
-		lastAttackTimer = System.currentTimeMillis();
-		if(attackTimer < attackCooldown) //if we are still in the cooldown -> exit
+		meleeAttackTimer += System.currentTimeMillis() - lastMeleeAttackTimer;
+		lastMeleeAttackTimer = System.currentTimeMillis();
+		if(meleeAttackTimer < meleeAttackCooldown) //if we are still in the cooldown -> exit
 			return;
 		
 		
@@ -108,7 +124,7 @@ public class Player extends Creature {
 		} else 
 			return; //if the player is not attacking exit
 		
-		attackTimer = 0; //restarting the cooldown
+		meleeAttackTimer = 0; //restarting the cooldown
 		
 		for (Entity e : handler.getWorld().getEntityManager().getEntities()){
 			if(e.equals(this)) //to make sure we are not hurting ourselves

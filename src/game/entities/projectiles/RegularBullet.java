@@ -8,14 +8,15 @@ import game.Handler;
 public class RegularBullet extends Projectile {
 
 
-	public RegularBullet(Handler handler, float fromX, float fromY, float toX, float toY, int width, int height) {
-		super(handler, fromX, fromY, toX, toY, width, height);
+	public RegularBullet(Handler handler, float fromX, float fromY, float toX, float toY, int tickLife) {
+		super(handler, fromX, fromY, toX, toY, 8, 8, tickLife);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void tick() {
 		move();
+		tickLifeCounter();
 	}
 
 	@Override

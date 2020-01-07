@@ -39,10 +39,10 @@ public abstract class Entity {
 			active = false;
 			die();
 		}
-		
-		
-		
-		
+	}
+	
+	public void kill() {
+		hurt(health);
 	}
 	
 	public boolean checkEntityCollsions(float xOffset, float yOffset) { //x and y offset are for moving (tempX, tempY)
