@@ -20,21 +20,22 @@ public abstract class Projectile extends Entity{
 		y+= velY;
 	}
 	
-	public void tickLifeCounter() {
-		if(tickCount >= tickLife) {
-			kill();
-			return;
-			}
-		tickCount++;
-	}
-
+	
 	private void setVelocity(float fromX, float fromY, float toX, float toY) {	
 		velX = (toX - fromX) / 15;
 		velY = (toY - fromY) / 15;
+		//TODO: better bullet shooting speed
 	}
 	
 	
-	
+	public void tickLifeCounter() {
+		if(tickCount >= tickLife) { //if it reached the time life limit
+			kill();
+			return;
+			}
+		tickCount++; //for each time this method is called (at the tick method + ecery tick)
+	}
+
 	//Getter Setters
 	public double getVelX() {
 		return velX;

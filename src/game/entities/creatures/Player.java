@@ -75,8 +75,8 @@ public class Player extends Creature {
 	
 	private void checkGunAttacks() {
 		//mouse X and Y
-		float mx = handler.getMouseManager().getMouseX() - handler.getGameCamera().getxOffset();
-		float my = handler.getMouseManager().getMouseY() - handler.getGameCamera().getyOffset();
+		float mx = handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset();
+		float my = handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset();
 			
 		gunAttackTimer += System.currentTimeMillis() - lastGunAttackTimer; //gun cooldown
 		lastGunAttackTimer = System.currentTimeMillis();
@@ -85,7 +85,7 @@ public class Player extends Creature {
 		
 		
 		if(handler.getMouseManager().isLeftPressed()) //if left button is pressed -> get mouse position and shoot
-			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x,y,mx,my, 30));
+			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x+20 ,y + 16,mx,my, 30));
 		else
 			return;
 		gunAttackTimer = 0;

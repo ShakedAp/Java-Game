@@ -29,5 +29,10 @@ public class RegularBullet extends Projectile {
 	public void die() {
 		
 	}
+	
+	@Override
+	public boolean isSolid() {
+		return false;
+	}
 
 }

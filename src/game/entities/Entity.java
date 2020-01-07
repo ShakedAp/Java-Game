@@ -45,17 +45,29 @@ public abstract class Entity {
 		hurt(health);
 	}
 	
-	public boolean checkEntityCollsions(float xOffset, float yOffset) { //x and y offset are for moving (tempX, tempY)
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { //loops each of the entities
-			if(e.equals(this))
-				continue;
-			if(e.getCollisonBounds(0f,0f).intersects(this.getCollisonBounds(xOffset, yOffset))) //the the 2 bounds are intersects
-				return true;
-			
-		}
-		return false; //if the loop has exited = no collision
+	public boolean isSolid() {
+		return true;
 	}
 	
+//	public boolean checkEntityCollsions(float xOffset, float yOffset) { //x and y offset are for moving (tempX, tempY)
+//		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { //loops each of the entities
+//			if(e.equals(this))
+//				continue;
+//			if(e.getCollisonBounds(0f,0f).intersects(this.getCollisonBounds(xOffset, yOffset))) //the the 2 bounds are intersects
+//				return true;
+//		}
+//		return false; //if the loop has exited = no collision
+//	}
+	
+	public boolean checkEntitySolidCollsions(float xOffset, float yOffset) { 
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { 
+			if(e.equals(this))
+				continue;
+			if(e.getCollisonBounds(0f,0f).intersects(this.getCollisonBounds(xOffset, yOffset)) && e.isSolid())
+				return true;
+		}
+		return false;
+	}
 	
 	
 	
