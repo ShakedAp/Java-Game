@@ -8,10 +8,10 @@ public abstract class Projectile extends Entity{
 	protected double velX, velY;
 	
 	
-	public Projectile(Handler handler, float x, float y, int width, int height, double velX, double velY) {
-		super(handler, x, y, width, height);
-		this.velX = velX;
-		this.velY = velY;
+	public Projectile(Handler handler, float fromX, float fromY, float toX, float toY, int width, int height) {
+		super(handler, fromX, fromY, width, height);
+		velX = (toX - fromX) / 15;
+		velY = (toY - fromY) / 15;
 	}
 	
 	public void move(){

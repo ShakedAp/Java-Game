@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import game.Handler;
 import game.entities.Entity;
+import game.entities.projectiles.RegularBullet;
 import game.gfx.Animation;
 import game.gfx.Assets;
 
@@ -69,6 +70,13 @@ public class Player extends Creature {
 		animIdle.update();
 		//Attack
 		checkMeleeAttacks();
+		
+		float mx = handler.getMouseManager().getMouseX();
+		float my = handler.getMouseManager().getMouseY();
+		
+		if(handler.getMouseManager().isLeftPressed())
+			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x , y, mx, my, 8, 8));
+		System.out.println(mx + "     " + my);
 	}
 	
 	private void checkMeleeAttacks() {

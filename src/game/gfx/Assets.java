@@ -12,7 +12,6 @@ public class Assets {
 	
 	public static void init() {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png")); //loading the sprite sheet (by loading the image)
-		
 		player_down = new BufferedImage[2];
 		player_up = new BufferedImage[2];
 		player_left = new BufferedImage[2];
@@ -48,6 +47,7 @@ public class Assets {
 		//other
 		dirt = sheet.crop(width, 0, width, height);
 		grass = sheet.crop(width * 2, 0, width, height);
+		//grass = img.crop(0, 0, 128, 128);
 		stone = sheet.crop(width * 3, 0, width, height);
 		tree = sheet.crop(0, 0, width, height * 2);
 		rock = sheet.crop(0, height * 2, width, height);
