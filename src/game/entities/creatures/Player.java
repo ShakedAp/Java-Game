@@ -20,7 +20,7 @@ public class Player extends Creature {
 	private Animation animIdle;
 	private int animSpeed = 500;
 	//Attack timer
-	private long lastAttackTimer, attackCooldown = 800, attackTimer = attackCooldown; 
+	private long lastAttackTimer, attackCooldown = 400, attackTimer = attackCooldown; 
 	
 	
 	
