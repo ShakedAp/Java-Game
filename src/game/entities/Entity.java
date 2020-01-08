@@ -33,6 +33,7 @@ public abstract class Entity {
 	
 	public abstract void die();
 	
+	
 	public void hurt(int amount){
 		health -= amount;
 		if(health <= 0) {
@@ -43,6 +44,10 @@ public abstract class Entity {
 	
 	public void kill() {
 		hurt(health);
+	}
+	
+	protected boolean collisionWithTile(int x, int y) {
+		return handler.getWorld().getTile(x, y).isSolid();
 	}
 	
 	public boolean isSolid() {

@@ -1,6 +1,5 @@
 package game.entities.creatures;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -21,7 +20,7 @@ public class Player extends Creature {
 	private Animation animIdle;
 	private int animSpeed = 500;
 	//Attack timers
-	private long lastMeleeAttackTimer, meleeAttackCooldown = 400, meleeAttackTimer = meleeAttackCooldown; 
+	private long lastMeleeAttackTimer, meleeAttackCooldown = 100, meleeAttackTimer = meleeAttackCooldown; 
 	private long lastGunAttackTimer, gunAttackCooldown = 400, gunAttackTimer = gunAttackCooldown; 
 	
 	
@@ -77,21 +76,17 @@ public class Player extends Creature {
 		//mouse X and Y
 		float mx = handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset();
 		float my = handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset();
-			
+		
 		gunAttackTimer += System.currentTimeMillis() - lastGunAttackTimer; //gun cooldown
 		lastGunAttackTimer = System.currentTimeMillis();
 		if(gunAttackTimer < gunAttackCooldown)
 			return;
-		
-		
+
 		if(handler.getMouseManager().isLeftPressed()) //if left button is pressed -> get mouse position and shoot
-			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x+20 ,y + 16,mx,my, 30));
+			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x + bounds.x + bounds.height/2,y + bounds.y + bounds.width/2,mx,my, this));
 		else
 			return;
-		gunAttackTimer = 0;
-		
-		
-		
+		gunAttackTimer = 0; //reset the cooldown
 	}
 	
 	
@@ -142,7 +137,6 @@ public class Player extends Creature {
 	public void die() {
 		System.out.println("GAME OVER");
 	}
-	
 	
 	private void getInput() {
 		xMove = 0;

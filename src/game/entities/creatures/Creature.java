@@ -35,17 +35,17 @@ public abstract class Creature extends Entity{
 				//the position of the tile you are trying to get to
 				int tempX = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH; 
 				
-				if (! collisionWithTile(tempX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) && !collisionWithTile(tempX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){ 
+				if (!collisionWithTile(tempX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) && !collisionWithTile(tempX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){ 
 					//if the player is not in a collision with tile
 								x += xMove;			
 				} else { //perfect collisions (no gap)
 					x = tempX * Tile.TILE_WIDTH - bounds.x - bounds.width - 1;
-					
 				}
+	
 		}else if(xMove < 0) { //moving left
 			int tempX = (int) (x + xMove + bounds.x) / Tile.TILE_WIDTH; 
 			
-			if (! collisionWithTile(tempX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) && !collisionWithTile(tempX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){ 
+			if (!collisionWithTile(tempX, (int) (y + bounds.y) / Tile.TILE_HEIGHT) && !collisionWithTile(tempX, (int) (y + bounds.y + bounds.height) / Tile.TILE_HEIGHT)){ 
 							x += xMove;	
 			}else {
 				x = tempX * Tile.TILE_WIDTH + Tile.TILE_WIDTH - bounds.x;
@@ -75,12 +75,6 @@ public abstract class Creature extends Entity{
 			}
 		}
 	}
-	
-	
-	protected boolean collisionWithTile(int x, int y) { //checks if the creature is in a collision (in a solid tile)
-		return handler.getWorld().getTile(x, y).isSolid();
-	}
-
 	
 	//getters and setters
 	public float getxMove() {

@@ -2,6 +2,7 @@ package game.entities.projectiles;
 
 import game.Handler;
 import game.entities.Entity;
+import game.tiles.Tile;
 
 public abstract class Projectile extends Entity{
 
@@ -27,15 +28,26 @@ public abstract class Projectile extends Entity{
 		//TODO: better bullet shooting speed
 	}
 	
+	protected void tileCollsionsCheck(){
+		int tempX = (int) (x / Tile.TILE_WIDTH);
+		int tempY = (int) (y / Tile.TILE_HEIGHT);
+		if(collisionWithTile(tempX, tempY))
+			this.kill();
+	}
 	
-	public void tickLifeCounter() {
+	protected void tickLifeCounter() {
 		if(tickCount >= tickLife) { //if it reached the time life limit
 			kill();
 			return;
 			}
-		tickCount++; //for each time this method is called (at the tick method + ecery tick)
+		tickCount++; //for each time this method is called (at the tick method)
 	}
 
+	@Override
+	public boolean isSolid() {
+		return false;
+	}	
+	
 	//Getter Setters
 	public double getVelX() {
 		return velX;

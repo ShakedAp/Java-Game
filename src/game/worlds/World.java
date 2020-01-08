@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import game.Handler;
 import game.entities.EntityManager;
 import game.entities.creatures.Player;
-import game.entities.projectiles.RegularBullet;
 import game.entities.statics.Rock;
 import game.entities.statics.Tree;
 import game.tiles.Tile;
