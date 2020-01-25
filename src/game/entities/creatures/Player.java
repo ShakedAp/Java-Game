@@ -21,8 +21,7 @@ public class Player extends Creature {
 	private int animSpeed = 500;
 	//Attack timers
 	private long lastMeleeAttackTimer, meleeAttackCooldown = 100, meleeAttackTimer = meleeAttackCooldown; 
-	private long lastGunAttackTimer, gunAttackCooldown = 400, gunAttackTimer = gunAttackCooldown; 
-	
+	private long lastGunAttackTimer, gunAttackCooldown = 400, gunAttackTimer = gunAttackCooldown;	
 	
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CEATURE_WIDTH, Creature.DEFAULT_CEATURE_HEIGHT);
@@ -98,6 +97,7 @@ public class Player extends Creature {
 			return;
 		
 		
+		
 		Rectangle cb = getCollisonBounds(0,0);
 		Rectangle attackRect = new Rectangle();
 		int attackSize = 20; //the size of the attack ("near the player bounds)
@@ -117,7 +117,7 @@ public class Player extends Creature {
 			attackRect.x = cb.x + cb.width;
 			attackRect.y = cb.y + cb.height/2 - attackSize/2;	
 		} else 
-			return; //if the player is not attacking exit
+			return; //if the player is not attacking -> exit
 		
 		meleeAttackTimer = 0; //restarting the cooldown
 		

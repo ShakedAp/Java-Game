@@ -3,6 +3,7 @@ package game.entities;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import game.Handler;
 import game.entities.creatures.Player;
@@ -34,11 +35,12 @@ public class EntityManager {
 	
 	
 	public void tick() {
-		for (int i = 0; i < entities.size(); i++) { //ticking each entity in the game
-			Entity e = entities.get(i);
+		Iterator<Entity> it = entities.iterator(); //creating an iterator in order for a better removing entities
+		while(it.hasNext()){ //ticking each entity in the game
+			Entity e = it.next();
 			e.tick();
 			if(!e.isActive()) //if the entity dies
-				entities.remove(e);
+				it.remove();
 		}
 		entities.sort(renderSorter); //sorting all of the entities for render order
 		
