@@ -1,6 +1,7 @@
 package game.items;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
@@ -24,6 +25,8 @@ public class Item {
 	protected String name;
 	protected final int id;
 
+	protected Rectangle bounds;
+	
 	protected int x, y, count;
 	
 	public Item(BufferedImage texture, String name, int id) {
@@ -32,11 +35,16 @@ public class Item {
 		this.id = id;
 		count = 1;
 		
+		bounds = new Rectangle(x, y, ITEM_WIDTH, ITEM_HEIGHT);
+		
 		items[id] = this;
 	}
 	
 	
 	public void tick(){
+		if(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0f, 0f).intersects(bounds)){
+			count = PICKED_UP;
+		}
 		
 	}
 
@@ -59,6 +67,8 @@ public class Item {
 	public void setPosition(int x, int y) {
 		this.x = x;
 		this.y = y;
+		bounds.x = x;
+		bounds.y = y;
 	}
 	
 	

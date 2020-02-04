@@ -6,17 +6,37 @@ import java.awt.event.KeyEvent;
 
 public class KeyManager implements KeyListener{ //allows us to "listen" to the keys that are pressed
 
-	private boolean[] keys; //Creating a new boolean array that contains our keys
+	private boolean[] keys, justPressed, cantPress;
 	public boolean up, down, left, right;
 	public boolean aUp, aDown, aLeft, aRight;
 
 	
 	public KeyManager() {
-		keys = new boolean[256]; //initializing the array
+		keys = new boolean[256];
+		justPressed = new boolean[keys.length];
+		cantPress = new boolean[keys.length];
 	}
 	
 	public void tick() {
-		up = keys[KeyEvent.VK_W]; //checking if the up key is pressed (to get the keycode use "KeyEvent.VK_Name)
+		
+		for(int i = 0; i < keys.length; i++) {
+			if (cantPress[i] && !keys[i])
+				cantPress[i] = false;
+			else if(justPressed[i]) {
+				cantPress[i] = true;
+				justPressed[i] = false;
+			}
+			if(!cantPress[i] && keys[i])
+				justPressed[i] = true;
+		}
+		
+		if(justPressed[KeyEvent.VK_E])
+			System.out.println("E JUST PRESSED");
+			
+		
+		
+		
+		up = keys[KeyEvent.VK_W];
 		down = keys[KeyEvent.VK_S];
 		left = keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_D];
@@ -28,12 +48,16 @@ public class KeyManager implements KeyListener{ //allows us to "listen" to the k
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e) { //called whenever the user is letting go a key on the keyboard
-		keys[e.getKeyCode()] = true; //getting the keycode of the key pressed 
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() < 0 || e.getKeyCode() >= keys.length)
+			return;
+		keys[e.getKeyCode()] = true; 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() < 0 || e.getKeyCode() >= keys.length)
+			return; 
 		keys[e.getKeyCode()] = false;
 	} 
 	
