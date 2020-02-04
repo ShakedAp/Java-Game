@@ -28,11 +28,7 @@ public class KeyManager implements KeyListener{ //allows us to "listen" to the k
 			}
 			if(!cantPress[i] && keys[i])
 				justPressed[i] = true;
-		}
-		
-		if(justPressed[KeyEvent.VK_E])
-			System.out.println("E JUST PRESSED");
-			
+		}	
 		
 		
 		
@@ -60,6 +56,12 @@ public class KeyManager implements KeyListener{ //allows us to "listen" to the k
 			return; 
 		keys[e.getKeyCode()] = false;
 	} 
+	
+	public boolean keyJustPressed(int keyCode){
+		if(keyCode < 0 || keyCode >= keys.length)
+			return false;
+		return justPressed[keyCode];
+	}
 	
 	@Override
 	public void keyTyped(KeyEvent e) {

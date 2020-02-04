@@ -9,16 +9,15 @@ import game.entities.Entity;
 import game.entities.projectiles.RegularBullet;
 import game.gfx.Animation;
 import game.gfx.Assets;
+import game.inventory.Inventory;
 
 public class Player extends Creature {
 
 	//Animations
-	private Animation animDown;
-	private Animation animUp;
-	private Animation animLeft;
-	private Animation animRight;
-	private Animation animIdle;
+	private Animation animDown, animUp, animLeft, animRight, animIdle;
 	private int animSpeed = 500;
+	
+	private Inventory inventory;
 	
 	//Attack timers
 	private long lastMeleeAttackTimer, meleeAttackCooldown = 100, meleeAttackTimer = meleeAttackCooldown; 
@@ -41,13 +40,15 @@ public class Player extends Creature {
 		animRight = new Animation(animSpeed, Assets.player_right);
 		animIdle = new Animation(animSpeed, Assets.player_idle);
 		
+		inventory = new Inventory(handler);
 	}
 	
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), 
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
-		//rendering the player with the offset (camera)
+		
+		inventory.render(g);
 		
 		
 		//Collision box
@@ -71,6 +72,8 @@ public class Player extends Creature {
 		//Attack
 		checkMeleeAttacks();
 		checkGunAttacks();
+		
+		inventory.tick();
 	}
 	
 	private void checkGunAttacks() {
@@ -170,6 +173,14 @@ public class Player extends Creature {
 			return animRight.getCurrentFrame(); 
 		else //the default animation (should be idle)
 			return animIdle.getCurrentFrame();
+	}
+
+	public Inventory getInventory() {
+		return inventory;
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
 	}
 	
 }
