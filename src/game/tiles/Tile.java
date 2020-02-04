@@ -15,11 +15,6 @@ public class Tile {
 	public static Tile rockTile = new RockTile(2);
 	
 	
-	
-	
-	
-	
-	
 	//CLASS
 	protected BufferedImage texture; //the texture for the tile
 	protected final int id; //every tile have a unique id

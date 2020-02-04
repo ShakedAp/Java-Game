@@ -23,8 +23,8 @@ public abstract class Projectile extends Entity{
 	
 	
 	private void setVelocity(float fromX, float fromY, float toX, float toY) {	
-		velX = (toX - fromX) / 15;
-		velY = (toY - fromY) / 15;
+		velX = (toX - fromX) / 10;
+		velY = (toY - fromY) / 10;
 		//TODO: better bullet shooting speed
 	}
 	

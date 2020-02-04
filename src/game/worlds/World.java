@@ -7,6 +7,7 @@ import game.entities.EntityManager;
 import game.entities.creatures.Player;
 import game.entities.statics.Rock;
 import game.entities.statics.Tree;
+import game.items.ItemManager;
 import game.tiles.Tile;
 import game.utils.Utils;
 
@@ -20,11 +21,16 @@ public class World {
 	//entities
 	private EntityManager entityManager;
 	
-	public World(Handler handler, String path) { //for a pre-generated world
+	//items
+	private ItemManager itemManager;
+	
+	public World(Handler handler, String path) {
 		this.handler = handler;
 		
-		//ENTITIES
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		itemManager = new ItemManager(handler);
+		
+		//Temporary entity code!
 		entityManager.addEntity(new Tree(handler, 100, 100));
 		entityManager.addEntity(new Rock(handler, 100, 300));
 		
@@ -38,6 +44,7 @@ public class World {
 	
 	
 	public void tick(){
+		itemManager.tick();
 		entityManager.tick();
 	}
 	
@@ -48,8 +55,6 @@ public class World {
 		int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
 		int yEnd = (int) Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight()) / Tile.TILE_HEIGHT + 1);;
 		
-		
-		
 		for(int y = yStart; y < yEnd; y++) {
 			for(int x = xStart; x < xEnd; x++) {
 				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - handler.getGameCamera().getxOffset()),
@@ -59,7 +64,7 @@ public class World {
 		}
 		
 		
-		//entities
+		itemManager.render(g);
 		entityManager.render(g);
 		
 	}
@@ -105,7 +110,7 @@ public class World {
 	
 	
 	
-
+	//GETTERS SETTERS
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
@@ -117,6 +122,30 @@ public class World {
 	
 	public int getHeight() {
 		return height;
+	}
+
+
+
+	public Handler getHandler() {
+		return handler;
+	}
+
+
+
+	public void setHandler(Handler handler) {
+		this.handler = handler;
+	}
+
+
+
+	public ItemManager getItemManager() {
+		return itemManager;
+	}
+
+
+
+	public void setItemManager(ItemManager itemManager) {
+		this.itemManager = itemManager;
 	}
 
 	

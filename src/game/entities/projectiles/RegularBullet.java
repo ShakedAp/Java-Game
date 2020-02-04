@@ -19,7 +19,7 @@ public class RegularBullet extends Projectile {
 	public void tick() {
 		move();
 		tickLifeCounter();
-		checkDamaging(shooter, 1);
+		checkDamaging(shooter, 2);
 		tileCollsionsCheck();
 		}
 	
