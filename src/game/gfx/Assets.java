@@ -1,10 +1,13 @@
 package game.gfx;
 
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 
 public class Assets {
 
 	private static final int width = 32, height = 32;
+	
+	public static Font font28; 
 	
 	public static BufferedImage dirt, grass, stone, tree, rock, wood; 
 	public static BufferedImage inventoryScreen;
@@ -13,6 +16,8 @@ public class Assets {
 	
 	
 	public static void init() {
+		font28 = FontLoader.loadFont("res/fonts/slkscr.ttf", 28);
+		
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
 		
 		inventoryScreen = ImageLoader.loadImage("/textures/inventoryScreen.png");

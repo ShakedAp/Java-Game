@@ -45,6 +45,12 @@ public class Player extends Creature {
 	
 	@Override
 	public void render(Graphics g) {
+		
+		if(inventory.isActive()) {
+			g.drawImage(animIdle.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()), 
+					(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
+			return;
+		}
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), 
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
 	}
@@ -54,15 +60,13 @@ public class Player extends Creature {
 	}
 	
 	
-	
-	
-	
-	
-
 	@Override
 	public void tick() {
 		getInput();
-		move();
+		
+		if(!inventory.isActive())
+			move();
+		
 		handler.getGameCamera().centerOnEntity(this); //making the camera center on the player
 		//Animations
 		animDown.update(); 
@@ -101,7 +105,8 @@ public class Player extends Creature {
 		lastMeleeAttackTimer = System.currentTimeMillis();
 		if(meleeAttackTimer < meleeAttackCooldown) //if we are still in the cooldown -> exit
 			return;
-		
+		if(inventory.isActive())
+			return;
 		
 		
 		Rectangle cb = getCollisonBounds(0,0);
