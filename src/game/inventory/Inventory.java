@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import game.Handler;
+import game.gfx.Assets;
 import game.items.Item;
 
 public class Inventory {
@@ -13,9 +14,14 @@ public class Inventory {
 	public boolean active = false;
 	private ArrayList<Item> inventoryItems;
 	
+	private int invX = 224, invY = 78,
+			invWidth = 512, invHeight = 384;
+	
 	public Inventory(Handler handler) {
 		this.handler = handler;
 		inventoryItems = new ArrayList<Item>();
+		
+		addItem(Item.woodItem.createNew(1));
 	}
 	
 	
@@ -29,6 +35,10 @@ public class Inventory {
 	public void render(Graphics g) {
 		if(!active)
 			return;
+		
+		g.drawImage(Assets.inventoryScreen, invX, invY, invWidth, invHeight, null);
+		
+		
 	}
 	
 	//Inventory methods

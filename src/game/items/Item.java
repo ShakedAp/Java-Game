@@ -60,7 +60,14 @@ public class Item {
 		g.drawImage(texture, x, y, ITEM_WIDTH, ITEM_HEIGHT, null);
 	}
 
-	public Item createNew(int x, int y) {
+	public Item createNew(int count) { //create new item in the inventory
+		Item i = new Item(texture, name, id);
+		i.setPickedUp(true);
+		i.setCount(count);
+		return i;
+	}
+	
+	public Item createNew(int x, int y) { //create new item in the game
 		Item i = new Item(texture, name, id);
 		i.setPosition(x, y);
 		return i;

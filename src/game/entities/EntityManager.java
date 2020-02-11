@@ -52,6 +52,7 @@ public class EntityManager {
 			Entity e = entities.get(i);
 			e.render(g);
 		}
+		player.postRender(g);
 	}
 
 

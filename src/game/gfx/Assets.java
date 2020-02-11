@@ -4,15 +4,19 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	private static final int width = 32, height = 32; // the width and height of the grid boxes
+	private static final int width = 32, height = 32;
 	
-	public static BufferedImage dirt, grass, stone, tree, rock, wood; //creating the list of all the images we want to have 
+	public static BufferedImage dirt, grass, stone, tree, rock, wood; 
+	public static BufferedImage inventoryScreen;
 	
 	public static BufferedImage[] player_down, player_up, player_left, player_right, player_idle, btn_start;
 	
+	
 	public static void init() {
-		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png")); //loading the sprite sheet (by loading the image)
-		//SpriteSheet img = new SpriteSheet(ImageLoader.loadImage("/textures/Tile1.png"));
+		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
+		
+		inventoryScreen = ImageLoader.loadImage("/textures/inventoryScreen.png");
+		
 		player_down = new BufferedImage[2];
 		player_up = new BufferedImage[2];
 		player_left = new BufferedImage[2];
@@ -26,6 +30,10 @@ public class Assets {
 		
 		//items
 		wood = sheet.crop(width, height, width, height); 
+		
+		
+		
+		
 		
 		//player animation
 		player_down[0] = sheet.crop(width * 4, 0, width, height);
@@ -41,6 +49,10 @@ public class Assets {
 		player_right[1] = sheet.crop(width * 5, height, width, height);
 		
 		player_idle[0] = sheet.crop(width * 3 , height, width, height);
+		
+		
+		
+		
 		
 		//other
 		dirt = sheet.crop(width, 0, width, height);
