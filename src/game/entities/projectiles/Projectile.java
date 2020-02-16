@@ -1,73 +1,34 @@
 package game.entities.projectiles;
 
+import java.awt.Graphics;
+
 import game.Handler;
 import game.entities.Entity;
-import game.tiles.Tile;
 
-public abstract class Projectile extends Entity{
+public abstract class Projectile extends Entity {
 
-	protected double velX, velY;
-	protected int tickLife;
-	private int tickCount= 0;
+	protected final int xOrigin, yOrigin; //start point
+	protected double angle;
+	protected double moveX, moveY;
+	protected double speed, range, damage;
 	
-	public Projectile(Handler handler, float fromX, float fromY, float toX, float toY, int width, int height,int tickLife) {
-		super(handler, fromX, fromY, width, height);
-		setVelocity(fromX, fromY, toX, toY);
-		this.tickLife = tickLife;
-	}
-	
-	public void move(){
-		x+= velX;
-		y+= velY;
-	}
-	
-	
-	private void setVelocity(float fromX, float fromY, float toX, float toY) {	
-		velX = (toX - fromX) / 10;
-		velY = (toY - fromY) / 10;
-		//TODO: better bullet shooting speed
+	public Projectile(Handler handler, float x, float y, double dir, int width, int height , int speed) {
+		super(handler, x, y, width, height);
+		
+		this.speed = speed;
+		this.xOrigin = (int) x;
+		this.yOrigin = (int) y;
+		angle = dir;
+		
+		moveX = speed * Math.cos(angle);
+		moveY = speed * Math.sin(angle);
 	}
 	
-	protected void tileCollsionsCheck(){
-		int tempX = (int) (x / Tile.TILE_WIDTH);
-		int tempY = (int) (y / Tile.TILE_HEIGHT);
-		if(collisionWithTile(tempX, tempY))
-			this.kill();
-	}
-	
-	protected void tickLifeCounter() {
-		if(tickCount >= tickLife) { //if it reached the time life limit
-			kill();
-			return;
-			}
-		tickCount++; //for each time this method is called (at the tick method)
-	}
-
-	@Override
-	public boolean isSolid() {
-		return false;
-	}	
-	
-	//Getter Setters
-	public double getVelX() {
-		return velX;
-	}
-
-	public void setVelX(double velX) {
-		this.velX = velX;
-	}
-
-	public double getVelY() {
-		return velY;
-	}
-
-	public void setVelY(double velY) {
-		this.velY = velY;
+	protected void move(){
+		x += moveX;
+		y += moveY;
 	}
 	
 	
 	
-	
-	
-
 }

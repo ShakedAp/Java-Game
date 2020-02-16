@@ -35,12 +35,19 @@ public class EntityManager {
 	
 	
 	public void tick() {
-		Iterator<Entity> it = entities.iterator(); //creating an iterator in order for a better removing entities
-		while(it.hasNext()){ //ticking each entity in the game
-			Entity e = it.next();
+//		Iterator<Entity> it = entities.iterator();
+//		while(it.hasNext()){ 
+//			Entity e = it.next();
+//			e.tick();
+//			if(!e.isActive())
+//				it.remove();
+//
+//		}
+		for(int i = 0;i < entities.size();i++){
+			Entity e = entities.get(i);
 			e.tick();
-			if(!e.isActive()) //if the entity dies
-				it.remove();
+			if(!e.isActive())
+				entities.remove(e);
 		}
 		entities.sort(renderSorter); //sorting all of the entities for render order
 		

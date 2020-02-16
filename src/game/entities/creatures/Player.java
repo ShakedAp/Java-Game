@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import game.Handler;
 import game.entities.Entity;
+import game.entities.projectiles.Projectile;
 import game.entities.projectiles.RegularBullet;
 import game.gfx.Animation;
 import game.gfx.Assets;
@@ -22,8 +23,6 @@ public class Player extends Creature {
 	//Attack timers
 	private long lastMeleeAttackTimer, meleeAttackCooldown = 100, meleeAttackTimer = meleeAttackCooldown; 
 
-	private long lastGunAttackTimer, gunAttackCooldown = 200, gunAttackTimer = gunAttackCooldown; 
-	
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CEATURE_WIDTH, Creature.DEFAULT_CEATURE_HEIGHT);
 		
@@ -76,29 +75,24 @@ public class Player extends Creature {
 		animIdle.update();
 		//Attack
 		checkMeleeAttacks();
-		checkGunAttacks();
+		checkShoolting();
 		
 		inventory.tick();
 	}
 	
-	private void checkGunAttacks() {
-		//mouse X and Y
-		float mx = handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset();
-		float my = handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset();
-		
-		gunAttackTimer += System.currentTimeMillis() - lastGunAttackTimer; //gun cooldown
-		lastGunAttackTimer = System.currentTimeMillis();
-		if(gunAttackTimer < gunAttackCooldown)
-			return;
+	private void checkShoolting() {
+	
+		double dx = handler.getMouseManager().getMouseX() - handler.getGame().getWidth() / 2;
+		double dy =  handler.getMouseManager().getMouseY() - handler.getGame().getHeight() /2 ;
+		double dir = Math.atan2(dy, dx); //getting the angle
 
-		if(handler.getMouseManager().isLeftPressed()) //if left button is pressed -> get mouse position and shoot
-			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x + bounds.x + bounds.height/2,y + bounds.y + bounds.width/2,mx,my, this));
-		else
-			return;
-		gunAttackTimer = 0; //reset the cooldown
+		Projectile p = new RegularBullet(handler, x, y, dir);
+		
+		handler.getWorld().getEntityManager().addEntity(p);
+		
+		
 	}
-	
-	
+
 	private void checkMeleeAttacks() {
 		//Attack cooldown
 		meleeAttackTimer += System.currentTimeMillis() - lastMeleeAttackTimer;
