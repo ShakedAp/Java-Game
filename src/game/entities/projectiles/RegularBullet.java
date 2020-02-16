@@ -9,7 +9,7 @@ public class RegularBullet extends Projectile {
 
 	
 	public RegularBullet(Handler handler, float x, float y, double dir) {
-		super(handler, x, y, dir, 8, 8, 5);
+		super(handler, x, y, dir, 8, 8, 10);
 	}
 
 	@Override

@@ -29,6 +29,10 @@ public abstract class Projectile extends Entity {
 		y += moveY;
 	}
 	
+	@Override
+	public boolean isSolid() {
+		return false;
+	}
 	
 	
 }
