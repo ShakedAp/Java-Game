@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
 
 	private static final int width = 32, height = 32;
+	private static final int  newWidth = 128, newHeight = 128;
 	
 	public static Font font28; 
 	
@@ -19,10 +20,11 @@ public class Assets {
 		font28 = FontLoader.loadFont("res/fonts/slkscr.ttf", 28);
 		
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
+		SpriteSheet robotSheet = new SpriteSheet(ImageLoader.loadImage("/textures/RobotSheet.png"));
 		
 		inventoryScreen = ImageLoader.loadImage("/textures/inventoryScreen.png");
 		
-		player_down = new BufferedImage[2];
+		player_down = new BufferedImage[13];
 		player_up = new BufferedImage[2];
 		player_left = new BufferedImage[2];
 		player_right= new BufferedImage[2];
@@ -38,11 +40,23 @@ public class Assets {
 		
 		
 		
-		
+
 		
 		//player animation
-		player_down[0] = sheet.crop(width * 4, 0, width, height);
-		player_down[1] = sheet.crop(width * 5, 0, width, height);
+		player_down[0] = robotSheet.crop(0, 0, newWidth, newHeight);
+		player_down[1] = robotSheet.crop(newWidth, 0, newWidth, newHeight);
+		player_down[2] = robotSheet.crop(newWidth * 2, 0, newWidth, newHeight);
+		player_down[3] = robotSheet.crop(newWidth * 3, 0, newWidth, newHeight);
+		player_down[4] = robotSheet.crop(newWidth * 4, 0, newWidth, newHeight);
+		player_down[5] = robotSheet.crop(newWidth * 5, 0, newWidth, newHeight);
+		player_down[6] = robotSheet.crop(newWidth * 6, 0, newWidth, newHeight);
+		player_down[7] = robotSheet.crop(newWidth * 7, 0, newWidth, newHeight);
+		player_down[8] = robotSheet.crop(0, newHeight, newWidth, newHeight);
+		
+		player_down[9] = robotSheet.crop(newWidth, newHeight, newWidth, newHeight);
+		player_down[10] = robotSheet.crop(newWidth * 2, newHeight, newWidth, newHeight);
+		player_down[11] = robotSheet.crop(newWidth * 3, newHeight, newWidth, newHeight);
+		player_down[12] = robotSheet.crop(newWidth * 4, newHeight, newWidth, newHeight);
 		
 		player_up[0] = sheet.crop(width * 6, 0, width, height);
 		player_up[1] = sheet.crop(width * 7, 0, width, height);

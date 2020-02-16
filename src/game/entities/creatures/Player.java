@@ -88,7 +88,7 @@ public class Player extends Creature {
 
 		Projectile p = new RegularBullet(handler, x, y, dir);
 		
-		handler.getWorld().getEntityManager().addEntity(p);
+		//handler.getWorld().getEntityManager().addEntity(p);
 		
 		
 	}
