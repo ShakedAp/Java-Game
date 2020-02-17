@@ -15,8 +15,8 @@ import game.inventory.Inventory;
 public class Player extends Creature {
 
 	//Animations
-	private Animation animDown, animUp, animLeft, animRight, animIdle;
-	private int animSpeed = 500;
+	private Animation animDown, animUp, animLeft, animRight;
+	private int animSpeed = 100;
 	
 	private Inventory inventory;
 	
@@ -24,20 +24,19 @@ public class Player extends Creature {
 	private long lastMeleeAttackTimer, meleeAttackCooldown = 100, meleeAttackTimer = meleeAttackCooldown; 
 
 	public Player(Handler handler, float x, float y) {
-		super(handler, x, y, Creature.DEFAULT_CEATURE_WIDTH, Creature.DEFAULT_CEATURE_HEIGHT);
+		super(handler, x, y, 128, 128);
 		
 		//the player bounds
-		bounds.x = 22;
-		bounds.y = 30;
-		bounds.width = 19;
-		bounds.height = 33;
+		bounds.x = 43;
+		bounds.y = 43;
+		bounds.width = 42;
+		bounds.height = 50;
 		
 		//animations
 		animDown = new Animation(animSpeed, Assets.player_down);
 		animUp = new Animation(animSpeed, Assets.player_up);
 		animLeft = new Animation(animSpeed, Assets.player_left);
 		animRight = new Animation(animSpeed, Assets.player_right);
-		animIdle = new Animation(animSpeed, Assets.player_idle);
 		
 		inventory = new Inventory(handler);
 	}
@@ -46,10 +45,12 @@ public class Player extends Creature {
 	public void render(Graphics g) {
 		
 		if(inventory.isActive()) {
-			g.drawImage(animIdle.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()), 
+			g.drawImage(Assets.player_idle, (int) (x - handler.getGameCamera().getxOffset()), 
 					(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
 			return;
 		}
+		
+		
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), 
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
 	}
@@ -72,7 +73,6 @@ public class Player extends Creature {
 		animUp.update();
 		animLeft.update();
 		animRight.update();
-		animIdle.update();
 		//Attack
 		checkMeleeAttacks();
 		checkShoolting();
@@ -171,8 +171,8 @@ public class Player extends Creature {
 			return animLeft.getCurrentFrame();
 		else if(xMove > 0) //moving right
 			return animRight.getCurrentFrame(); 
-		else //the default animation (should be idle)
-			return animIdle.getCurrentFrame();
+		else
+			return Assets.player_idle;
 	}
 
 	public Inventory getInventory() {
