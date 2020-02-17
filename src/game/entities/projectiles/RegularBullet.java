@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import game.Handler;
 import game.gfx.Assets;
+import game.tiles.Tile;
 
 public class RegularBullet extends Projectile {
 
@@ -20,10 +21,7 @@ public class RegularBullet extends Projectile {
 
 	@Override
 	public void tick() {
-		move();
-		
-		if(collisionWithTile((int) x, (int) y))
-				System.out.println("true");
+		move(); 
 	}
 
 	@Override

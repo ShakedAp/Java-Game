@@ -95,7 +95,8 @@ public class Player extends Creature {
 		double dir = Math.atan2(dy, dx); //getting the angle
 		
 		if(handler.getMouseManager().isLeftPressed()) {
-			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x + bounds.x + 10, y + bounds.y + 10, dir));
+			Projectile p = new RegularBullet(handler, x + bounds.x + 10, y + bounds.y + 10, dir);
+			handler.getWorld().getEntityManager().addEntity(p);
 		 } else
 			 return;
 		

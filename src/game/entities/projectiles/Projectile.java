@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import game.Handler;
 import game.entities.Entity;
+import game.tiles.Tile;
 
 public abstract class Projectile extends Entity {
 
@@ -30,6 +31,7 @@ public abstract class Projectile extends Entity {
 	
 	protected void move(){
 		if(distancePassed() > range) kill();
+		if(collisionWithTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT)) kill();
 		
 		x += moveX;
 		y += moveY;
