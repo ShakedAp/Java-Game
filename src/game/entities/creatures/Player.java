@@ -22,6 +22,7 @@ public class Player extends Creature {
 	
 	//Attack timers
 	private long lastMeleeAttackTimer, meleeAttackCooldown = 100, meleeAttackTimer = meleeAttackCooldown; 
+	private long lastRangedAttackTimer, rangedAttackCooldown = 100, rangedAttackTimer = rangedAttackCooldown; 
 
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, 128, 128);
@@ -75,22 +76,30 @@ public class Player extends Creature {
 		animRight.update();
 		//Attack
 		checkMeleeAttacks();
-		checkShoolting();
+		checkShooting();
 		
 		inventory.tick();
+		
 	}
 	
-	private void checkShoolting() {
-	
+	private void checkShooting() {
+		rangedAttackTimer += System.currentTimeMillis() - lastRangedAttackTimer;
+		lastRangedAttackTimer = System.currentTimeMillis();
+		
+		if(rangedAttackTimer < rangedAttackCooldown) return;
+		
+		if(inventory.isActive()) return;
+			
 		double dx = handler.getMouseManager().getMouseX() - handler.getGame().getWidth() / 2;
 		double dy =  handler.getMouseManager().getMouseY() - handler.getGame().getHeight() /2 ;
 		double dir = Math.atan2(dy, dx); //getting the angle
-
-		Projectile p = new RegularBullet(handler, x, y, dir);
 		
-		//handler.getWorld().getEntityManager().addEntity(p);
+		if(handler.getMouseManager().isLeftPressed()) {
+			handler.getWorld().getEntityManager().addEntity(new RegularBullet(handler, x + bounds.x + 10, y + bounds.y + 10, dir));
+		 } else
+			 return;
 		
-		
+		rangedAttackTimer = 0;
 	}
 
 	private void checkMeleeAttacks() {

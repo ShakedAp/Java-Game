@@ -10,7 +10,7 @@ public class Assets {
 	
 	public static Font font28; 
 	
-	public static BufferedImage dirt, grass, stone, tree, rock, wood, player_idle; 
+	public static BufferedImage dirt, grass, stone, tree, rock, wood, player_idle, bullet; 
 	public static BufferedImage inventoryScreen;
 	
 	public static BufferedImage[] player_down, player_up, player_left, player_right, btn_start;
@@ -30,6 +30,9 @@ public class Assets {
 		player_right= new BufferedImage[9];
 		
 		btn_start = new BufferedImage[2];
+		
+		bullet = ImageLoader.loadImage("/textures/bullet.png");
+		
 		
 		//buttons
 		btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
