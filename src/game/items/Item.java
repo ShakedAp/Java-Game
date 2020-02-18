@@ -12,9 +12,11 @@ public class Item {
 	//Item handler
 	
 	public static Item[] items = new Item[256];
-	public static Item badPistolItem = new Item(Assets.bad_pistol, "Bad Pistol", "Just the plain good old pistol. It’s quite bad.",  1);	
-	public static Item RPG = new Item(Assets.RPG, "RPG", "Helo            ", 2);	
 	
+	//desc limit: 16 letters per spot
+	public static Item badPistolItem = new Item(Assets.bad_pistol, "bad pistol", "just the plain", "good old pistol.", "", "(its quite bad,", "though)", "", "",  1);
+	public static Item RPG = new Item(Assets.RPG, "RPG", "it stands for:", "remote", "party", "(for) gamers", "", "(shoots rockets)", "", 2);	
+	public static Item shotgun = new Item(Assets.shotgun, "shotgun", "look cool while", "blasting your", " enemies!", "", "(shoots three", "bullets at a", "time)", 3);	
 	
 	
 	//Class
@@ -22,7 +24,7 @@ public class Item {
 	
 	protected Handler handler;
 	protected BufferedImage texture;
-	protected String name, desc;
+	protected String name, desc1,  desc2,  desc3,  desc4,  desc5, desc6, desc7;
 	protected final int id;
 
 	protected Rectangle bounds;
@@ -30,8 +32,14 @@ public class Item {
 	protected int x, y;
 	protected boolean pickedUp = false;
 	
-	public Item(BufferedImage texture, String name, String desc, int id) {
-		this.desc = desc;
+	public Item(BufferedImage texture, String name, String desc1, String desc2, String desc3, String desc4, String desc5, String desc6, String desc7,  int id) {
+		this.desc1 = desc1;
+		this.desc2 = desc2;
+		this.desc3 = desc3;
+		this.desc4 = desc4;
+		this.desc5 = desc5;
+		this.desc6 = desc6;
+		this.desc7 = desc7;
 		this.texture = texture;
 		this.name = name;
 		this.id = id;
@@ -61,13 +69,13 @@ public class Item {
 	}
 
 	public Item createNew() { //create new item in the inventory
-		Item i = new Item(texture, name, desc, id);
+		Item i = new Item(texture, name,  desc1,  desc2,  desc3,  desc4,  desc5,  desc6,  desc7, id);
 		i.setPickedUp(true);
 		return i;
 	}
 	
 	public Item createNew(int x, int y) { //create new item in the game
-		Item i = new Item(texture, name,desc, id);
+		Item i = new Item(texture, name, desc1,  desc2,  desc3,  desc4,  desc5,  desc6,  desc7, id);
 		i.setPosition(x, y);
 		return i;
 	}
@@ -146,14 +154,41 @@ public class Item {
 	}
 
 
-	public String getDesc() {
-		return desc;
+	public String getDesc1() {
+		return desc1;
 	}
 
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public String getDesc2() {
+		return desc2;
 	}
-	
+
+
+	public String getDesc3() {
+		return desc3;
+	}
+
+
+	public String getDesc4() {
+		return desc4;
+	}
+
+
+	public String getDesc5() {
+		return desc5;
+	}
+
+
+	public String getDesc6() {
+		return desc6;
+	}
+
+
+	public String getDesc7() {
+		return desc7;
+	}
+
+
+
 	
 }

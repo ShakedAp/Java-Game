@@ -38,12 +38,16 @@ public class Inventory {
 		inventoryItems = new ArrayList<Item>();
 		
 		addItem(Item.badPistolItem.createNew());
+		addItem(Item.RPG.createNew());
+		addItem(Item.shotgun.createNew());
 	}
 	
 	
 	public void tick() {
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E)) //open inventory
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E)) { //open inventory
 			active = !active;
+			chooseActive = false;
+		}
 		if(!active)
 			return;
 		
@@ -65,6 +69,7 @@ public class Inventory {
 				if(chosen == true) 
 					System.out.println("Weapon eqquiped");
 				chooseActive = false;
+				chosen = true;
 			}
 		}
 		if(!chooseActive) return;
@@ -102,13 +107,14 @@ public class Inventory {
 		Item item = inventoryItems.get(selectedItem);
 		g.drawImage(item.getTexture(), invImageX, invImageY, invImageWidth, invImageHeight, null);	
 		
-		Text.drawString(g, " It squirts water" , invDescX, invDescY, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, " It squirts water" , invDescX, invDescY + 21, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, " It squirts water" , invDescX, invDescY + 42, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, " It squirts water" , invDescX, invDescY + 63, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, " It squirts water" , invDescX, invDescY + 84, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, " It squirts water" , invDescX, invDescY + 105, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, " It squirts water" , invDescX, invDescY + 126, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDesc1(), invDescX, invDescY, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDesc2(), invDescX, invDescY + 21, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDesc3(), invDescX, invDescY + 42, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDesc4(), invDescX, invDescY + 63, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDesc5(), invDescX, invDescY + 84, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDesc6() , invDescX, invDescY + 105, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDesc7() , invDescX, invDescY + 126, true, Color.WHITE, Assets.font24);
+		
 		
 		//choose menu
 		if(!chooseActive) return;
