@@ -15,6 +15,7 @@ public class Inventory {
 	Handler handler;
 	public boolean active = false;
 	private boolean chooseActive = false, chosen = true;
+	private Item equipedWeapon = Item.badPistolItem, currentItem;
 	private ArrayList<Item> inventoryItems;
 	
 	private int invX = 224, invY = 78,
@@ -48,17 +49,15 @@ public class Inventory {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E)) { //open inventory
 			active = !active;
 			chooseActive = false;
-		}
-		
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
+		} if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
 			if(!chooseActive)
 				active = false;
 			chooseActive = false;
 		}
+		if(!active) return;
 		
-		if(!active)
-			return;
 		
+		//INVENTORY MENU
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !chooseActive) //if w is pressed - move the list down
 			selectedItem--;
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S ) && !chooseActive) //if s is pressed - move the list up
@@ -69,13 +68,14 @@ public class Inventory {
 		else if(selectedItem >= inventoryItems.size())
 			selectedItem = 0;
 		
+		currentItem = inventoryItems.get(selectedItem);
 		
-		//choose menu
+		//EQUIP MENU
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER) ) {
 			if(!chooseActive) chooseActive = true;
 			else {
 				if(chosen == true) {
-					System.out.println("Weapon eqquiped");
+					equipedWeapon = currentItem;
 					active = false; //TODO: ask de mates id dats oke
 				}
 				chooseActive = false;
@@ -86,7 +86,6 @@ public class Inventory {
 		
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_D) || handler.getKeyManager().keyJustPressed(KeyEvent.VK_A))
 			chosen = !chosen;
-		
 	}
 	
 	public void render(Graphics g) {
@@ -101,19 +100,20 @@ public class Inventory {
 		if(len == 0)
 			return;
 		
+		//SCROLL DISPLAY
 		for(int i = -5;i < 6;i++){ //total amount of items can be displayed at the inv
 			if(selectedItem + i < 0 || selectedItem + i >= len) //if the selected item is out of bounds
 				continue;
 			if(i == 0){
 				Text.drawString(g, "> " + inventoryItems.get(selectedItem + i).getName() + " <", invListCenterX, 
-						invListCenterY + i * invListSpacing, true, Color.YELLOW, Assets.font28);
+						invListCenterY + i * invListSpacing, true, Color.YELLOW, Assets.font28);				
 			}else{
 				Text.drawString(g, inventoryItems.get(selectedItem + i).getName(), invListCenterX, 
 						invListCenterY + i * invListSpacing, true, Color.WHITE, Assets.font28);
 			}
 		}
 		
-		//draw the item img and description
+		//description
 		Item item = inventoryItems.get(selectedItem);
 		g.drawImage(item.getTexture(), invImageX, invImageY, invImageWidth, invImageHeight, null);	
 		
@@ -126,7 +126,7 @@ public class Inventory {
 		Text.drawString(g, item.getDesc7() , invDescX, invDescY + 126, true, Color.WHITE, Assets.font24);
 		
 		
-		//choose menu
+		//EQUIP MENU
 		if(!chooseActive) return;
 		
 		g.drawImage(Assets.popupInv, chooseX - 260, chooseY - 200, null);	
