@@ -90,8 +90,8 @@ public class Player extends Creature {
 		
 		if(inventory.isActive()) return;
 			
-		double dx = handler.getMouseManager().getMouseX() - handler.getGame().getWidth() / 2;
-		double dy =  handler.getMouseManager().getMouseY() - handler.getGame().getHeight() /2 ;
+		double dx = handler.getMouseManager().getMouseX() - handler.getWidth() / 2;
+		double dy =  handler.getMouseManager().getMouseY() - handler.getHeight() /2 ;
 		double dir = Math.atan2(dy, dx); //getting the angle
 		
 		if(handler.getMouseManager().isLeftPressed()) {
