@@ -14,7 +14,7 @@ public class Inventory {
 
 	Handler handler;
 	public boolean active = false;
-	private boolean chooseActive = false, chosen = false;
+	private boolean chooseActive = false, chosen = true;
 	private ArrayList<Item> inventoryItems;
 	
 	private int invX = 224, invY = 78,
@@ -23,12 +23,12 @@ public class Inventory {
 			invListCenterY = invY + invHeight / 2 + 5,
 			invListSpacing = 30;
 	
-	private int chooseX = 395 + 75, chooseY = 275 - 100;
+	private int chooseX = 395 + 75, chooseY = 275;
 	
 	private int invImageX = invX + 420 - 32, invImageY = 78 + 66 - 32,
 			invImageWidth = 64, invImageHeight = 64;
 	
-	private int invCountX = invImageX + 32, invCountY = invImageY + 59 + 32;
+	private int invDescX = invImageX + 26, invDescY = invImageY + 58*2;
 	
 	private int selectedItem = 0;
 	
@@ -37,10 +37,7 @@ public class Inventory {
 		this.handler = handler;
 		inventoryItems = new ArrayList<Item>();
 		
-		addItem(Item.woodItem.createNew(5));
-		addItem(Item.woodItem.createNew(5));
-		addItem(Item.woodItem.createNew(5));
-		addItem(Item.woodItem.createNew(5));
+		addItem(Item.badPistolItem.createNew());
 	}
 	
 	
@@ -50,9 +47,9 @@ public class Inventory {
 		if(!active)
 			return;
 		
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W)) //if w is pressed - move the list down
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !chooseActive) //if w is pressed - move the list down
 			selectedItem--;
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S)) //if s is pressed - move the list up
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S ) && !chooseActive) //if s is pressed - move the list up
 			selectedItem++;
 		
 		if(selectedItem < 0) //list scroll
@@ -101,11 +98,17 @@ public class Inventory {
 			}
 		}
 		
-		//draw the item img and count
+		//draw the item img and description
 		Item item = inventoryItems.get(selectedItem);
-		g.drawImage(item.getTexture(), invImageX, invImageY, invImageWidth, invImageHeight, null);
-		Text.drawString(g, Integer.toString(item.getCount()), invCountX, invCountY, true, Color.WHITE, Assets.font28);
+		g.drawImage(item.getTexture(), invImageX, invImageY, invImageWidth, invImageHeight, null);	
 		
+		Text.drawString(g, " It squirts water" , invDescX, invDescY, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, " It squirts water" , invDescX, invDescY + 21, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, " It squirts water" , invDescX, invDescY + 42, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, " It squirts water" , invDescX, invDescY + 63, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, " It squirts water" , invDescX, invDescY + 84, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, " It squirts water" , invDescX, invDescY + 105, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, " It squirts water" , invDescX, invDescY + 126, true, Color.WHITE, Assets.font24);
 		
 		//choose menu
 		if(!chooseActive) return;
@@ -126,7 +129,6 @@ public class Inventory {
 	public void addItem(Item item) {
 		for(Item i : inventoryItems) {
 			if(i.getId() == item.getId()) {
-				i.setCount(i.getCount() + item.getCount());
 				return;
 			}
 		}

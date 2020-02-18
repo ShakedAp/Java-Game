@@ -8,9 +8,10 @@ public class Assets {
 	private static final int width = 32, height = 32;
 	private static final int  newWidth = 128, newHeight = 128;
 	
-	public static Font font28; 
+	public static Font font28, font24; 
 	
 	public static BufferedImage dirt, grass, stone, tree, rock, wood, player_idle, bullet; 
+	public static BufferedImage bad_pistol, RPG;
 	public static BufferedImage inventoryScreen;
 	
 	public static BufferedImage[] player_down, player_up, player_left, player_right, btn_start;
@@ -18,9 +19,11 @@ public class Assets {
 	
 	public static void init() {
 		font28 = FontLoader.loadFont("res/fonts/slkscr.ttf", 28);
+		font24 = FontLoader.loadFont("res/fonts/tiny.ttf", 24);
 		
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
 		SpriteSheet robotSheet = new SpriteSheet(ImageLoader.loadImage("/textures/robotSheet.png"));
+		SpriteSheet gunSheet = new SpriteSheet(ImageLoader.loadImage("/textures/gunSheet.png"));
 		
 		inventoryScreen = ImageLoader.loadImage("/textures/inventoryScreen.png");
 		
@@ -33,6 +36,8 @@ public class Assets {
 		
 		bullet = ImageLoader.loadImage("/textures/bullet.png");
 		
+		bad_pistol = gunSheet.crop(0, 0, newWidth, newHeight);
+		RPG = gunSheet.crop(0, newHeight * 3, newWidth, newHeight);
 		
 		//buttons
 		btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);

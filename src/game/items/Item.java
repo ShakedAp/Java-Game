@@ -12,29 +12,29 @@ public class Item {
 	//Item handler
 	
 	public static Item[] items = new Item[256];
-	public static Item woodItem = new Item(Assets.wood, "Wood", 0);	
-	
+	public static Item badPistolItem = new Item(Assets.bad_pistol, "Bad Pistol", "Just the plain good old pistol. It’s quite bad.",  1);	
+	public static Item RPG = new Item(Assets.RPG, "RPG", "Helo            ", 2);	
 	
 	
 	
 	//Class
-	public static final int ITEM_WIDTH = 32,ITEM_HEIGHT = 32;
+	public static final int ITEM_WIDTH = 48 ,ITEM_HEIGHT = 48;
 	
 	protected Handler handler;
 	protected BufferedImage texture;
-	protected String name;
+	protected String name, desc;
 	protected final int id;
 
 	protected Rectangle bounds;
 	
-	protected int x, y, count;
+	protected int x, y;
 	protected boolean pickedUp = false;
 	
-	public Item(BufferedImage texture, String name, int id) {
+	public Item(BufferedImage texture, String name, String desc, int id) {
+		this.desc = desc;
 		this.texture = texture;
 		this.name = name;
 		this.id = id;
-		count = 1;
 		
 		bounds = new Rectangle(x, y, ITEM_WIDTH, ITEM_HEIGHT);
 		
@@ -60,15 +60,14 @@ public class Item {
 		g.drawImage(texture, x, y, ITEM_WIDTH, ITEM_HEIGHT, null);
 	}
 
-	public Item createNew(int count) { //create new item in the inventory
-		Item i = new Item(texture, name, id);
+	public Item createNew() { //create new item in the inventory
+		Item i = new Item(texture, name, desc, id);
 		i.setPickedUp(true);
-		i.setCount(count);
 		return i;
 	}
 	
 	public Item createNew(int x, int y) { //create new item in the game
-		Item i = new Item(texture, name, id);
+		Item i = new Item(texture, name,desc, id);
 		i.setPosition(x, y);
 		return i;
 	}
@@ -132,17 +131,6 @@ public class Item {
 		this.y = y;
 	}
 
-
-	public int getCount() {
-		return count;
-	}
-
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
-
 	public int getId() {
 		return id;
 	}
@@ -155,6 +143,16 @@ public class Item {
 
 	public void setPickedUp(boolean pickedUp) {
 		this.pickedUp = pickedUp;
+	}
+
+
+	public String getDesc() {
+		return desc;
+	}
+
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 	
 	
