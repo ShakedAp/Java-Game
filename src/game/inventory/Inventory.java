@@ -40,6 +40,7 @@ public class Inventory {
 		addItem(Item.badPistolItem.createNew());
 		addItem(Item.RPG.createNew());
 		addItem(Item.shotgun.createNew());
+		addItem(Item.smg.createNew());
 	}
 	
 	
@@ -48,6 +49,13 @@ public class Inventory {
 			active = !active;
 			chooseActive = false;
 		}
+		
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
+			if(!chooseActive)
+				active = false;
+			chooseActive = false;
+		}
+		
 		if(!active)
 			return;
 		
@@ -66,8 +74,10 @@ public class Inventory {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER) ) {
 			if(!chooseActive) chooseActive = true;
 			else {
-				if(chosen == true) 
+				if(chosen == true) {
 					System.out.println("Weapon eqquiped");
+					active = false; //TODO: ask de mates id dats oke
+				}
 				chooseActive = false;
 				chosen = true;
 			}
@@ -118,6 +128,8 @@ public class Inventory {
 		
 		//choose menu
 		if(!chooseActive) return;
+		
+		g.drawImage(Assets.popupInv, chooseX - 260, chooseY - 200, null);	
 		
 		if(!chosen) {
 		Text.drawString(g, "equip", chooseX - 100, chooseY , true, Color.WHITE, Assets.font28);
