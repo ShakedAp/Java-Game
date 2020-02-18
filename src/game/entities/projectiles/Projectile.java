@@ -12,12 +12,14 @@ public abstract class Projectile extends Entity {
 	protected double angle;
 	protected double moveX, moveY;
 	protected double speed, range, damage;
+	protected int id;
 	
 	public static final int DEFAULT_SPEED = 10, DEFAULT_RANGE = 400, DEFAULT_DAMAGE = 1;
 	
-	public Projectile(Handler handler, float x, float y, double dir, int width, int height , int speed , int range, int damage) {
+	public Projectile(Handler handler, float x, float y, double dir, int width, int height , int speed , int range, int damage, int id) {
 		super(handler, x, y, width, height);
 		
+		this.id = id;
 		this.speed = speed;
 		this.range = range;
 		this.damage = damage;
@@ -51,6 +53,10 @@ public abstract class Projectile extends Entity {
 	@Override
 	public boolean isSolid() {
 		return false;
+	}
+
+	public int getId() {
+		return id;
 	}
 	
 	

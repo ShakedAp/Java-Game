@@ -23,7 +23,7 @@ public class Item {
 	//Class
 	public static final int ITEM_WIDTH = 48 ,ITEM_HEIGHT = 48;
 	
-	protected Handler handler;
+	protected static Handler handler;
 	protected BufferedImage texture;
 	protected String name, desc1,  desc2,  desc3,  desc4,  desc5, desc6, desc7;
 	protected final int id;

@@ -15,8 +15,6 @@ public class Handler {
 	}
 	
 	
-	
-	
 	//GETTERS SETTERS
 	public KeyManager getKeyManager() {
 		return game.getKeyManager();

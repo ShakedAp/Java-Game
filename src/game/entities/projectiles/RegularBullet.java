@@ -11,7 +11,7 @@ public class RegularBullet extends Projectile {
 
 	
 	public RegularBullet(Handler handler, float x, float y, double dir) {
-		super(handler, x, y, dir, 8, 8, 10, DEFAULT_RANGE, DEFAULT_DAMAGE);
+		super(handler, x, y, dir, 8, 8, DEFAULT_SPEED, DEFAULT_RANGE, DEFAULT_DAMAGE, 0);
 	}
 
 	@Override
