@@ -17,7 +17,7 @@ public class UIManager {
 	}
 	
 	public void tick() {
-		for(UIObject o : objects) //looping thru each object and ticking it (and rendering and etc)
+		for(UIObject o : objects) 
 			o.tick();
 	}
 	

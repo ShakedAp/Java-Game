@@ -42,6 +42,7 @@ public class Inventory {
 		addItem(Item.shotgun);
 		addItem(Item.smg);
 		addItem(Item.ak47);
+		addItem(Item.waterGun);
 	}
 	
 	

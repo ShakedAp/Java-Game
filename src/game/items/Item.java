@@ -10,6 +10,7 @@ import game.items.Weapons.BadPistol;
 import game.items.Weapons.RPG;
 import game.items.Weapons.Shotgun;
 import game.items.Weapons.Smg;
+import game.items.Weapons.WaterGun;
 
 public class Item {
 
@@ -23,6 +24,7 @@ public class Item {
 	public static Weapon shotgun = new Shotgun();
 	public static Weapon smg= new Smg();
 	public static Weapon ak47 = new Ak47();
+	public static Weapon waterGun = new WaterGun();
 	
 	
 	//Class

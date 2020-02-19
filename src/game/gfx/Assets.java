@@ -11,7 +11,7 @@ public class Assets {
 	public static Font font28, font24; 
 	
 	public static BufferedImage dirt, grass, stone, tree, rock, wood, player_idle, bullet; 
-	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47;
+	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
 	
 	public static BufferedImage[] player_down, player_up, player_left, player_right, btn_start;
@@ -41,7 +41,8 @@ public class Assets {
 		smg = gunSheet.crop(0, newHeight, newWidth, newHeight);
 		shotgun = gunSheet.crop(0, newHeight * 2, newWidth, newHeight);
 		RPG = gunSheet.crop(0, newHeight * 3, newWidth, newHeight);
-		ak47 = gunSheet.crop(0, newHeight*4, newWidth, newHeight);
+		ak47 = gunSheet.crop(0, newHeight * 4, newWidth, newHeight);
+		water_gun = gunSheet.crop(0, newHeight * 5, newWidth, newHeight);
 		
 		//buttons
 		btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
