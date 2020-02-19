@@ -5,7 +5,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
-import game.gfx.Assets;
+import game.items.Weapons.BadPistol;
+import game.items.Weapons.RPG;
+import game.items.Weapons.Shotgun;
+import game.items.Weapons.Smg;
 
 public class Item {
 
@@ -14,10 +17,10 @@ public class Item {
 	public static Item[] items = new Item[256];
 	
 	//desc limit: 16 letters per spot
-	public static Item badPistolItem = new Item(Assets.bad_pistol, "bad pistol", "just the plain", "good old pistol.", "", "(its quite bad,", "though)", "", "",  1);
-	public static Item RPG = new Item(Assets.RPG, "RPG", "it stands for:", "remote", "party", "(for) gamers", "", "(shoots rockets)", "", 2);	
-	public static Item shotgun = new Item(Assets.shotgun, "shotgun", "look cool while", "blasting your", " enemies!", "", "(shoots three", "bullets at a", "time)", 3);
-	public static Item smg= new Item(Assets.smg, "smg", "The bad pistol", "after he grew", "up. he likes", "to say \"im", " speed\", before", "he instantly run", "out of ammo.", 4);	
+	public static Item badPistolItem = new BadPistol();
+	public static Item RPG = new RPG();	
+	public static Item shotgun = new Shotgun();
+	public static Item smg= new Smg();	
 	
 	
 	//Class

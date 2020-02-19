@@ -1,6 +1,7 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy; // (the way of the computer to draw things)
 
 /*
@@ -100,8 +101,6 @@ public class Game implements Runnable {
 		
 		if (State.getState() != null) // if we have an actual state on, do the render method
 			State.getState().render(g);
-		
-		
 		
 		//End drawing!
 		bs.show();

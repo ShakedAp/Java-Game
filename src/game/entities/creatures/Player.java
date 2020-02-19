@@ -6,11 +6,13 @@ import java.awt.image.BufferedImage;
 
 import game.Handler;
 import game.entities.Entity;
+import game.entities.projectiles.LightBullet;
 import game.entities.projectiles.Projectile;
-import game.entities.projectiles.RegularBullet;
 import game.gfx.Animation;
 import game.gfx.Assets;
 import game.inventory.Inventory;
+import game.items.Item;
+import game.items.Weapon;
 
 public class Player extends Creature {
 
@@ -44,13 +46,11 @@ public class Player extends Creature {
 	
 	@Override
 	public void render(Graphics g) {
-		
 		if(inventory.isActive()) {
 			g.drawImage(Assets.player_idle, (int) (x - handler.getGameCamera().getxOffset()), 
 					(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
 			return;
 		}
-		
 		
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), 
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
@@ -83,6 +83,12 @@ public class Player extends Creature {
 	}
 	
 	private void checkShooting() {
+		Item a = inventory.getEquipedWeapon();
+		Weapon b = null;
+		b = (Weapon) a;
+		rangedAttackCooldown = 1000 / b.getBps();
+	
+		
 		rangedAttackTimer += System.currentTimeMillis() - lastRangedAttackTimer;
 		lastRangedAttackTimer = System.currentTimeMillis();
 		
@@ -93,10 +99,10 @@ public class Player extends Creature {
 		double dx = handler.getMouseManager().getMouseX() - handler.getWidth() / 2;
 		double dy =  handler.getMouseManager().getMouseY() - handler.getHeight() /2 ;
 		double dir = Math.atan2(dy, dx); //getting the angle
-		
+
+
 		if(handler.getMouseManager().isLeftPressed()) {
-			Projectile p = new RegularBullet(handler, x + bounds.x + 10, y + bounds.y + 10, dir);
-			handler.getWorld().getEntityManager().addEntity(p);
+			b.shoot(handler,x + bounds.x + 10, y + bounds.y + 10, dir);
 		 } else
 			 return;
 		

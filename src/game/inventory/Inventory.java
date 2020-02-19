@@ -9,13 +9,14 @@ import game.Handler;
 import game.gfx.Assets;
 import game.gfx.Text;
 import game.items.Item;
+import game.items.Weapon;
 
 public class Inventory {
 
 	Handler handler;
 	public boolean active = false;
 	private boolean chooseActive = false, chosen = true;
-	private Item equipedWeapon = Item.badPistolItem, currentItem;
+	private Item equipedWeapon = Item.badPistolItem;
 	private ArrayList<Item> inventoryItems;
 	
 	private int invX = 224, invY = 78,
@@ -25,10 +26,8 @@ public class Inventory {
 			invListSpacing = 30;
 	
 	private int chooseX = 395 + 75, chooseY = 275;
-	
 	private int invImageX = invX + 420 - 32, invImageY = 78 + 66 - 32,
 			invImageWidth = 64, invImageHeight = 64;
-	
 	private int invDescX = invImageX + 26, invDescY = invImageY + 58*2;
 	
 	private int selectedItem = 0;
@@ -68,14 +67,12 @@ public class Inventory {
 		else if(selectedItem >= inventoryItems.size())
 			selectedItem = 0;
 		
-		currentItem = inventoryItems.get(selectedItem);
-		
 		//EQUIP MENU
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER) ) {
 			if(!chooseActive) chooseActive = true;
 			else {
 				if(chosen == true) {
-					equipedWeapon = currentItem;
+					equipedWeapon = inventoryItems.get(selectedItem);
 					active = false; //TODO: ask de mates id dats oke
 				}
 				chooseActive = false;
@@ -167,6 +164,16 @@ public class Inventory {
 
 	public boolean isActive() {
 		return active;
+	}
+
+
+	public Item getEquipedWeapon() {
+		return equipedWeapon;
+	}
+
+
+	public void setEquipedWeapon(Item equipedWeapon) {
+		this.equipedWeapon = equipedWeapon;
 	}
 	
 }
