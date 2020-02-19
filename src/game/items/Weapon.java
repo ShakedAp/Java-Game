@@ -13,10 +13,11 @@ public abstract class Weapon extends Item {
 		this.bps = bps;
 	}
 
-	//ABSTRACT
+	
 	public abstract void shoot(Handler handler, float x, float y, double dir);
 
-	//HELPER
+	
+	//GETTERS SETTERS
 	
 	public int getBps() {
 		return bps;

@@ -83,7 +83,7 @@ public class Player extends Creature {
 	}
 	
 	private void checkShooting() {
-		Item a = inventory.getEquipedWeapon();
+		Item a = (Weapon) inventory.getEquipedWeapon();
 		Weapon b = null;
 		b = (Weapon) a;
 		rangedAttackCooldown = 1000 / b.getBps();

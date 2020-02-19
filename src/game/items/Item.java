@@ -17,10 +17,10 @@ public class Item {
 	public static Item[] items = new Item[256];
 	
 	//desc limit: 16 letters per spot
-	public static Item badPistolItem = new BadPistol();
-	public static Item RPG = new RPG();	
-	public static Item shotgun = new Shotgun();
-	public static Item smg= new Smg();	
+	public static Weapon badPistol = new BadPistol();
+	public static Weapon RPG = new RPG();	
+	public static Weapon shotgun = new Shotgun();
+	public static Weapon smg= new Smg();	
 	
 	
 	//Class

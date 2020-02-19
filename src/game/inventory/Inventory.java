@@ -16,7 +16,7 @@ public class Inventory {
 	Handler handler;
 	public boolean active = false;
 	private boolean chooseActive = false, chosen = true;
-	private Item equipedWeapon = Item.badPistolItem;
+	private Item equipedWeapon = Item.badPistol;
 	private ArrayList<Item> inventoryItems;
 	
 	private int invX = 224, invY = 78,
@@ -37,10 +37,10 @@ public class Inventory {
 		this.handler = handler;
 		inventoryItems = new ArrayList<Item>();
 		
-		addItem(Item.badPistolItem.createNew());
-		addItem(Item.RPG.createNew());
-		addItem(Item.shotgun.createNew());
-		addItem(Item.smg.createNew());
+		addItem(Item.badPistol);
+		addItem(Item.RPG);
+		addItem(Item.shotgun);
+		addItem(Item.smg);
 	}
 	
 	
