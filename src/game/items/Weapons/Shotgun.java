@@ -8,7 +8,7 @@ import game.items.Weapon;
 public class Shotgun extends Weapon{
 
 	public Shotgun() {
-		super(Assets.shotgun, "shotgun", 1, "look cool while", "blasting your", " enemies!", "", "(shoots three", "bullets at a", "time)", 3);
+		super(Assets.shotgun, "shotgun", 1, "look cool while", "blasting your", " enemies!", "", "(shoots three", "bullets at a", "time)", 2);
 	}
 	
 	@Override

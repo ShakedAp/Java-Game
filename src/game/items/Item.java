@@ -5,6 +5,7 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
+import game.items.Weapons.Ak47;
 import game.items.Weapons.BadPistol;
 import game.items.Weapons.RPG;
 import game.items.Weapons.Shotgun;
@@ -20,7 +21,8 @@ public class Item {
 	public static Weapon badPistol = new BadPistol();
 	public static Weapon RPG = new RPG();	
 	public static Weapon shotgun = new Shotgun();
-	public static Weapon smg= new Smg();	
+	public static Weapon smg= new Smg();
+	public static Weapon ak47 = new Ak47();
 	
 	
 	//Class

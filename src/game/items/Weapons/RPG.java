@@ -8,7 +8,7 @@ import game.items.Weapon;
 public class RPG extends Weapon{
 
 	public RPG() {
-		super(Assets.RPG, "RPG", 1, "it stands for:", "remote", "party", "(for) gamers", "", "(shoots rockets)", "", 2);
+		super(Assets.RPG, "RPG", 1, "it stands for:", "remote", "party", "(for) gamers", "", "(shoots rockets)", "", 1);
 	}
 	
 	@Override

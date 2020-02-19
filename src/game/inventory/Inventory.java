@@ -41,6 +41,7 @@ public class Inventory {
 		addItem(Item.RPG);
 		addItem(Item.shotgun);
 		addItem(Item.smg);
+		addItem(Item.ak47);
 	}
 	
 	
@@ -142,11 +143,10 @@ public class Inventory {
 	//Inventory methods
 	
 	public void addItem(Item item) {
-		for(Item i : inventoryItems) {
-			if(i.getId() == item.getId()) {
-				return;
-			}
-		}
+//		for(Item i : inventoryItems) {
+//			if(i.getId() == item.getId()) 
+//				return;
+//		}
 		inventoryItems.add(item);
 	}
 	
