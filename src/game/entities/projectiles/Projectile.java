@@ -13,7 +13,7 @@ public abstract class Projectile extends Entity {
 	protected double moveX, moveY;
 	protected double speed, range, damage;
 	
-	public static final int DEFAULT_SPEED = 10, DEFAULT_RANGE = 400, DEFAULT_DAMAGE = 1;
+	public static final int DEFAULT_SPEED = 10, DEFAULT_RANGE = 300, DEFAULT_DAMAGE = 1;
 	
 	public Projectile(Handler handler, float x, float y, double dir, int width, int height , int speed , int range, int damage) {
 		super(handler, x, y, width, height);

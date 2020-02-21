@@ -8,7 +8,7 @@ import game.gfx.Assets;
 public class MediumBullet extends Projectile{
 
 	public MediumBullet(Handler handler, float x, float y, double dir) {
-		super(handler, x, y, dir, 8, 8, DEFAULT_SPEED, DEFAULT_RANGE, 2);
+		super(handler, x, y, dir, 8, 8, 11, 400, 2);
 	}
 
 	@Override

@@ -10,7 +10,9 @@ public class Assets {
 	
 	public static Font font28, font24; 
 	
-	public static BufferedImage dirt, grass, stone, tree, rock, wood, player_idle, bullet; 
+	public static BufferedImage dirt, grass, stone, tree, rock, wood, player_idle;
+	public static BufferedImage bullet;
+	public static BufferedImage[] rocket;
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
 	
@@ -36,6 +38,11 @@ public class Assets {
 		btn_start = new BufferedImage[2];
 		
 		bullet = ImageLoader.loadImage("/textures/bullet.png");
+		
+		rocket = new BufferedImage[2];
+		SpriteSheet rocketSheet = new SpriteSheet(ImageLoader.loadImage("/textures/rocket.png"));
+		rocket[0] = rocketSheet.crop(0, 0, newWidth, newHeight);
+		rocket[1] = rocketSheet.crop(0, newHeight, newWidth, newHeight);
 		
 		bad_pistol = gunSheet.crop(0, 0, newWidth, newHeight);
 		smg = gunSheet.crop(0, newHeight, newWidth, newHeight);

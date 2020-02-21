@@ -98,7 +98,7 @@ public class Player extends Creature {
 		Item a = (Weapon) inventory.getEquipedWeapon();
 		Weapon b = null;
 		b = (Weapon) a;
-		rangedAttackCooldown = 1000 / b.getBps();
+		rangedAttackCooldown = (long) (1000 / b.getBps());
 	
 		//Attack timer
 		rangedAttackTimer += System.currentTimeMillis() - lastRangedAttackTimer;

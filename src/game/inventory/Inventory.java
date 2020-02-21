@@ -16,7 +16,7 @@ public class Inventory {
 	Handler handler;
 	public boolean active = false;
 	private boolean equipMenuActive = false, equipButtonChosen = true;
-	private Item equipedWeapon = Item.badPistol;
+	private Item equipedWeapon = Item.RPG;
 	private ArrayList<Item> inventoryItems;
 	
 	private int invX = 224, invY = 78,
