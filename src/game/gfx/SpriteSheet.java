@@ -12,7 +12,7 @@ public class SpriteSheet {
 	}
 	
 	public BufferedImage crop(int x, int y, int width, int height) {
-		//cropping images out of sprite sheet
+		//Xropping images out of sprite sheet
 		return sheet.getSubimage(x, y, width, height);
 	}
 }

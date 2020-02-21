@@ -15,10 +15,9 @@ import game.items.Weapons.WaterGun;
 public class Item {
 
 	//Item handler
-	
 	public static Item[] items = new Item[256];
 	
-	//desc limit: 16 letters per spot
+	//Description limit: 16 letters per spot
 	public static Weapon badPistol = new BadPistol();
 	public static Weapon RPG = new RPG();	
 	public static Weapon shotgun = new Shotgun();
@@ -59,30 +58,24 @@ public class Item {
 	
 	
 	public void tick(){
+		//Pick up
 		if(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0f, 0f).intersects(bounds)){
 			pickedUp = true;
 			handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(this);
 		}
-		
 	}
 
-	public void render(Graphics g) {
-		if(handler == null)
-			return;
+	public void render(Graphics g) { //Render in the world
+		if(handler == null) return;
 		render(g,(int) (x - handler.getGameCamera().getxOffset()) , (int) (y- handler.getGameCamera().getyOffset()) );
 	}
 	
-	public void render(Graphics g, int x, int y) {
-		g.drawImage(texture, x, y, ITEM_WIDTH, ITEM_HEIGHT, null);
+	public void render(Graphics g, int x, int y) { //Render in the inventory
+		g.drawImage(texture, x, y, ITEM_WIDTH, ITEM_HEIGHT, null); 
 	}
-
-	public Item createNew() { //create new item in the inventory
-		Item i = new Item(texture, name,  desc1,  desc2,  desc3,  desc4,  desc5,  desc6,  desc7, id);
-		i.setPickedUp(true);
-		return i;
-	}
-	
-	public Item createNew(int x, int y) { //create new item in the game
+		
+	//Spawn new item in the game itself
+	public Item spawnNew(int x, int y) {
 		Item i = new Item(texture, name, desc1,  desc2,  desc3,  desc4,  desc5,  desc6,  desc7, id);
 		i.setPosition(x, y);
 		return i;
@@ -96,8 +89,10 @@ public class Item {
 	}
 	
 	
-	//GETTERS SETTERS
-
+	
+	
+	
+	//GETTERS & SETTERS
 	public Handler getHandler() {
 		return handler;
 	}

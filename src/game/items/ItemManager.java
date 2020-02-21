@@ -10,13 +10,13 @@ import game.entities.Entity;
 public class ItemManager {
 
 	public Handler handler;
-	
 	private ArrayList<Item> items; 
 	
 	public ItemManager(Handler handler) {
 		this.handler = handler;
 		items = new ArrayList<Item>();
 		}
+	
 	
 	
 	public void tick() {
@@ -41,7 +41,10 @@ public class ItemManager {
 	}
 
 	
-	//Getters Setters
+	
+	
+	
+	//GETTERS & SETTERS
 	public Handler getHandler() {
 		return handler;
 	}

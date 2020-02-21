@@ -20,6 +20,5 @@ public class Text {
 			y = (yPos - fm.getHeight() / 2) + fm.getAscent();
 		}
 		g.drawString(text, x, y);
-		
 	}
 }

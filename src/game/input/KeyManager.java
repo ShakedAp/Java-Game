@@ -4,9 +4,11 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
 
-public class KeyManager implements KeyListener{ //allows us to "listen" to the keys that are pressed
+public class KeyManager implements KeyListener{ //Allows us to get an input when a key is pressed
 
+	
 	private boolean[] keys, justPressed, cantPress;
+	//Keys booleans
 	public boolean up, down, left, right;
 	public boolean aUp, aDown, aLeft, aRight;
 
@@ -18,20 +20,22 @@ public class KeyManager implements KeyListener{ //allows us to "listen" to the k
 	}
 	
 	public void tick() {
-		
-		for(int i = 0; i < keys.length; i++) {
-			if (cantPress[i] && !keys[i])
+		for(int i = 0; i < keys.length; i++) { //looping thru all of the keys
+			
+			//Just pressed:
+			if (cantPress[i] && !keys[i]) 
 				cantPress[i] = false;
+			
 			else if(justPressed[i]) {
 				cantPress[i] = true;
 				justPressed[i] = false;
 			}
+			
 			if(!cantPress[i] && keys[i])
 				justPressed[i] = true;
 		}	
 		
-		
-		
+		//Setting the global keys varriables (holdable)
 		up = keys[KeyEvent.VK_W];
 		down = keys[KeyEvent.VK_S];
 		left = keys[KeyEvent.VK_A];
@@ -42,7 +46,7 @@ public class KeyManager implements KeyListener{ //allows us to "listen" to the k
 		aLeft = keys[KeyEvent.VK_LEFT];
 		aRight = keys[KeyEvent.VK_RIGHT];
 	}
-
+	
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() < 0 || e.getKeyCode() >= keys.length)

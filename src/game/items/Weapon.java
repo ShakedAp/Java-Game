@@ -17,8 +17,7 @@ public abstract class Weapon extends Item {
 	public abstract void shoot(Handler handler, float x, float y, double dir);
 
 	
-	//GETTERS SETTERS
-	
+	//GETTERS & SETTERS
 	public int getBps() {
 		return bps;
 	}

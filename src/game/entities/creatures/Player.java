@@ -18,20 +18,20 @@ public class Player extends Creature {
 
 	//Player animations
 	private Animation animDown, animUp, animLeft, animRight;
-	private int animSpeed = 100; //at what rate the animation frames will switch
+	private int animSpeed = 100; //At what rate the animation frames will switch
 	
 	private Inventory inventory;
 
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, 128, 128);
 		
-		//the player bounds
+		//Bounds
 		bounds.x = 43;
 		bounds.y = 43;
 		bounds.width = 42;
 		bounds.height = 50;
 		
-		//animations
+		//Animations
 		animDown = new Animation(animSpeed, Assets.player_down);
 		animUp = new Animation(animSpeed, Assets.player_up);
 		animLeft = new Animation(animSpeed, Assets.player_left);
@@ -42,43 +42,57 @@ public class Player extends Creature {
 	
 	@Override
 	public void render(Graphics g) {
-		if(inventory.isActive()) {
+		if(inventory.isActive()) { //If the inventory is open, display the player as idle
 			g.drawImage(Assets.player_idle, (int) (x - handler.getGameCamera().getxOffset()), 
-					(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
+			(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
 			return;
 		}
-		
+		//Else just render him regulary
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), 
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null); 
 	}
 	
 	public void postRender(Graphics g) {
+		//Anything that we want to render after the player)
 		inventory.render(g);
 	}
 	
-	
 	@Override
 	public void tick() {
-		getInput();
-		
-		if(!inventory.isActive())
+		if(!inventory.isActive()) { //If the inventory is active we dont want to move
+			getInput(); //Setting the values in order to move the player
 			move();
+		}
+		handler.getGameCamera().centerOnEntity(this);
 		
-		handler.getGameCamera().centerOnEntity(this); //making the camera center on the player
 		//Animations
 		animDown.update(); 
 		animUp.update();
 		animLeft.update();
 		animRight.update();
 		//Attack
-		checkMeleeAttacks();
 		checkShooting();
 		
 		inventory.tick();
 		
 	}
 	
-
+	private void getInput() {
+		//Each time resting the movement variables so we won't overllap
+		xMove = 0;
+		yMove = 0;
+		
+		//Moving the player using keyboard
+		if (handler.getKeyManager().up == true) 
+			yMove -= speed; //Move up
+		if (handler.getKeyManager().down == true) 
+			yMove += speed; //Move down 
+		if (handler.getKeyManager().left == true) 
+			xMove -= speed; //Move left
+		if (handler.getKeyManager().right == true) 
+			xMove += speed; //Move right
+	}
+	
 	private long lastRangedAttackTimer, rangedAttackCooldown = 100, rangedAttackTimer = rangedAttackCooldown; 
 	private void checkShooting() {
 		Item a = (Weapon) inventory.getEquipedWeapon();
@@ -86,110 +100,54 @@ public class Player extends Creature {
 		b = (Weapon) a;
 		rangedAttackCooldown = 1000 / b.getBps();
 	
+		//Attack timer
 		rangedAttackTimer += System.currentTimeMillis() - lastRangedAttackTimer;
-		lastRangedAttackTimer = System.currentTimeMillis();
+		lastRangedAttackTimer = System.currentTimeMillis(); // = The current time (in miliseconds)
 		
-		if(rangedAttackTimer < rangedAttackCooldown) return;
+		//Allow us to shoot only when the cooldown has reached and the inventory is not open
+		if(rangedAttackTimer < rangedAttackCooldown || inventory.isActive()) return; 
 		
-		if(inventory.isActive()) return;
-			
+		//Calculating the angel of the bullet (player to mouse)
 		double dx = handler.getMouseManager().getMouseX() - handler.getWidth() / 2;
 		double dy =  handler.getMouseManager().getMouseY() - handler.getHeight() /2 ;
-		double dir = Math.atan2(dy, dx); //getting the angle
-
+		double dir = Math.atan2(dy, dx);
 
 		if(handler.getMouseManager().isLeftPressed()) {
 			b.shoot(handler,x + bounds.x + 10, y + bounds.y + 10, dir);
-		 } else
-			 return;
+		 } else return;
 		
+		//Restarting the timer
 		rangedAttackTimer = 0;
 	}
-
-	
-	private long lastMeleeAttackTimer, meleeAttackCooldown = 100, meleeAttackTimer = meleeAttackCooldown; 
-	private void checkMeleeAttacks() {
-		//Attack cooldown
-		meleeAttackTimer += System.currentTimeMillis() - lastMeleeAttackTimer;
-		lastMeleeAttackTimer = System.currentTimeMillis();
-		if(meleeAttackTimer < meleeAttackCooldown) //if we are still in the cooldown -> exit
-			return;
-		if(inventory.isActive())
-			return;
-		
-		
-		Rectangle cb = getCollisonBounds(0,0);
-		Rectangle attackRect = new Rectangle();
-		int attackSize = 20; //the size of the attack ("near the player bounds)
-		attackRect.width = attackSize;
-		attackRect.height = attackSize;
-		
-		if(handler.getKeyManager().aUp) { //the direction the player is attacking (or facing in order to attack)
-			attackRect.x = cb.x + cb.width/2 - attackSize/2;
-			attackRect.y = cb.y - attackSize;
-		} else if(handler.getKeyManager().aDown) {
-			attackRect.x = cb.x + cb.width/2 - attackSize/2;
-			attackRect.y = cb.y + cb.height;
-		} else if(handler.getKeyManager().aLeft) {
-			attackRect.x = cb.x - attackSize;
-			attackRect.y = cb.y + cb.height/2 - attackSize/2;	
-		}else if(handler.getKeyManager().aRight) {
-			attackRect.x = cb.x + cb.width;
-			attackRect.y = cb.y + cb.height/2 - attackSize/2;	
-		} else 
-			return; //if the player is not attacking -> exit
-		
-		meleeAttackTimer = 0; //restarting the cooldown
-		
-		for (Entity e : handler.getWorld().getEntityManager().getEntities()){
-			if(e.equals(this)) //to make sure we are not hurting ourselves
-				continue;
-			if(e.getCollisonBounds(0, 0).intersects(attackRect)) { 
-				e.hurt(1);
-				return;
-				}
-		}
-	}
-	
-	
 	
 	@Override
 	public void die() {
 		System.out.println("GAME OVER");
 	}
 	
-	private void getInput() {
-		xMove = 0;
-		yMove = 0;
-		
-		//moving using keyboard
-		if (handler.getKeyManager().up == true) 
-			yMove -= speed; //move up
-		if (handler.getKeyManager().down == true) 
-			yMove += speed; //move down 
-		if (handler.getKeyManager().left == true) 
-			xMove -= speed; //move left
-		if (handler.getKeyManager().right == true) 
-			xMove += speed; //move right
-		
-	}
-	
-	
-	
-	
 	private BufferedImage getCurrentAnimationFrame() {
-		if(yMove < 0) //moving up
+		//Getting the current aniamtion frame of the player so we can render his animations
+		
+		if(yMove < 0) //Moving up
 			return animUp.getCurrentFrame();
-		else if(yMove > 0)//moving down
+		
+		else if(yMove > 0)//Moving down
 				return animDown.getCurrentFrame();
-		else if(xMove < 0) //moving left
+		
+		else if(xMove < 0) //Moving left
 			return animLeft.getCurrentFrame();
-		else if(xMove > 0) //moving right
+		
+		else if(xMove > 0) //Moving right
 			return animRight.getCurrentFrame(); 
+		
 		else
 			return Assets.player_idle;
 	}
-
+	
+	
+	
+	
+	//GETTERS & SETTERS
 	public Inventory getInventory() {
 		return inventory;
 	}

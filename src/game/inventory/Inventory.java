@@ -15,7 +15,7 @@ public class Inventory {
 
 	Handler handler;
 	public boolean active = false;
-	private boolean chooseActive = false, chosen = true;
+	private boolean equipMenuActive = false, equipButtonChosen = true;
 	private Item equipedWeapon = Item.badPistol;
 	private ArrayList<Item> inventoryItems;
 	
@@ -37,6 +37,7 @@ public class Inventory {
 		this.handler = handler;
 		inventoryItems = new ArrayList<Item>();
 		
+		//Test code
 		addItem(Item.badPistol);
 		addItem(Item.RPG);
 		addItem(Item.shotgun);
@@ -45,23 +46,23 @@ public class Inventory {
 		addItem(Item.waterGun);
 	}
 	
-	
+	//Ticking
 	public void tick() {
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E)) { //open inventory
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E)) {
 			active = !active;
-			chooseActive = false;
-		} if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
-			if(!chooseActive)
-				active = false;
-			chooseActive = false;
+			equipMenuActive = false;
+		} 
+		
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
+			if(!equipMenuActive) active = false;
+			else equipMenuActive = false;
 		}
+		
 		if(!active) return;
 		
-		
-		//INVENTORY MENU
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !chooseActive) //if w is pressed - move the list down
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !equipMenuActive) //if w is pressed - move the list down
 			selectedItem--;
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S ) && !chooseActive) //if s is pressed - move the list up
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S ) && !equipMenuActive) //if s is pressed - move the list up
 			selectedItem++;
 		
 		if(selectedItem < 0) //list scroll
@@ -69,39 +70,43 @@ public class Inventory {
 		else if(selectedItem >= inventoryItems.size())
 			selectedItem = 0;
 		
-		//EQUIP MENU
+		tickEquipMenu();
+	}
+	
+	private void tickEquipMenu() {
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER) ) {
-			if(!chooseActive) chooseActive = true;
-			else {
-				if(chosen == true) {
+			if(!equipMenuActive) equipMenuActive = true;
+			
+			else if(equipButtonChosen == true) { //if the equip button has been chosen
 					equipedWeapon = inventoryItems.get(selectedItem);
 					active = false; //TODO: ask de mates id dats oke
 				}
-				chooseActive = false;
-				chosen = true;
-			}
+			
+			else equipMenuActive = false; // if the cancel button has been chosen
+			
+			equipButtonChosen = true; //reset the choise so when you open the menu up it will be on "Equip"
 		}
-		if(!chooseActive) return;
 		
+		if(!equipMenuActive) return; //Allow to switch between choices only when the equip menu is active
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_D) || handler.getKeyManager().keyJustPressed(KeyEvent.VK_A))
-			chosen = !chosen;
+			equipButtonChosen = !equipButtonChosen;
 	}
+
 	
+	//Rendering
 	public void render(Graphics g) {
-		if(!active)
-			return;
-		
+		if(!active) return;
 		
 		g.drawImage(Assets.inventoryScreen, invX, invY, invWidth, invHeight, null);
 		
-		int len = inventoryItems.size();
 		
-		if(len == 0)
-			return;
+		int invLen = inventoryItems.size();
+		if(invLen == 0) return;
 		
-		//SCROLL DISPLAY
-		for(int i = -5;i < 6;i++){ //total amount of items can be displayed at the inv
-			if(selectedItem + i < 0 || selectedItem + i >= len) //if the selected item is out of bounds
+		//Scroll display
+		for(int i = -5;i < 6;i++){ //Total amount of items can be displayed at the inv at once
+			
+			if(selectedItem + i < 0 || selectedItem + i >= invLen)
 				continue;
 			if(i == 0){
 				Text.drawString(g, "> " + inventoryItems.get(selectedItem + i).getName() + " <", invListCenterX, 
@@ -112,7 +117,8 @@ public class Inventory {
 			}
 		}
 		
-		//description
+		
+		//Item description display
 		Item item = inventoryItems.get(selectedItem);
 		g.drawImage(item.getTexture(), invImageX, invImageY, invImageWidth, invImageHeight, null);	
 		
@@ -125,34 +131,34 @@ public class Inventory {
 		Text.drawString(g, item.getDesc7() , invDescX, invDescY + 126, true, Color.WHITE, Assets.font24);
 		
 		
-		//EQUIP MENU
-		if(!chooseActive) return;
+		renderEquipMenu(g);
+		
+	}
+		
+	private void renderEquipMenu(Graphics g) {
+		if(!equipMenuActive) return; //Render it only if the window is open
 		
 		g.drawImage(Assets.popupInv, chooseX - 260, chooseY - 200, null);	
 		
-		if(!chosen) {
+		if(!equipButtonChosen) {
 		Text.drawString(g, "equip", chooseX - 100, chooseY , true, Color.WHITE, Assets.font28);
 		Text.drawString(g, "> cancel <", chooseX + 100, chooseY , true, Color.YELLOW, Assets.font28);
 		}
-		if(chosen){
+		else if(equipButtonChosen){
 			Text.drawString(g, "> equip <", chooseX - 100, chooseY , true, Color.YELLOW, Assets.font28);
 			Text.drawString(g, "cancel", chooseX + 100, chooseY , true, Color.WHITE, Assets.font28);
 		}
-	}
 		
+	}
+	
 	
 	//Inventory methods
-	
 	public void addItem(Item item) {
-//		for(Item i : inventoryItems) {
-//			if(i.getId() == item.getId()) 
-//				return;
-//		}
 		inventoryItems.add(item);
 	}
 	
 	
-	//getters and setters
+	//GETTERS & SETTERS
 	public Handler getHandler() {
 		return handler;
 	}
