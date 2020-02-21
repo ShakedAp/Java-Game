@@ -108,8 +108,15 @@ public class Player extends Creature {
 		if(rangedAttackTimer < rangedAttackCooldown || inventory.isActive()) return; 
 		
 		//Calculating the angel of the bullet (player to mouse)
-		double dx = handler.getMouseManager().getMouseX() - handler.getWidth() / 2;
-		double dy =  handler.getMouseManager().getMouseY() - handler.getHeight() /2 ;
+		float playerX = x + bounds.x + 10;
+		float mouseX = handler.getMouseManager().getMouseX() + handler.getGameCamera().getxOffset();
+		
+		float playerY = y + bounds.y + 10;
+		float mouseY = handler.getMouseManager().getMouseY() + handler.getGameCamera().getyOffset();
+		
+		
+		double dx = mouseX - playerX;
+		double dy =  mouseY - playerY ;
 		double dir = Math.atan2(dy, dx);
 
 		if(handler.getMouseManager().isLeftPressed()) {

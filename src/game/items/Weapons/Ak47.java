@@ -2,7 +2,6 @@ package game.items.Weapons;
 
 import game.Handler;
 import game.entities.projectiles.LightBullet;
-import game.entities.statics.Tree;
 import game.gfx.Assets;
 import game.items.Weapon;
 
