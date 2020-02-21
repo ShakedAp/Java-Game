@@ -15,13 +15,14 @@ public class EntityManager {
 	private Handler handler;
 	private Player player;
 	private ArrayList<Entity> entities;
-	private Comparator<Entity> renderSorter = new Comparator<Entity>() { //creating the sorter to put up in the list the first entities to render
+	private Comparator<Entity> renderSorter = new Comparator<Entity>() {
 		@Override
-		public int compare(Entity e1, Entity e2) {
-			if(e1.getY() + e1.getHeight() <e2.getY() + e2.getWidth())
-				return -1; // -1 = e2 rendered before e1
+		public int compare(Entity entity1, Entity entity2) {
+			//If the first entity is higher then the second = he is rendered second (=seen)
+			if(entity1.getY() + entity1.getHeight() < entity2.getY() + entity2.getWidth()) 
+				return -1; //e2 rendered before e1
 			else
-				return 1; // 1 = e1 rendered before e2
+				return 1; //e1 rendered before e2
 		} 
 	};
 	
@@ -34,35 +35,25 @@ public class EntityManager {
 		addEntity(player);
 	}
 	
-	
-	public void tick() {
-//		Iterator<Entity> it = entities.iterator();
-//		while(it.hasNext()){
-//			Entity e = it.next();
-//			e.tick();
-//			if(!e.isActive())
-//				it.remove();
-//		}
-		
+	public void tick() { //TODO: fix the flickering bullet bug
 		for(int i = 0;i < entities.size();i++){
 			Entity e = entities.get(i);
 			e.tick();
 			if(!e.isActive())
 				entities.remove(e);
 		}
-		
-		
 		entities.sort(renderSorter);
-		
 	}
 	
 	
 	public void render(Graphics g) {
-		for (int i = 0; i < entities.size(); i++) { //rendering each entity in the game
+		//looping thru each of the entities and rendering them
+		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			e.render(g);
 		}
-		player.postRender(g);
+		//Everything that we want that will be over all of the entities (like inventory)
+		player.postRender(g); 
 	}
 
 
@@ -71,7 +62,7 @@ public class EntityManager {
 	}
 	
 	
-	//GETTERS SETTERS
+	//GETTERS & SETTERS
 	public Handler getHandler() {
 		return handler;
 	}

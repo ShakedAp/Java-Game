@@ -16,15 +16,11 @@ import game.items.Weapon;
 
 public class Player extends Creature {
 
-	//Animations
+	//Player animations
 	private Animation animDown, animUp, animLeft, animRight;
-	private int animSpeed = 100;
+	private int animSpeed = 100; //at what rate the animation frames will switch
 	
 	private Inventory inventory;
-	
-	//Attack timers
-	private long lastMeleeAttackTimer, meleeAttackCooldown = 100, meleeAttackTimer = meleeAttackCooldown; 
-	private long lastRangedAttackTimer, rangedAttackCooldown = 100, rangedAttackTimer = rangedAttackCooldown; 
 
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, 128, 128);
@@ -82,13 +78,14 @@ public class Player extends Creature {
 		
 	}
 	
+
+	private long lastRangedAttackTimer, rangedAttackCooldown = 100, rangedAttackTimer = rangedAttackCooldown; 
 	private void checkShooting() {
 		Item a = (Weapon) inventory.getEquipedWeapon();
 		Weapon b = null;
 		b = (Weapon) a;
 		rangedAttackCooldown = 1000 / b.getBps();
 	
-		
 		rangedAttackTimer += System.currentTimeMillis() - lastRangedAttackTimer;
 		lastRangedAttackTimer = System.currentTimeMillis();
 		
@@ -109,6 +106,8 @@ public class Player extends Creature {
 		rangedAttackTimer = 0;
 	}
 
+	
+	private long lastMeleeAttackTimer, meleeAttackCooldown = 100, meleeAttackTimer = meleeAttackCooldown; 
 	private void checkMeleeAttacks() {
 		//Attack cooldown
 		meleeAttackTimer += System.currentTimeMillis() - lastMeleeAttackTimer;

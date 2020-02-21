@@ -61,19 +61,21 @@ public class Game implements Runnable {
 	private void init() {
 		//creating a window
 		display = new Display(title, width, height);
-		display.getJframe().addKeyListener(keyManager); //adding the key-listener to our window
+		display.getJframe().addKeyListener(keyManager);
 		
-		display.getJframe().addMouseListener(mouseManager); //getting the mouse-listener and motion-listener to our window and canvas
+		//getting the mouse-listener and motion-listener to our window and canvas
+		display.getJframe().addMouseListener(mouseManager); 
 		display.getJframe().addMouseMotionListener(mouseManager);
 		display.getCanvas().addMouseListener(mouseManager); 
 		display.getCanvas().addMouseMotionListener(mouseManager);
 		
-		Assets.init(); //initializing all of the assets
+		Assets.init(); //initializing the assets
 		
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler , 0, 0); //initializing the game camera
 		
-		gameState = new GameState(handler); //initializing the states 
+		//initializing the states 
+		gameState = new GameState(handler); 
 		menuState = new MenuState(handler);
 		State.setState(menuState);
 	}
@@ -109,40 +111,27 @@ public class Game implements Runnable {
 	
 	
 	public void run() { //activating when the thread initialize
-		
 		init();
 		
-		int fps = 60; //how many time we want to run the update and render method every second
-		double timePerTick = 1000000000 / fps; //measures in nanoseconds (maximum amount of time we allowed to run these methods)
+		int fps = 60;
+		double timePerTick = 1000000000 / fps; // max time allowed till we have to tick/render
 		double deltaTime = 0; 
 		long now; 
 		long lastTime = System.nanoTime(); 
-		long timer = 0;
-		int ticks = 0; //how many times the tick and render method were called
 		
 		
 				
 		while(running) {
-			now  = System.nanoTime(); //the current time of the computer but in nanoseconds
+			now  = System.nanoTime(); //the current time in nano-seconds
 			deltaTime += now - lastTime; //the elapsed time since we have called the update and render methods again
-			timer += now - lastTime;
 			lastTime = now;
 			
 			
 			if(deltaTime >= timePerTick) {
 				tick();
 				render();
-				ticks++;
 				deltaTime -= timePerTick;
 			}
-				
-			/*
-			if(timer >= 1000000000) {
-				System.out.println("the FPS: " + ticks);
-				ticks = 0;
-				timer = 0;
-			}
-			*/
 		}
 		
 		stop();

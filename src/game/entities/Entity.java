@@ -10,11 +10,11 @@ public abstract class Entity {
 	public static final int DEFAULT_HEALTH = 10;
 	
 	protected Handler handler;
-	protected float x, y; //the x and y of the entity
-	protected int width, height; //the width and height of the entity
+	protected float x, y;
+	protected int width, height;
 	protected int health;
-	protected Rectangle bounds; //collisions bounds
-	protected boolean active = true; //checking if the entity is "alive"
+	protected Rectangle bounds; //Collisions bounds
+	protected boolean active = true; //Is the entity alive
 	
 	public Entity(Handler handler, float x, float y, int width, int height) {
 		this.handler = handler;
@@ -24,7 +24,7 @@ public abstract class Entity {
 		this.height = height;
 		health = DEFAULT_HEALTH;
 		
-		bounds = new Rectangle(0, 0, width, height); //creating a full image bounding by default
+		bounds = new Rectangle(0, 0, width, height); //Default rectangle
 	}
 	
 	public abstract void tick();
@@ -54,16 +54,6 @@ public abstract class Entity {
 		return true;
 	}
 	
-//	public boolean checkEntityCollsions(float xOffset, float yOffset) { //x and y offset are for moving (tempX, tempY)
-//		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { //loops each of the entities
-//			if(e.equals(this))
-//				continue;
-//			if(e.getCollisonBounds(0f,0f).intersects(this.getCollisonBounds(xOffset, yOffset))) //the the 2 bounds are intersects
-//				return true;
-//		}
-//		return false; //if the loop has exited = no collision
-//	}
-	
 	public boolean checkEntitySolidCollsions(float xOffset, float yOffset) { 
 		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { 
 			if(e.equals(this))
@@ -76,14 +66,13 @@ public abstract class Entity {
 	
 	
 	
-	public Rectangle getCollisonBounds(float xOffset, float yOffset) { //returning the position of the bounding box of an entity
+	public Rectangle getCollisonBounds(float xOffset, float yOffset) {
 		return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width, bounds.height);
 	}
 	
 	
 	
-	//getters and setters
-
+	//GETTERS & SETTERS
 	public float getX() {
 		return x;
 	}
@@ -134,15 +123,3 @@ public abstract class Entity {
 	
 
 }
-
-
-
-/*
-
-Entity -> Creature -> player
-				   -> Enemy
-Entity -> item
-Entity -> etc
-
-
-*/
