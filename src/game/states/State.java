@@ -3,9 +3,10 @@ package game.states;
 import java.awt.Graphics;
 
 import game.Handler;
+import game.ui.UIManager;
 
 public abstract class State {
-	//state manager
+	//State manager
 	private static State currentState = null;
 	
 	public static void setState(State state) {
@@ -18,16 +19,26 @@ public abstract class State {
 	
 	
 	//CLASS
-	
 	protected Handler handler;
+	protected UIManager uiManager;
 	
-	public State(Handler handler) { //giving the class a game object
+	public State(Handler handler, UIManager uiManager) {
 		this.handler = handler;
+		this.uiManager = uiManager;
 	}
 	
 	public abstract void tick();
 	
 	public abstract void render(Graphics g);
+
+	//GETTERS & SETTERS
+	public UIManager getUiManager() {
+		return uiManager;
+	}
+
+	public void setUiManager(UIManager uiManager) {
+		this.uiManager = uiManager;
+	}
 
 
 }

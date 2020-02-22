@@ -47,7 +47,7 @@ public class UIManager {
 	
 	
 	
-	//Getters Setters
+	//GETTERS & SETTERS
 	public Handler getHandler() {
 		return handler;
 	}

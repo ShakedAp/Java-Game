@@ -99,7 +99,7 @@ public class Player extends Creature {
 		Weapon b = null;
 		b = (Weapon) a;
 		rangedAttackCooldown = (long) (1000 / b.getBps());
-	
+		
 		//Attack timer
 		rangedAttackTimer += System.currentTimeMillis() - lastRangedAttackTimer;
 		lastRangedAttackTimer = System.currentTimeMillis(); // = The current time (in miliseconds)

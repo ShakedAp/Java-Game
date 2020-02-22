@@ -10,31 +10,30 @@ import game.ui.UIManager;
 
 public class MenuState extends State{
 
-	private UIManager uiManager;
 	
 	public MenuState(Handler handler) {
-		super(handler);
-		uiManager = new UIManager(handler);
-		handler.getMouseManager().setUiManager(uiManager); //setting the uiManager of this game to this uiManager
+		super(handler, new UIManager(handler));
+		handler.getMouseManager().setUiManager(uiManager);
+
 		
 		uiManager.addObject(new UIImageButton(256, 148 , 128, 64, Assets.btn_start, new ClickListener(){ 
-			//creating a new ClickListener with the action we want to do	
+			//Creating a new ClickListener with the action we want to do	
 			@Override
 			public void onClick() {
 				handler.getMouseManager().setUiManager(null);
-				State.setState(handler.getGame().gameState);
-				
+				State.setState(handler.getGame().gameState);	
 			}
 		}));
 	}
+	
 	
 	@Override
 	public void tick() {
 		uiManager.tick();
 		
-		//temporary code
-				handler.getMouseManager().setUiManager(null);
-				State.setState(handler.getGame().gameState);
+		//TEMPORARY CODE
+		handler.getMouseManager().setUiManager(null);
+		State.setState(handler.getGame().gameState);
 	}
 
 	@Override

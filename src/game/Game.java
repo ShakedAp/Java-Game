@@ -2,7 +2,7 @@ package game;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.image.BufferStrategy; // (the way of the computer to draw things)
+import java.awt.image.BufferStrategy;
 
 /*
  * buffers are "hidden" computer screen which you can draw to.
@@ -20,7 +20,6 @@ import game.states.MenuState;
 import game.states.State;
 
 
-
 public class Game implements Runnable {
 
 	private Display display;
@@ -35,7 +34,7 @@ public class Game implements Runnable {
 	private Graphics g; 
 	
 	//states
-	public State gameState; //creating the states (=screen)
+	public State gameState;
 	public State menuState;
 	
 	//input
