@@ -16,7 +16,7 @@ public class Assets {
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
 	
-	public static BufferedImage[] player_down, player_up, player_left, player_right, btn_start;
+	public static BufferedImage[] player_down, player_up, player_left, player_right, btn_start, btn_pause;
 	
 	
 	public static void init() {
@@ -36,6 +36,7 @@ public class Assets {
 		player_right= new BufferedImage[9];
 		
 		btn_start = new BufferedImage[2];
+		btn_pause = new BufferedImage[2];
 		
 		bullet = ImageLoader.loadImage("/textures/bullet.png");
 		choose = ImageLoader.loadImage("/textures/choose.png");
@@ -55,6 +56,9 @@ public class Assets {
 		//buttons
 		btn_start[0] = sheet.crop(width * 6, height * 4, width * 2, height);
 		btn_start[1] = sheet.crop(width * 6, height * 5, width * 2, height);
+		
+		btn_pause[0] = ImageLoader.loadImage("/textures/pauseButton.png");
+		btn_pause[1] = ImageLoader.loadImage("/textures/pauseButton.png");
 		
 		//items
 		wood = sheet.crop(width, height, width, height); 

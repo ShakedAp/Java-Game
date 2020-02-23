@@ -6,16 +6,24 @@ import java.awt.Graphics;
 import game.Handler;
 import game.gfx.Assets;
 import game.gfx.Text;
+import game.ui.ClickListener;
 import game.ui.UIImage;
+import game.ui.UIImageButton;
 import game.ui.UIManager;
 import game.worlds.World;
 
 public class GameState extends State {
 
 	private World world;
+	private boolean paused = false;
 
 	private UIImage equipedWeaponUI = new UIImage(null, 832, 412, 128, 128);
 	private UIImage choose = new UIImage(Assets.choose, 832, 412, 128, 128);
+	private UIImageButton pauseButton = new UIImageButton(10, 10, 80, 64, Assets.btn_pause, new ClickListener() {
+		@Override
+		public void onClick() {
+			paused = !paused;
+		}});
 
 	public GameState(Handler handler) {
 		super(handler, new UIManager(handler));
@@ -23,14 +31,18 @@ public class GameState extends State {
 		world = new World(handler, "res/worlds/world1.txt");
 		handler.setWorld(world);
 		// UI
-		handler.getMouseManager().setUiManager(uiManager);
+		
 		uiManager.addObject(equipedWeaponUI);
 		uiManager.addObject(choose);
+		uiManager.addObject(pauseButton);
 	}
 
 	@Override
 	public void tick() {
-		world.tick();
+		handler.getMouseManager().setUiManager(uiManager);
+		if(!paused)
+			world.tick();
+		
 		uiManager.tick();
 
 		equipedWeaponUI.setTexture(world.getEntityManager().getPlayer().getInventory().getEquipedWeapon().getTexture());

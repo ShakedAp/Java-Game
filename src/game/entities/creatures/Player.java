@@ -1,19 +1,16 @@
 package game.entities.creatures;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
-import game.entities.Entity;
-import game.entities.projectiles.LightBullet;
-import game.entities.projectiles.Projectile;
 import game.gfx.Animation;
 import game.gfx.Assets;
 import game.inventory.Inventory;
 import game.items.Item;
 import game.items.Weapon;
+import game.ui.UIImageButton;
+import game.ui.UIObject;
 
 public class Player extends Creature {
 
@@ -110,6 +107,11 @@ public class Player extends Creature {
 		// Allow us to shoot only when the cooldown has reached and the inventory is not open
 		if (rangedAttackTimer < rangedAttackCooldown || inventory.isActive())
 			return;
+		
+		for(UIObject o: handler.getGame().gameState.getUiManager().getObjects())
+			if(o.isHovering() && o instanceof UIImageButton)
+				return;
+		
 
 		// Calculating the angel of the bullet (player to mouse)
 		float playerX = x + bounds.x + 10;
