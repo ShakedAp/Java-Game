@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import game.Handler;
 import game.gfx.Assets;
+import game.gfx.Text;
 import game.ui.UIImage;
 import game.ui.UIManager;
 import game.worlds.World;
@@ -42,19 +43,33 @@ public class GameState extends State {
 
 		
 		//TEST PLAYER HEALTH, SHIELD, MANA BAR
+		int barWidth = 150, barHeight = 30;
+		
 		g.setColor(Color.black);
-		g.fillRect(10, 20, 100, 30); // Shield
-		g.fillRect(10, 60, 100, 30); // Health
-		g.fillRect(10, 100, 100, 30); // Mana
+		g.fillRect(10, 420, barWidth, barHeight); // Health
+		g.fillRect(10, 460, barWidth, barHeight); // Shield 
+		g.fillRect(10, 500, barWidth, barHeight); // Mana
 
-		g.setColor(Color.GRAY); //Shield
-		g.fillRect(12, 22, 100 / world.getEntityManager().getPlayer().getMaxShield() * world.getEntityManager().getPlayer().getShield(), 26);
-
+		
 		g.setColor(Color.RED); // Health
-		g.fillRect(12, 62, 100 / world.getEntityManager().getPlayer().getMaxHealth() * world.getEntityManager().getPlayer().getHealth() - 4, 26);
+		g.fillRect(12, 422, barWidth / world.getEntityManager().getPlayer().getMaxHealth() * world.getEntityManager().getPlayer().getHealth() - 4, 26);
+		Text.drawString(g, 
+				world.getEntityManager().getPlayer().getHealth() + "/" + world.getEntityManager().getPlayer().getMaxHealth()
+				, 85, 435, true, Color.WHITE, Assets.font28);
+		
+		
+		g.setColor(Color.GRAY); //Shield
+		g.fillRect(12, 462, barWidth / world.getEntityManager().getPlayer().getMaxShield() * world.getEntityManager().getPlayer().getShield() - 4, 26);
+		Text.drawString(g, 
+				world.getEntityManager().getPlayer().getShield() + "/" + world.getEntityManager().getPlayer().getMaxShield()
+				, 85, 475, true, Color.WHITE, Assets.font28);
+		
 		
 		g.setColor(Color.CYAN); // Mana
-		g.fillRect(12, 102, 100 * world.getEntityManager().getPlayer().getMana() / world.getEntityManager().getPlayer().getMaxMana()- 4, 26);
+		g.fillRect(12, 502, barWidth * world.getEntityManager().getPlayer().getMana() / world.getEntityManager().getPlayer().getMaxMana() - 4, 26);
+		Text.drawString(g, 
+				world.getEntityManager().getPlayer().getMana() + "/" + world.getEntityManager().getPlayer().getMaxMana()
+				, 85, 515, true, Color.WHITE, Assets.font28);
 	}
 
 }
