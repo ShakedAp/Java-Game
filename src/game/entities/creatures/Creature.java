@@ -19,7 +19,7 @@ public abstract class Creature extends Entity{
 	}
 	
 	public void move() {
-		//if the entity isn't going to collide with any other entity allow him to move
+		//If the entity isn't going to collide with any other entity allow him to move
 		if(!checkEntitySolidCollsions(xMove, 0f))
 			moveX();
 		if(!checkEntitySolidCollsions(0f, yMove))

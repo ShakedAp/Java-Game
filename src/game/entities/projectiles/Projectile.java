@@ -11,16 +11,18 @@ public abstract class Projectile extends Entity {
 	protected final int xOrigin, yOrigin; //start point
 	protected double angle;
 	protected double moveX, moveY;
-	protected double speed, range, damage;
+	protected float speed, range;
+	protected int damage;
 	
-	public static final int DEFAULT_SPEED = 10, DEFAULT_RANGE = 300, DEFAULT_DAMAGE = 1;
+	public static final float DEFAULT_SPEED = 10.0f ,DEFAULT_RANGE = 300.0f;
+	public static final int  DEFAULT_DAMAGE = 1;
 	
-	public Projectile(Handler handler, float x, float y, double dir, int width, int height , int speed , int range, int damage) {
+	public Projectile(Handler handler, float x, float y, double dir, int width, int height) {
 		super(handler, x, y, width, height);
 		
-		this.speed = speed;
-		this.range = range;
-		this.damage = damage;
+		speed = DEFAULT_SPEED;
+		range = DEFAULT_RANGE;
+		damage = DEFAULT_DAMAGE;
 		this.xOrigin = (int) x;
 		this.yOrigin = (int) y;
 		angle = dir;

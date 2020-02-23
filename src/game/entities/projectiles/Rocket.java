@@ -12,7 +12,7 @@ public class Rocket extends Projectile {
 	private int animSpeed = 100;
 	
 	public Rocket(Handler handler, float x, float y, double dir) {
-		super(handler, x, y, dir, 128, 128, DEFAULT_SPEED, DEFAULT_RANGE, DEFAULT_DAMAGE);
+		super(handler, x, y, dir, 128, 128);
 		
 		rocket = new Animation(animSpeed, Assets.rocket);
 		

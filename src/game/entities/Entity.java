@@ -7,14 +7,14 @@ import game.Handler;
 
 public abstract class Entity {
 	
-	public static final int DEFAULT_HEALTH = 10;
+	public static final int DEFAULT_HEALTH = 5;
 	
 	protected Handler handler;
 	protected float x, y;
 	protected int width, height;
 	protected int health;
-	protected Rectangle bounds; //Collisions bounds
-	protected boolean active = true; //Is the entity alive
+	protected Rectangle bounds;
+	protected boolean active = true;
 	
 	public Entity(Handler handler, float x, float y, int width, int height) {
 		this.handler = handler;
@@ -27,6 +27,7 @@ public abstract class Entity {
 		bounds = new Rectangle(0, 0, width, height); //Default rectangle
 	}
 	
+	//Abstract
 	public abstract void tick();
 	
 	public abstract void render(Graphics g);
@@ -34,6 +35,7 @@ public abstract class Entity {
 	public abstract void die();
 	
 	
+	//Class
 	public void hurt(int amount){
 		health -= amount;
 		if(health <= 0) {
