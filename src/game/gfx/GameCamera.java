@@ -6,7 +6,7 @@ import game.tiles.Tile;
 public class GameCamera {
 	
 	private Handler handler;
-	private float xOffset, yOffset; //The offset of each tile rendering (example: 0,0 -> -10,-10)
+	private float xOffset, yOffset; // The offset of each tile rendering (example: 0,0 -> -10,-10)
 	
 	
 	public GameCamera(Handler handler, float xOffset, float yOffset) {
@@ -17,12 +17,12 @@ public class GameCamera {
 	
 	
 	public void removeBlankSpace() {
-		//The x axis
+		// The x axis
 		if (xOffset < 0) xOffset = 0;
 		else if (xOffset > handler.getWorld().getWidth() * Tile.TILE_WIDTH - handler.getWidth())
 			xOffset = handler.getWorld().getWidth() * Tile.TILE_WIDTH - handler.getWidth() ;
 		
-		//The y axis
+		// The y axis
 		if (yOffset < 0) yOffset = 0;
 		else if (yOffset > handler.getWorld().getHeight() * Tile.TILE_HEIGHT - handler.getHeight())
 			yOffset = handler.getWorld().getHeight() * Tile.TILE_HEIGHT - handler.getHeight() ;
@@ -39,7 +39,7 @@ public class GameCamera {
 	
 	
 	public void centerOnEntity(Entity e){
-		//making the player centered on the screen (not on the edge)
+		// Making the entity centered on the screen (not on the edge)
 		xOffset = e.getX() - handler.getWidth() / 2 +  e.getWidth() / 2;  
 		yOffset = e.getY() - handler.getHeight() / 2 + e.getHeight() / 2;
 		removeBlankSpace();		

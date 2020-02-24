@@ -6,7 +6,6 @@ import game.Handler;
 import game.entities.EntityManager;
 import game.entities.creatures.Player;
 import game.entities.statics.Rock;
-import game.entities.statics.Tree;
 import game.items.ItemManager;
 import game.tiles.Tile;
 import game.utils.Utils;
@@ -31,7 +30,6 @@ public class World {
 		itemManager = new ItemManager(handler);
 		
 		//Temporary entity code!
-		entityManager.addEntity(new Tree(handler, 100, 100));
 		entityManager.addEntity(new Rock(handler, 100, 300));
 		
 		loadWorld(path);
@@ -49,7 +47,7 @@ public class World {
 	}
 	
 	public void render(Graphics g) {
-		//making the rendering more efficient by rendering only what we can see
+		// Making the rendering more efficient by rendering only what we can see
 		int xStart = (int) Math.max(0, handler.getGameCamera().getxOffset() / Tile.TILE_WIDTH); //if we get a negative tile it will return 0.
 		int xEnd = (int) Math.min(width, (handler.getGameCamera().getxOffset() + handler.getWidth()) / Tile.TILE_WIDTH + 1);
 		int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
@@ -59,7 +57,6 @@ public class World {
 			for(int x = xStart; x < xEnd; x++) {
 				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - handler.getGameCamera().getxOffset()),
 						(int) (y * Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
-				//rendering the tiles with the camera offset
 			}
 		}
 		
@@ -72,18 +69,17 @@ public class World {
 	
 	
 	public Tile getTile(int x, int y) {
-		if(x < 0 || y < 0 || x >= width || y>= height) //for safety (collisions)
-			return Tile.grassTile;
+		if(x < 0 || y < 0 || x >= width || y>= height) // If we are out of the map size (safty)
+			return Tile.untexturedTile;
 		
 		
 		
 		
 		Tile t = Tile.tiles[tiles[x][y]];
 		
-		if (t == null) { //for safety (default tile)
-			return Tile.dirtTile;
-		}
-		return t; //if not null return the current tile
+		if (t == null) // For safety (default tile)
+			return Tile.untexturedTile;
+		return t;
 	}
 	
 	
@@ -110,7 +106,7 @@ public class World {
 	
 	
 	
-	//GETTERS SETTERS
+	//GETTERS & SETTERS
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}

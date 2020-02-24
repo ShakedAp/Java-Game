@@ -10,7 +10,7 @@ public class Assets {
 	
 	public static Font font28, font24; 
 	
-	public static BufferedImage dirt, grass, stone, tree, rock, wood, player_idle;
+	public static BufferedImage stone, tree, rock, wood, untextured, regularTile, player_idle;
 	public static BufferedImage bullet, choose;
 	public static BufferedImage[] rocket;
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
@@ -26,6 +26,7 @@ public class Assets {
 		SpriteSheet sheet = new SpriteSheet(ImageLoader.loadImage("/textures/sheet.png"));
 		SpriteSheet robotSheet = new SpriteSheet(ImageLoader.loadImage("/textures/robotSheet.png"));
 		SpriteSheet gunSheet = new SpriteSheet(ImageLoader.loadImage("/textures/gunSheet.png"));
+		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tileSheet.png"));
 		
 		inventoryScreen = ImageLoader.loadImage("/textures/inventoryScreen.png");
 		popupInv = ImageLoader.loadImage("/textures/popupInv.png");
@@ -120,11 +121,11 @@ public class Assets {
 		
 		
 		//other
-		dirt = sheet.crop(width, 0, width, height);
-		grass = sheet.crop(width * 2, 0, width, height);
-		//grass = img.crop(0, 0, 128, 128);
+		untextured = tileSheet.crop(0, 0, newWidth, newHeight);
+		regularTile = tileSheet.crop(newWidth, 0, newWidth, newHeight);
+		rock = tileSheet.crop(newWidth * 2, 0, newWidth, newHeight);
+		
 		stone = sheet.crop(width * 3, 0, width, height);
 		tree = sheet.crop(0, 0, width, height * 2);
-		rock = sheet.crop(0, height * 2, width, height);
 	}
 }

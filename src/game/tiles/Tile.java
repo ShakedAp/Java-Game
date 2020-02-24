@@ -8,25 +8,25 @@ public class Tile {
 	
 	//STATIC STUFF (sorry Anna)
 	
-	public static Tile[] tiles = new Tile[256]; // all of the tiles
+	public static Tile[] tiles = new Tile[256];
 	//The tiles
-	public static Tile grassTile = new GrassTile(0);
-	public static Tile dirtTile = new DirtTile(1);
+	public static Tile untexturedTile = new UntexturedTile(0);
+	public static Tile regularTile = new RegularTile(1);
 	public static Tile rockTile = new RockTile(2);
 	
 	
 	//CLASS
-	protected BufferedImage texture; //the texture for the tile
-	protected final int id; //every tile have a unique id
+	protected BufferedImage texture;
+	protected final int id;
 	
-	public static final int TILE_WIDTH = 64, //default width and height
+	public static final int TILE_WIDTH = 64,
 							TILE_HEIGHT = 64;
 
 	public Tile(BufferedImage texture, int id) {
 		this.texture = texture;
 		this.id = id;	
 		
-		tiles[id] = this; //adding the created tile into the array
+		tiles[id] = this;
 	}
 	
 	
@@ -42,7 +42,7 @@ public class Tile {
 		return false;
 	}
 	
-	//getters and setters
+	//GETTERS & SETTERS
 	public int getId() {
 		return id;
 	}
