@@ -13,7 +13,17 @@ public class Smg extends Weapon{
 	Random random = new Random();
 	
 	public Smg() {
-		super(Assets.smg, "smg", 10, "The bad pistol", "after he grew", "up. he likes", "to say \"im", " speed\", before", "he instantly run", "out of ammo.", 3);
+		super(Assets.smg, "smg", 3);
+		
+		bps = 10;
+		
+		descLine1 = "the bad pistol";
+		descLine2 = "after he grew";
+		descLine3 = "up. he likes";
+		descLine4 = "to say \"im";
+		descLine5 = "speed\", before";
+		descLine6 = "he instantly run";
+		descLine7 = "out of ammo.";
 	}
 
 	@Override

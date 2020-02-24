@@ -9,7 +9,15 @@ import game.items.Weapon;
 public class Ak47 extends Weapon{
 
 	public Ak47() {
-		super(Assets.ak47, "ak47", 5 ,"mother russia’s", "pride concentrated", "into one gun", "of pure soviet", "badass.", "", "", 4);
+		super(Assets.ak47, "ak47", 4);
+		
+		bps = 5;
+		
+		descLine1 = "mother russia’s";
+		descLine2 = "pride concentrated";
+		descLine3 = "into one gun";
+		descLine4 = "of pure soviet";
+		descLine5 = "badass.";
 	}
 	
 	@Override

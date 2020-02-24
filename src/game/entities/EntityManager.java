@@ -8,8 +8,6 @@ import java.util.Iterator;
 
 import game.Handler;
 import game.entities.creatures.Player;
-import game.entities.statics.Tree;
-
 public class EntityManager {
 	
 	private Handler handler;

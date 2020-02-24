@@ -2,14 +2,21 @@ package game.items.Weapons;
 
 import game.Handler;
 import game.entities.projectiles.LightBullet;
-import game.entities.statics.Tree;
 import game.gfx.Assets;
 import game.items.Weapon;
 
 public class WaterGun extends Weapon{
 
 	public WaterGun() {
-		super(Assets.water_gun, "water gun", 3 , "it squirts", "water at your", "opponents. if you", "can’t make girls", "wet in real", "life, you can in", "game.", 5);
+		super(Assets.water_gun, "water gun", 5);
+		
+		descLine1 = "it squirts";
+		descLine2 = "water at your";
+		descLine3 = "opponents. if you";
+		descLine4 = "can't make girls";
+		descLine5 = "wet in real";
+		descLine6 = "life, you can in";
+		descLine7 = "game.";
 	}
 	
 	@Override

@@ -8,7 +8,13 @@ import game.items.Weapon;
 public class BadPistol extends Weapon{
 
 	public BadPistol() {
-		super(Assets.bad_pistol, "bad pistol", 3 ,"just the plain", "good old pistol.", "", "(its quite bad,", "though)", "", "",  0);
+		super(Assets.bad_pistol, "bad pistol", 0);
+		
+		descLine1 = "just the plain";
+		descLine2 = "good old pistol.";
+		descLine3 = "";
+		descLine4 = "(its quite bad,";
+		descLine5 = "though)";
 	}
 	
 	@Override

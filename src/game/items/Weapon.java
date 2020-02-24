@@ -6,11 +6,12 @@ import game.Handler;
 
 public abstract class Weapon extends Item {
 
-	protected double bps; //How many bullets per second
+	protected double bps; // How many bullets per second
+	public static final double DEFAULT_BPS = 3;
 	
-	public Weapon(BufferedImage texture, String name, double bps, String desc1, String desc2, String desc3, String desc4, String desc5, String desc6, String desc7, int id) {
-		super(texture, name, desc1, desc2, desc3, desc4, desc5, desc6, desc7, id);
-		this.bps = bps;
+	public Weapon(BufferedImage texture, String name, int id) {
+		super(texture, name, id);
+		bps = DEFAULT_BPS;
 	}
 
 	

@@ -122,13 +122,13 @@ public class Inventory {
 		Item item = inventoryItems.get(selectedItem);
 		g.drawImage(item.getTexture(), invImageX, invImageY, invImageWidth, invImageHeight, null);	
 		
-		Text.drawString(g, item.getDesc1(), invDescX, invDescY, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, item.getDesc2(), invDescX, invDescY + 21, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, item.getDesc3(), invDescX, invDescY + 42, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, item.getDesc4(), invDescX, invDescY + 63, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, item.getDesc5(), invDescX, invDescY + 84, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, item.getDesc6() , invDescX, invDescY + 105, true, Color.WHITE, Assets.font24);
-		Text.drawString(g, item.getDesc7() , invDescX, invDescY + 126, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDescLine1(), invDescX, invDescY, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDescLine2(), invDescX, invDescY + 21, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDescLine3(), invDescX, invDescY + 42, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDescLine4(), invDescX, invDescY + 63, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDescLine5(), invDescX, invDescY + 84, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDescLine6() , invDescX, invDescY + 105, true, Color.WHITE, Assets.font24);
+		Text.drawString(g, item.getDescLine7() , invDescX, invDescY + 126, true, Color.WHITE, Assets.font24);
 		
 		
 		renderEquipMenu(g);
