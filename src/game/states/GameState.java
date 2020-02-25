@@ -18,7 +18,7 @@ public class GameState extends State {
 	private boolean paused = false;
 
 	private UIImage equipedWeaponUI = new UIImage(null, 832, 412, 128, 128);
-	private UIImage choose = new UIImage(Assets.choose, 832, 412, 128, 128);
+	private UIImage choose = new UIImage(Assets.choosen, 832, 412, 128, 128);
 	private UIImageButton pauseButton = new UIImageButton(10, 10, 80, 64, Assets.btn_pause, new ClickListener() {
 		@Override
 		public void onClick() {
@@ -55,33 +55,29 @@ public class GameState extends State {
 
 		
 		//TEST PLAYER HEALTH, SHIELD, MANA BAR
-		int barWidth = 150, barHeight = 30;
-		
-		g.setColor(Color.black);
-		g.fillRect(10, 420, barWidth, barHeight); // Health
-		g.fillRect(10, 460, barWidth, barHeight); // Shield 
-		g.fillRect(10, 500, barWidth, barHeight); // Mana
-
+		int barWidth = 150, barHeight = 32;
 		
 		g.setColor(Color.RED); // Health
-		g.fillRect(12, 422, barWidth / world.getEntityManager().getPlayer().getMaxHealth() * world.getEntityManager().getPlayer().getHealth() - 4, 26);
+		g.fillRect(12, 422, barWidth / world.getEntityManager().getPlayer().getMaxHealth() * world.getEntityManager().getPlayer().getHealth() + 2, barHeight);
+		
 		Text.drawString(g, 
 				world.getEntityManager().getPlayer().getHealth() + "/" + world.getEntityManager().getPlayer().getMaxHealth()
-				, 85, 435, true, Color.WHITE, Assets.font28);
-		
+				, 87, 437, true, Color.WHITE, Assets.font28);
+		g.drawImage(Assets.bar, 10, 420, null);
 		
 		g.setColor(Color.GRAY); //Shield
-		g.fillRect(12, 462, barWidth / world.getEntityManager().getPlayer().getMaxShield() * world.getEntityManager().getPlayer().getShield() - 4, 26);
+		g.fillRect(12, 462, barWidth / world.getEntityManager().getPlayer().getMaxShield() * world.getEntityManager().getPlayer().getShield() +2, barHeight);
 		Text.drawString(g, 
 				world.getEntityManager().getPlayer().getShield() + "/" + world.getEntityManager().getPlayer().getMaxShield()
-				, 85, 475, true, Color.WHITE, Assets.font28);
-		
+				, 87, 479, true, Color.WHITE, Assets.font28);
+		g.drawImage(Assets.bar, 10, 460, null);
 		
 		g.setColor(Color.CYAN); // Mana
-		g.fillRect(12, 502, barWidth * world.getEntityManager().getPlayer().getMana() / world.getEntityManager().getPlayer().getMaxMana() - 4, 26);
+		g.fillRect(12, 502, barWidth * world.getEntityManager().getPlayer().getMana() / world.getEntityManager().getPlayer().getMaxMana() + 2 , barHeight);
 		Text.drawString(g, 
 				world.getEntityManager().getPlayer().getMana() + "/" + world.getEntityManager().getPlayer().getMaxMana()
-				, 85, 515, true, Color.WHITE, Assets.font28);
+				, 87, 519, true, Color.WHITE, Assets.font28);
+		g.drawImage(Assets.bar, 10, 500, null);
 	}
 
 }

@@ -19,14 +19,16 @@ public class Player extends Creature {
 	private int animSpeed = 100;
 
 	// Health
-	private int maxHealth = 5, maxShield = 6 , maxMana = 200;
-	private int shield = 6, mana = 200;
+	private int maxHealth = 6, maxShield = 5 , maxMana = 200;
+	private int shield = 5, mana = 200;
 
 	private Inventory inventory;
 
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, 128, 128);
 
+		health = 6;
+		
 		// Bounds
 		bounds.x = 43;
 		bounds.y = 43;

@@ -29,6 +29,7 @@ public class Smg extends Weapon{
 	@Override
 	public void shoot(Handler handler, float xOrigin, float yOrigin, double dir) {
 		double spread = ThreadLocalRandom.current().nextDouble(-0.05, 0.05);
+		
 		handler.getWorld().getEntityManager().addEntity(new LightBullet(handler, xOrigin, yOrigin, dir + spread));
 	}
 	
