@@ -9,7 +9,7 @@ public class Assets {
 
 	public static Font font28, font24;
 
-	public static BufferedImage stone, rock, wood, untextured, regularTile;
+	public static BufferedImage stone, rock, wood, untextured, regularTile, voidTile, wallTile;
 	public static BufferedImage bullet, choosen, bar;
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
@@ -68,6 +68,8 @@ public class Assets {
 		untextured = tileSheet.crop(0, 0, width, height);
 		regularTile = tileSheet.crop(width, 0, width, height);
 		stone = tileSheet.crop(width * 2, 0, width, height);
+		voidTile = tileSheet.crop(width * 3, 0, width, height);
+		wallTile = tileSheet.crop(width * 4, 0, width, height);
 
 		rock = untextured;
 		

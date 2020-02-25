@@ -10,9 +10,11 @@ public class Tile {
 	
 	public static Tile[] tiles = new Tile[256];
 	//The tiles
-	public static Tile untexturedTile = new UntexturedTile(0);
-	public static Tile regularTile = new RegularTile(1);
-	public static Tile rockTile = new RockTile(2);
+	public static Tile voidTile = new VoidTile(0);
+	public static Tile untexturedTile = new UntexturedTile(1);
+	public static Tile regularTile = new RegularTile(2);
+	public static Tile rockTile = new RockTile(3);
+	public static Tile wallTile = new WallTile(4);
 	
 	
 	//CLASS

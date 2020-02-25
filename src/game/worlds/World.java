@@ -2,6 +2,7 @@ package game.worlds;
 
 import java.awt.Graphics;
 
+
 import game.Handler;
 import game.entities.EntityManager;
 import game.entities.creatures.Player;
@@ -29,12 +30,12 @@ public class World {
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		itemManager = new ItemManager(handler);
 		
-		//Temporary entity code!
-		entityManager.addEntity(new Rock(handler, 100, 300));
+		// Temporary entity code!
+//		entityManager.addEntity(new Rock(handler, 100, 300));
 		
 		loadWorld(path);
 		
-		//spawning the player
+		// Spawning the player
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
 	}
