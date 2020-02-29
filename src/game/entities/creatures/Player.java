@@ -126,7 +126,7 @@ public class Player extends Creature {
 		double dy = mouseY - playerY;
 		double dir = Math.atan2(dy, dx);
 
-		if (handler.getMouseManager().isLeftPressed()) {
+		if (handler.getMouseManager().isLeftPressed() && mana > 0) {
 			b.shoot(handler, x + bounds.x + 10, y + bounds.y + 10, dir);
 			mana -= b.getManaCost();
 		} else

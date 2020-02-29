@@ -20,20 +20,13 @@ public class MediumBullet extends Projectile{
 	public void tick() {
 		move();
 		
-		//	TODO: Implement in all of the bullets 
-			for(Entity e : handler.getWorld().getEntityManager().getEntities()) { 
-				if(e.equals(this) || e instanceof Player)
-					continue;
-				if(e.getCollisonBounds(0f,0f).intersects(this.getCollisonBounds(0f, 0f)) && e.isSolid()) {
-					e.hurt(damage);
-					kill();
-				}
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { 
+			if(e.equals(this) || e instanceof Player) continue;
+			if(e.getCollisonBounds(0f,0f).intersects(this.getCollisonBounds(0f, 0f)) && e.isSolid()) {
+				e.hurt(damage);
+				kill();
 			}
-			
-			
-			
-			
-		
+		}
 	}
 
 	@Override

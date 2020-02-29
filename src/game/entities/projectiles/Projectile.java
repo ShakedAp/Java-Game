@@ -14,7 +14,7 @@ public abstract class Projectile extends Entity {
 	protected float speed, range;
 	protected int damage;
 	
-	public static final float DEFAULT_SPEED = 10.0f ,DEFAULT_RANGE = 300.0f;
+	public static final float DEFAULT_SPEED = 10 ,DEFAULT_RANGE = 300.0f;
 	public static final int  DEFAULT_DAMAGE = 1;
 	
 	public Projectile(Handler handler, float x, float y, double dir, int width, int height) {

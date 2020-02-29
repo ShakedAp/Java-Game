@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import game.Handler;
+import game.entities.Entity;
+import game.entities.creatures.Player;
 import game.gfx.Animation;
 import game.gfx.Assets;
 
@@ -12,11 +14,12 @@ public class Rocket extends Projectile {
 	private Animation rocketAnim;
 	private int animSpeed = 100;
 	
-	public Rocket(Handler handler, float x, float y, double dir) {
+	public Rocket(Handler handler, float x, float y, double dir) { //TODO: fix bugs!
 		super(handler, x, y, dir, 128, 128);
 		
 		rocketAnim = new Animation(animSpeed, Assets.rocket);
 		
+		damage = 10;
 		range = 999999999;
 		
 		bounds.x = 34;
@@ -29,6 +32,14 @@ public class Rocket extends Projectile {
 	public void tick() {
 		move(); 
 		rocketAnim.update();
+		
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { 
+			if(e.equals(this) || e instanceof Player) continue;
+			if(e.getCollisonBounds(0f,0f).intersects(this.getCollisonBounds(0f, 0f)) && e.isSolid()) {
+				e.hurt(damage);
+				kill();
+			}
+		}
 	}
 
 	@Override
