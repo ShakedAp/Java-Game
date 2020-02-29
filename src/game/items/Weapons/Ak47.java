@@ -12,7 +12,6 @@ public class Ak47 extends Weapon{
 		super(Assets.ak47, "ak47", 4);
 		
 		bps = 5;
-		manaCost = 2;
 		
 		descLine1 = "mother russia’s";
 		descLine2 = "pride concentrated";
@@ -23,7 +22,7 @@ public class Ak47 extends Weapon{
 	
 	@Override
 	public void shoot(Handler handler, float xOrigin, float yOrigin, double dir) {
-		handler.getWorld().getEntityManager().addEntity(new MediumBullet(handler, xOrigin, yOrigin, dir));
+		handler.getWorld().getEntityManager().addEntity(new MediumBullet(handler, xOrigin, yOrigin, dir + calculateSpread()));
 	}
 
 }

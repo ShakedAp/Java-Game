@@ -19,7 +19,7 @@ public class BadPistol extends Weapon{
 	
 	@Override
 	public void shoot(Handler handler, float xOrigin, float yOrigin, double dir) {
-		handler.getWorld().getEntityManager().addEntity(new LightBullet(handler, xOrigin, yOrigin, dir));
+		handler.getWorld().getEntityManager().addEntity(new LightBullet(handler, xOrigin, yOrigin, dir + calculateSpread()));
 	}
 
 }
