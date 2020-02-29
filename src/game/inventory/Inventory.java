@@ -16,7 +16,7 @@ public class Inventory {
 	Handler handler;
 	public boolean active = false;
 	private boolean equipMenuActive = false, equipButtonChosen = true;
-	private Item equipedWeapon = Item.ak47;
+	private Item equippedWeapon = Item.ak47;
 	private ArrayList<Item> inventoryItems;
 	
 	private int invX = 224, invY = 78,
@@ -78,7 +78,7 @@ public class Inventory {
 			if(!equipMenuActive) equipMenuActive = true;
 			
 			else if(equipButtonChosen == true) { //if the equip button has been chosen
-					equipedWeapon = inventoryItems.get(selectedItem);
+					equippedWeapon = inventoryItems.get(selectedItem);
 					active = false; //TODO: ask de mates id dats oke
 				}
 			
@@ -174,13 +174,13 @@ public class Inventory {
 	}
 
 
-	public Item getEquipedWeapon() {
-		return equipedWeapon;
+	public Item getEquippedWeapon() {
+		return equippedWeapon;
 	}
 
 
-	public void setEquipedWeapon(Item equipedWeapon) {
-		this.equipedWeapon = equipedWeapon;
+	public void setEquippedWeapon(Item equippedWeapon) {
+		this.equippedWeapon = equippedWeapon;
 	}
 	
 }

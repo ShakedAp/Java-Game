@@ -45,7 +45,7 @@ public class GameState extends State {
 		
 		uiManager.tick();
 
-		equipedWeaponUI.setTexture(world.getEntityManager().getPlayer().getInventory().getEquipedWeapon().getTexture());
+		equipedWeaponUI.setTexture(world.getEntityManager().getPlayer().getInventory().getEquippedWeapon().getTexture());
 	}
 
 	@Override

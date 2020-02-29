@@ -7,11 +7,14 @@ import game.Handler;
 public abstract class Weapon extends Item {
 
 	protected double bps; // How many bullets per second
+	protected int manaCost;
+	public static final int DEFAULT_MANACOST = 1;
 	public static final double DEFAULT_BPS = 3;
 	
 	public Weapon(BufferedImage texture, String name, int id) {
 		super(texture, name, id);
 		bps = DEFAULT_BPS;
+		manaCost = DEFAULT_MANACOST;
 	}
 
 	
@@ -25,6 +28,10 @@ public abstract class Weapon extends Item {
 
 	public void setRateOfFire(int rateOfFire) {
 		this.bps = rateOfFire;
+	}
+
+	public int getManaCost() {
+		return manaCost;
 	}
 
 	

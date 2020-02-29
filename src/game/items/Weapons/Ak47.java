@@ -12,6 +12,7 @@ public class Ak47 extends Weapon{
 		super(Assets.ak47, "ak47", 4);
 		
 		bps = 5;
+		manaCost = 2;
 		
 		descLine1 = "mother russia’s";
 		descLine2 = "pride concentrated";

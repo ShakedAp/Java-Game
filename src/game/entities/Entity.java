@@ -35,7 +35,7 @@ public abstract class Entity {
 	public abstract void die();
 	
 	
-	//Class
+	// Class
 	public void hurt(int amount){
 		health -= amount;
 		if(health <= 0) {
@@ -65,8 +65,6 @@ public abstract class Entity {
 		}
 		return false;
 	}
-	
-	
 	
 	public Rectangle getCollisonBounds(float xOffset, float yOffset) {
 		return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width, bounds.height);

@@ -97,7 +97,7 @@ public class Player extends Creature {
 	private long lastRangedAttackTimer, rangedAttackCooldown = 100, rangedAttackTimer = rangedAttackCooldown;
 
 	private void checkShooting() {
-		Item a = (Weapon) inventory.getEquipedWeapon();
+		Item a = (Weapon) inventory.getEquippedWeapon();
 		Weapon b = null;
 		b = (Weapon) a;
 		rangedAttackCooldown = (long) (1000 / b.getBps());
@@ -128,6 +128,7 @@ public class Player extends Creature {
 
 		if (handler.getMouseManager().isLeftPressed()) {
 			b.shoot(handler, x + bounds.x + 10, y + bounds.y + 10, dir);
+			mana -= b.getManaCost();
 		} else
 			return;
 

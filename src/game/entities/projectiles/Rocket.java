@@ -1,6 +1,7 @@
 package game.entities.projectiles;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import game.Handler;
 import game.gfx.Animation;
@@ -33,6 +34,11 @@ public class Rocket extends Projectile {
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(rocketAnim.getCurrentFrame() ,(int) (x + bounds.x - bounds.width/2 - handler.getGameCamera().getxOffset()),
+				(int) (y - bounds.y - bounds.height/2 - handler.getGameCamera().getyOffset()), width, height, null);
+	}
+	
+	public void render(Graphics2D g2d) {
+		g2d.drawImage(rocketAnim.getCurrentFrame() ,(int) (x + bounds.x - bounds.width/2 - handler.getGameCamera().getxOffset()),
 				(int) (y - bounds.y - bounds.height/2 - handler.getGameCamera().getyOffset()), width, height, null);
 	}
 	

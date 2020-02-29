@@ -35,10 +35,9 @@ public abstract class Projectile extends Entity {
 		if(distancePassed() > range) kill();
 		if(collisionWithTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT)) kill();
 		
-		x += moveX;
-		y += moveY;
-		//range checking
 		
+		x += moveX;
+		y += moveY;		
 	}
 	
 	protected double distancePassed() {
@@ -46,8 +45,6 @@ public abstract class Projectile extends Entity {
 		dist = Math.sqrt((xOrigin - x)*(xOrigin - x) + (yOrigin - y)*(yOrigin -y));
 		return dist;
 	}
-	
-	
 	
 	
 	@Override
