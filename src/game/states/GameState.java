@@ -2,6 +2,7 @@ package game.states;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import game.Handler;
 import game.gfx.Assets;
@@ -29,7 +30,8 @@ public class GameState extends State {
 		super(handler, new UIManager(handler));
 		// Importing the world
 		world = new World(handler, "res/worlds/world1.txt");
-		handler.setWorld(world);
+		handler.setWorld(world);		
+		
 		// UI
 		
 		uiManager.addObject(equipedWeaponUI);
@@ -40,11 +42,15 @@ public class GameState extends State {
 	@Override
 	public void tick() {
 		handler.getMouseManager().setUiManager(uiManager);
-		if(!paused)
+		
+		// If the inventory isn't active and the escape is pressed then toggle pause
+		if(!world.getEntityManager().getPlayer().getInventory().isActive() && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) 
+			paused = !paused;
+		
+		if(!paused) 
 			world.tick();
 		
 		uiManager.tick();
-
 		equipedWeaponUI.setTexture(world.getEntityManager().getPlayer().getInventory().getEquippedWeapon().getTexture());
 	}
 
