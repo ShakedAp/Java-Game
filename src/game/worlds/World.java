@@ -33,7 +33,7 @@ public class World {
 		itemManager = new ItemManager(handler);
 		
 		// Temporary entity code!
-		entityManager.addEntity(new BasicEnemy(handler, 600, 400));		
+		entityManager.addEntity(new BasicEnemy(handler, 800, 1248));		
 		loadWorld(path);
 		
 		// Spawning the player
