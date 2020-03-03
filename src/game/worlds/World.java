@@ -25,9 +25,7 @@ public class World {
 	//items
 	private ItemManager itemManager;
 	
-	//Sections
-	private Section a;
-	
+		
 	public World(Handler handler, String path) {
 		this.handler = handler;
 		
@@ -35,22 +33,17 @@ public class World {
 		itemManager = new ItemManager(handler);
 		
 		// Temporary entity code!
-		entityManager.addEntity(new BasicEnemy(handler, 600, 400));
-		entityManager.addEntity(new BasicEnemy(handler, 1200, 450));
-		
+		entityManager.addEntity(new BasicEnemy(handler, 600, 400));		
 		loadWorld(path);
 		
 		// Spawning the player
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
-		
-		a =  new Section(handler, 512, 256, 448, 448);
 	}
 	
 	public void tick(){
 		itemManager.tick();
 		entityManager.tick();
-		a.tick();
 	}
 	
 	public void render(Graphics g) {
@@ -70,7 +63,6 @@ public class World {
 		
 		itemManager.render(g);
 		entityManager.render(g);
-		a.render(g);
 	}
 	
 	
