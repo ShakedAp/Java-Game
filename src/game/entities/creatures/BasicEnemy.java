@@ -3,6 +3,7 @@ package game.entities.creatures;
 import java.awt.Graphics;
 
 import game.Handler;
+import game.entities.projectiles.LightBullet;
 import game.gfx.Assets;
 
 public class BasicEnemy extends Enemy{
@@ -15,11 +16,13 @@ public class BasicEnemy extends Enemy{
 		bounds.y = 43;
 		bounds.width = 42;
 		bounds.height = 50;
+		
+		
 	}
 
 	@Override
 	public void tick() {
-		
+	
 	}
 
 	@Override

@@ -33,8 +33,12 @@ public abstract class Projectile extends Entity {
 	
 	protected void move(){
 		if(distancePassed() > range) kill();
-		if(collisionWithTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT)) kill();
 		
+		// Tile collisions
+		if(collisionWithTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT))
+			kill();
+		if(handler.getWorld().getTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT) == Tile.wallTile)
+			kill();
 		
 		x += moveX;
 		y += moveY;		
