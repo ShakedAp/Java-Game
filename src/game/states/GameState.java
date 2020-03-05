@@ -7,6 +7,7 @@ import java.awt.event.KeyEvent;
 import game.Handler;
 import game.gfx.Assets;
 import game.gfx.Text;
+import game.items.Weapon;
 import game.ui.ClickListener;
 import game.ui.UIImage;
 import game.ui.UIImageButton;
@@ -35,6 +36,7 @@ public class GameState extends State {
 		
 		uiManager.addObject(equipedWeaponUI);
 		uiManager.addObject(new UIImage(Assets.choosen, 832, 412, 128, 128));
+		uiManager.addObject(new UIImage(Assets.mana_display, 832 + 48, 412 + 48 + 49, 30, 30));
 		uiManager.addObject(pauseButton);
 		
 		uiManager.addObject(new UIImage(Assets.shield_icon, 7, 465, 24, 30));
@@ -60,7 +62,10 @@ public class GameState extends State {
 	public void render(Graphics g) {
 		world.render(g);
 		uiManager.render(g);
-
+		
+		Weapon wpn = (Weapon) world.getEntityManager().getPlayer().getInventory().getEquippedWeapon();
+		Text.drawString(g, Integer.toString(wpn.getManaCost()), 895, 521, true, Color.white, Assets.font24);
+		
 		
 		//TEST PLAYER HEALTH, SHIELD, MANA BAR
 		int barWidth = 150, barHeight = 32;

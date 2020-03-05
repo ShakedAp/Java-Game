@@ -10,6 +10,8 @@ public class BadPistol extends Weapon{
 	public BadPistol() {
 		super(Assets.bad_pistol, "bad pistol", 0);
 		
+		manaCost = 0;
+		
 		descLine1 = "just the plain";
 		descLine2 = "good old pistol.";
 		descLine3 = "";
