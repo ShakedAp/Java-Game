@@ -10,7 +10,7 @@ public class Assets {
 	public static Font font28, font24;
 
 	public static BufferedImage stone, rock, wood, untextured, regularTile, voidTile, wallTile;
-	public static BufferedImage bullet, choosen, bar, shield_icon, heart_icon;
+	public static BufferedImage bullet, choosen, bar, shield_icon, heart_icon, mana_display;
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
 
@@ -58,6 +58,7 @@ public class Assets {
 		btn_pause[1] = ImageLoader.loadImage("/textures/pauseButton.png");
 
 		choosen = ImageLoader.loadImage("/textures/chosen.png");
+		mana_display = ImageLoader.loadImage("/textures/manaDisplay.png");
 		
 		bar = ImageLoader.loadImage("/textures/bar.png");
 		shield_icon = ImageLoader.loadImage("/textures/shieldIcon.png");
