@@ -15,6 +15,7 @@ public class Shotgun extends Weapon{
 		
 		bps = 1;
 		spread = 20;
+		manaCost = 2;
 		
 		descLine1 = "look cool while";
 		descLine2 = "blasting your";

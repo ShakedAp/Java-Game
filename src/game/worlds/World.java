@@ -85,6 +85,7 @@ public class World {
 	
 	
 	private void loadWorld(String path) { //loading the world
+		try {
 		String file = Utils.loadFileAsString(path); //loading our world as string
 		String[] tokens = file.split("\\s+"); //Splitting each number to his own "space", but without spaces
 		
@@ -99,6 +100,11 @@ public class World {
 			for(int x = 0; x < width; x++) {
 				tiles[x][y] = Utils.parseInt(tokens[(x + y * width)  + 4]); 
 			}
+		}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
 		}
 	}
 

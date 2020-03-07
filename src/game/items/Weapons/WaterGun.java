@@ -10,6 +10,8 @@ public class WaterGun extends Weapon{
 	public WaterGun() {
 		super(Assets.water_gun, "water gun", 5);
 		
+		manaCost = 0;
+		
 		descLine1 = "it squirts";
 		descLine2 = "water at your";
 		descLine3 = "opponents. if you";

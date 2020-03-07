@@ -11,6 +11,7 @@ public class RPG extends Weapon{
 		super(Assets.RPG, "RPG", 1);
 		
 		bps = 0.7;
+		manaCost = 6;
 		
 		descLine1 = "it stands for:";
 		descLine2 = "remote";
