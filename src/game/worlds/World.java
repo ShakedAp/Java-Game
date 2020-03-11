@@ -19,18 +19,22 @@ public class World {
 	private int spawnX, spawnY; //spawning cords
 	private int [][] tiles; //the tile array of the tiles in the map
 	
-	//entities
+	// Entities
 	private EntityManager entityManager;
 	
-	//items
+	// Items
 	private ItemManager itemManager;
 	
-		
-	public World(Handler handler, String path) {
+	// Sections
+	private SectionManager sectionManager;
+	private MiniMap miniMap;
+	
+	public World(Handler handler, String path, int sectionX, int sectionY) {
 		this.handler = handler;
 		
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		itemManager = new ItemManager(handler);
+		sectionManager = new SectionManager(handler, sectionX, sectionY);
 		
 		// Temporary entity code!
 		entityManager.addEntity(new BasicEnemy(handler, 800, 1248));		
@@ -39,11 +43,15 @@ public class World {
 		// Spawning the player
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
+		
+		
+		miniMap = new MiniMap(handler, sectionManager);
 	}
 	
 	public void tick(){
 		itemManager.tick();
 		entityManager.tick();
+		sectionManager.tick();
 	}
 	
 	public void render(Graphics g) {
@@ -63,6 +71,8 @@ public class World {
 		
 		itemManager.render(g);
 		entityManager.render(g);
+		sectionManager.render(g);
+		miniMap.render(g);
 	}
 	
 	
@@ -103,8 +113,6 @@ public class World {
 		}
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e);
 		}
 	}
 
@@ -147,6 +155,14 @@ public class World {
 
 	public void setItemManager(ItemManager itemManager) {
 		this.itemManager = itemManager;
+	}
+
+	public SectionManager getSectionManager() {
+		return sectionManager;
+	}
+
+	public void setSectionManager(SectionManager sectionManager) {
+		this.sectionManager = sectionManager;
 	}
 
 	

@@ -8,7 +8,7 @@ import game.Handler;
 
 public class UIManager {
 	
-	Handler handler;
+	private Handler handler;
 	private ArrayList<UIObject> objects;
 	
 	public UIManager(Handler handler) {
@@ -63,12 +63,4 @@ public class UIManager {
 	public void setObjects(ArrayList<UIObject> objects) {
 		this.objects = objects;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

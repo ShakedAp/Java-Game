@@ -12,6 +12,7 @@ import game.ui.ClickListener;
 import game.ui.UIImage;
 import game.ui.UIImageButton;
 import game.ui.UIManager;
+import game.worlds.Section;
 import game.worlds.World;
 
 public class GameState extends State {
@@ -29,11 +30,22 @@ public class GameState extends State {
 	public GameState(Handler handler) {
 		super(handler, new UIManager(handler));
 		// Importing the world
-		world = new World(handler, "res/worlds/world1.txt");
+		world = new World(handler, "res/worlds/world1.txt", 4, 4);
 		handler.setWorld(world);		
 		
-		// UI
+		// Sections
+		world.getSectionManager().setObject(new Section(handler, 448, 1088, 512, 512), 0, 1);
+		world.getSectionManager().setObject(new Section(handler, 1664, 1024, 576, 576), 1, 1);
+		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 1, 0);
+		world.getSectionManager().setObject(new Section(handler, 1536, 2112, 832, 832), 1, 2);
+		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 2, 1);
+		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 3, 1);
+		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 2, 2);
+		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 2, 3);
+
 		
+		
+		// UI
 		uiManager.addObject(equipedWeaponUI);
 		uiManager.addObject(new UIImage(Assets.choosen, 832, 412, 128, 128));
 		uiManager.addObject(new UIImage(Assets.mana_display, 832 + 48, 412 + 48 + 49, 30, 30));
