@@ -13,9 +13,10 @@ public class Assets {
 	public static BufferedImage bullet, choosen, bar, shield_icon, heart_icon, mana_display;
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
+	public static BufferedImage start_menu_background;
 
 	public static BufferedImage[] rocket;
-	public static BufferedImage[] btn_start, btn_pause;
+	public static BufferedImage[] btn_start, btn_settings, btn_pause;
 
 	public static BufferedImage player_idle;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -28,6 +29,7 @@ public class Assets {
 
 		// Sprite-Sheets
 		SpriteSheet startSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startSheet.png"));
+		SpriteSheet settingsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/settingsSheet.png"));		
 		SpriteSheet robotSheet = new SpriteSheet(ImageLoader.loadImage("/textures/robotSheet.png"));
 		SpriteSheet gunSheet = new SpriteSheet(ImageLoader.loadImage("/textures/gunSheet.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tileSheet.png"));
@@ -50,9 +52,15 @@ public class Assets {
 
 		// UI
 		btn_start = new BufferedImage[2];
-		btn_start[0] = startSheet.crop(0, 0, width * 2, height);
-		btn_start[1] = startSheet.crop(0, height, width * 2, height);
+		btn_start[0] = startSheet.crop(0, 0, 152, 66);
+		btn_start[1] = startSheet.crop(0, 66, 152, 66);
 
+		btn_settings = new BufferedImage[2];
+		btn_settings[0] = settingsSheet.crop(0, 0, 191, 66);
+		btn_settings[1] = settingsSheet.crop(0, 66, 191, 66);
+		
+		start_menu_background = ImageLoader.loadImage("/textures/startMenuBack.png");
+		
 		btn_pause = new BufferedImage[2];
 		btn_pause[0] = ImageLoader.loadImage("/textures/pauseButton.png");
 		btn_pause[1] = ImageLoader.loadImage("/textures/pauseButton.png");
