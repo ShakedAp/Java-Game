@@ -9,7 +9,7 @@ public class Assets {
 
 	public static Font font28, font24;
 
-	public static BufferedImage stone, rock, wood, untextured, regularTile, voidTile, wallTile;
+	public static BufferedImage stone, rock, wood, untextured, voidTile, wallTile;
 	public static BufferedImage bullet, choosen, bar, shield_icon, heart_icon, mana_display;
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
@@ -17,6 +17,7 @@ public class Assets {
 
 	public static BufferedImage[] rocket;
 	public static BufferedImage[] btn_start, btn_settings, btn_pause;
+	public static BufferedImage[] floorTiles;
 
 	public static BufferedImage player_idle;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -79,21 +80,22 @@ public class Assets {
 
 		// Tiles
 		untextured = tileSheet.crop(0, 0, width, height);
-		regularTile = tileSheet.crop(width, 0, width, height);
-		stone = tileSheet.crop(width * 2, 0, width, height);
-		voidTile = tileSheet.crop(width * 3, 0, width, height);
-		wallTile = tileSheet.crop(width * 4, 0, width, height);
-
-		rock = untextured;
-		
+		stone = tileSheet.crop(width, 0, width, height);
+		voidTile = tileSheet.crop(width * 2, 0, width, height);
+		wallTile = tileSheet.crop(width * 3, 0, width, height);
 	
+		floorTiles = new BufferedImage[9];
+		floorTiles[0] = tileSheet.crop(width, height * 2, width, height);
 		
+		floorTiles[1] = tileSheet.crop(0, height, width, height); // Top-left corner
+		floorTiles[2] = tileSheet.crop(width * 2, height, width, height); // Top-right corner
+		floorTiles[3] = tileSheet.crop(width * 2, height * 3, width, height); // Bottom-left corner
+		floorTiles[4] = tileSheet.crop(0, height * 3, width, height); // Bottom-right corner
 		
-		
-		
-		
-		
-		
+		floorTiles[5] = tileSheet.crop(width, height, width, height); // Top tile
+		floorTiles[6] = tileSheet.crop(width * 2, height * 2, width, height); // Right tile
+		floorTiles[7] = tileSheet.crop(width, height * 3, width, height); // Bottom-left corner
+		floorTiles[8] = tileSheet.crop(0, height * 2 , width, height); // Left tile
 		
 		
 		
