@@ -10,6 +10,7 @@ public class SectionManager {
 	private Handler handler;
 	private Section[][] sections;
 	private int xLength, yLength;
+	private Section currentPlayerSection;
 	
 	public SectionManager(Handler handler, int xLength, int yLength){
 		this.handler = handler;
@@ -22,8 +23,10 @@ public class SectionManager {
 		for(int x = 0; x < xLength; x++) {
 			for(int y = 0; y < yLength; y++) {
 				Section s = sections[x][y];
-				if(s != null)
-				s.tick();
+				if(s != null) {
+					if(s.isPlayerCollsion()) currentPlayerSection = s;
+					s.tick();
+				}
 			}
 		}
 	}
@@ -80,6 +83,14 @@ public class SectionManager {
 
 	public void setyLength(int yLength) {
 		this.yLength = yLength;
+	}
+
+	public Section getCurrentPlayerSection() {
+		return currentPlayerSection;
+	}
+
+	public void setCurrentPlayerSection(Section currentPlayerSection) {
+		this.currentPlayerSection = currentPlayerSection;
 	}
 	
 }

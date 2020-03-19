@@ -20,11 +20,18 @@ public class MiniMap {
 	}
 	
 	public void render(Graphics g) {
-		g.setColor(Color.WHITE);
 		for(int x = 0; x < sectionManager.getxLength(); x++) {
 			for(int y = 0; y < sectionManager.getyLength(); y++) {
-				if(sectionManager.getSection(x, y) != null)
-				g.fillRect(100 + x*20, 100 + y*20, 16, 16);
+				Section s = sectionManager.getSection(x, y);
+				if(s != null) {
+					
+					// If the player is inside the section
+					if(sectionManager.getCurrentPlayerSection() == s) g.setColor(Color.WHITE); 
+					// If the player has already visted the section
+					else if(!s.isActive()) g.setColor(Color.GRAY);
+					else g.setColor(Color.DARK_GRAY);
+					g.fillRect(100 + x*20, 100 + y*20, 16, 16);
+				}
 			}
 		}
 	}

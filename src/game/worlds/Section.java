@@ -13,7 +13,7 @@ public class Section {
 	private Handler handler;
 	private int x, y, width, height;
 	private Rectangle bounds;
-	private boolean active = true;
+	private boolean active = true, playerCollsion;
 	
 	public Section(Handler handler, int x, int y, int width, int height){
 		this.handler = handler;
@@ -26,9 +26,12 @@ public class Section {
 	}
 	
 	public void tick() {
-		if(bounds.contains(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0f, 0f)))
-			active = false;	
-		
+		if(bounds.contains(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0f, 0f))) {
+			playerCollsion = true;
+			active = false;
+		}
+		else
+			playerCollsion = false;
 		//TODO: find a better way to do that
 		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
 			if(e instanceof Enemy && bounds.contains(e.getCollisonBounds(0, 0))) {
@@ -36,6 +39,7 @@ public class Section {
 				if(!active) ((Enemy) e).setFrozen(false);
 			}
 		}
+			
 	}
 	
 	public void render(Graphics g) {
@@ -61,6 +65,14 @@ public class Section {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public boolean isPlayerCollsion() {
+		return playerCollsion;
+	}
+
+	public void setPlayerCollsion(boolean playerCollsion) {
+		this.playerCollsion = playerCollsion;
 	}
 	
 	
