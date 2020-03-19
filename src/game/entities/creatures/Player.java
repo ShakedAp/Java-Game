@@ -28,7 +28,7 @@ public class Player extends Creature {
 		super(handler, x, y, 128, 128);
 
 		health = 6;
-		speed  = 10;
+		speed  = 20;
 		
 		// Bounds
 		bounds.x = 43;

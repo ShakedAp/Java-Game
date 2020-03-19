@@ -36,12 +36,12 @@ public class GameState extends State {
 		// Sections
 		world.getSectionManager().setObject(new Section(handler, 448, 1088, 512, 512), 0, 1);
 		world.getSectionManager().setObject(new Section(handler, 1664, 1024, 576, 576), 1, 1);
-		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 1, 0);
+		world.getSectionManager().setObject(new Section(handler, 1792, 256, 320, 256), 1, 0);
 		world.getSectionManager().setObject(new Section(handler, 1536, 2112, 832, 832), 1, 2);
-		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 2, 1);
-		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 3, 1);
-		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 2, 2);
-		world.getSectionManager().setObject(new Section(handler, 0, 0, 0, 0), 2, 3);
+		world.getSectionManager().setObject(new Section(handler, 2944, 896, 704, 704), 2, 1);
+		world.getSectionManager().setObject(new Section(handler, 4224, 832, 1024, 1024), 3, 1);
+		world.getSectionManager().setObject(new Section(handler, 3072, 2304, 448, 448), 2, 2);
+		world.getSectionManager().setObject(new Section(handler, 2880, 3392, 832, 768), 2, 3);
 
 		
 		
