@@ -17,7 +17,7 @@ public class Assets {
 
 	public static BufferedImage[] rocket;
 	public static BufferedImage[] btn_start, btn_settings, btn_pause;
-	public static BufferedImage[] floorTiles;
+	public static BufferedImage[] floor_tiles, wall_tiles;
 
 	public static BufferedImage player_idle;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -84,21 +84,28 @@ public class Assets {
 		voidTile = tileSheet.crop(width * 2, 0, width, height);
 		wallTile = tileSheet.crop(width * 3, 0, width, height);
 	
-		floorTiles = new BufferedImage[9];
-		floorTiles[0] = tileSheet.crop(width, height * 2, width, height);
+		//floor
+		floor_tiles = new BufferedImage[9];
+		floor_tiles[0] = tileSheet.crop(width, height * 2, width, height); // Middle
+		floor_tiles[1] = tileSheet.crop(0, height, width, height); // Top-left corner
+		floor_tiles[2] = tileSheet.crop(width * 2, height, width, height); // Top-right corner
+		floor_tiles[3] = tileSheet.crop(width * 2, height * 3, width, height); // Bottom-left corner
+		floor_tiles[4] = tileSheet.crop(0, height * 3, width, height); // Bottom-right corner
+		floor_tiles[5] = tileSheet.crop(width, height, width, height); // Top tile
+		floor_tiles[6] = tileSheet.crop(width * 2, height * 2, width, height); // Right tile
+		floor_tiles[7] = tileSheet.crop(width, height * 3, width, height); // Bottom-left corner
+		floor_tiles[8] = tileSheet.crop(0, height * 2 , width, height); // Left tile
+		//walls
+		wall_tiles = new BufferedImage[8];
+		wall_tiles[0] = tileSheet.crop(0, height * 4, width, height); // Top-left corner
+		wall_tiles[1] = tileSheet.crop(width * 2, height * 4, width, height); // Top-right corner
+		wall_tiles[2] = tileSheet.crop(width * 2, height * 6, width, height); // Bottom-left corner
+		wall_tiles[3] = tileSheet.crop(0, height * 6, width, height); // Bottom-right corner
 		
-		floorTiles[1] = tileSheet.crop(0, height, width, height); // Top-left corner
-		floorTiles[2] = tileSheet.crop(width * 2, height, width, height); // Top-right corner
-		floorTiles[3] = tileSheet.crop(width * 2, height * 3, width, height); // Bottom-left corner
-		floorTiles[4] = tileSheet.crop(0, height * 3, width, height); // Bottom-right corner
-		
-		floorTiles[5] = tileSheet.crop(width, height, width, height); // Top tile
-		floorTiles[6] = tileSheet.crop(width * 2, height * 2, width, height); // Right tile
-		floorTiles[7] = tileSheet.crop(width, height * 3, width, height); // Bottom-left corner
-		floorTiles[8] = tileSheet.crop(0, height * 2 , width, height); // Left tile
-		
-		
-		
+		wall_tiles[4] = tileSheet.crop(width, height * 4, width, height); // Top tile
+		wall_tiles[5] = tileSheet.crop(width * 2, height * 5, width, height); // Right tile
+		wall_tiles[6] = tileSheet.crop(width, height * 6, width, height); // Bottom tile
+		wall_tiles[7] = tileSheet.crop(0, height * 5, width, height); // Left Tile
 		
 		// Player animation
 		player_down = new BufferedImage[13];

@@ -6,7 +6,7 @@ import game.tiles.Tile;
 public class BottomLeftFloorTile extends Tile{
 
 	public BottomLeftFloorTile(int id) {
-		super(Assets.floorTiles[4], id);
+		super(Assets.floor_tiles[4], id);
 	}
 
 }
