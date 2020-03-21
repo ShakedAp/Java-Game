@@ -42,8 +42,6 @@ public class GameState extends State {
 		world.getSectionManager().setObject(new Section(handler, 4224, 832, 1024, 1024), 3, 1);
 		world.getSectionManager().setObject(new Section(handler, 3072, 2304, 448, 448), 2, 2);
 		world.getSectionManager().setObject(new Section(handler, 2880, 3392, 832, 768), 2, 3);
-
-		
 		
 		// UI
 		uiManager.addObject(equipedWeaponUI);
@@ -57,7 +55,6 @@ public class GameState extends State {
 
 	@Override
 	public void tick() {
-		handler.getMouseManager().setUiManager(uiManager);
 		
 		// If the inventory isn't active and the escape is pressed then toggle pause
 		if(!world.getEntityManager().getPlayer().getInventory().isActive() && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) 

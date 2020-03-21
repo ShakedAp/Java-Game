@@ -16,26 +16,24 @@ public class MenuState extends State{
 		super(handler, new UIManager(handler));
 		handler.getMouseManager().setUiManager(uiManager);
 
+		// UI objects
 		uiManager.addObject(new UIImage(Assets.start_menu_background, 0, 0, 960, 540));
 		
 		uiManager.addObject(new UIImageButton(256, 128 , 152, 66, Assets.btn_start, new ClickListener(){ 
-			//Creating a new ClickListener with the action we want to do	
+			// Creating a new ClickListener with the action we want to do	
 			@Override
 			public void onClick() {
-				handler.getMouseManager().setUiManager(null);
+				handler.getMouseManager().setUiManager(handler.getGame().gameState.getUiManager());
 				State.setState(handler.getGame().gameState);	
 			}
-		}));
-		
+		}));	
 		uiManager.addObject(new UIImageButton(512, 256 , 191, 66, Assets.btn_settings, new ClickListener(){ 
-			//Creating a new ClickListener with the action we want to do	
 			@Override
 			public void onClick() {
-				handler.getMouseManager().setUiManager(null);
-				State.setState(handler.getGame().gameState);	
+				handler.getMouseManager().setUiManager(handler.getGame().settingsState.getUiManager());
+				State.setState(handler.getGame().settingsState);	
 			}
 		}));
-		
 
 	}
 	
@@ -44,9 +42,9 @@ public class MenuState extends State{
 	public void tick() {
 		uiManager.tick();
 		
-		//TEMPORARY CODE
-		handler.getMouseManager().setUiManager(null);
-		State.setState(handler.getGame().gameState);
+		// TEMPORARY CODE
+//		handler.getMouseManager().setUiManager(null);
+//		State.setState(handler.getGame().gameState);
 	}
 
 	@Override

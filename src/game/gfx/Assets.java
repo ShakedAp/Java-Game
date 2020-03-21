@@ -16,7 +16,7 @@ public class Assets {
 	public static BufferedImage start_menu_background;
 
 	public static BufferedImage[] rocket;
-	public static BufferedImage[] btn_start, btn_settings, btn_pause;
+	public static BufferedImage[] btn_start, btn_settings, btn_menu, btn_pause;
 	public static BufferedImage[] floor_tiles, wall_tiles;
 
 	public static BufferedImage player_idle;
@@ -28,9 +28,7 @@ public class Assets {
 		font28 = FontLoader.loadFont("res/fonts/slkscr.ttf", 28);
 		font24 = FontLoader.loadFont("res/fonts/tiny.ttf", 24);
 
-		// Sprite-Sheets
-		SpriteSheet startSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startSheet.png"));
-		SpriteSheet settingsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/settingsSheet.png"));		
+		// Sprite-Sheets	
 		SpriteSheet robotSheet = new SpriteSheet(ImageLoader.loadImage("/textures/robotSheet.png"));
 		SpriteSheet gunSheet = new SpriteSheet(ImageLoader.loadImage("/textures/gunSheet.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tileSheet.png"));
@@ -52,19 +50,27 @@ public class Assets {
 		water_gun = gunSheet.crop(0, height * 5, width, height);
 
 		// UI
+		SpriteSheet startSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/startSheet.png"));
 		btn_start = new BufferedImage[2];
 		btn_start[0] = startSheet.crop(0, 0, 152, 66);
 		btn_start[1] = startSheet.crop(0, 66, 152, 66);
 
+		SpriteSheet settingsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/settingsSheet.png"));
 		btn_settings = new BufferedImage[2];
 		btn_settings[0] = settingsSheet.crop(0, 0, 191, 66);
 		btn_settings[1] = settingsSheet.crop(0, 66, 191, 66);
 		
-		start_menu_background = ImageLoader.loadImage("/textures/startMenuBack.png");
+		SpriteSheet menuSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/menuSheet.png"));
+		btn_menu = new BufferedImage[2];
+		btn_menu[0] = menuSheet.crop(0, 0, 161, 66);
+		btn_menu[1] = menuSheet.crop(0, 66, 161, 66);
+		
 		
 		btn_pause = new BufferedImage[2];
 		btn_pause[0] = ImageLoader.loadImage("/textures/pauseButton.png");
 		btn_pause[1] = ImageLoader.loadImage("/textures/pauseButton.png");
+		
+		start_menu_background = ImageLoader.loadImage("/textures/startMenu/startMenuBack.png");
 
 		choosen = ImageLoader.loadImage("/textures/chosen.png");
 		mana_display = ImageLoader.loadImage("/textures/manaDisplay.png");
@@ -78,6 +84,22 @@ public class Assets {
 		inventoryScreen = ImageLoader.loadImage("/textures/inventoryScreen.png");
 		popupInv = ImageLoader.loadImage("/textures/popupInv.png");
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		// Tiles
 		untextured = tileSheet.crop(0, 0, width, height);
 		stone = tileSheet.crop(width, 0, width, height);
@@ -106,6 +128,7 @@ public class Assets {
 		wall_tiles[5] = tileSheet.crop(width * 2, height * 5, width, height); // Right tile
 		wall_tiles[6] = tileSheet.crop(width, height * 6, width, height); // Bottom tile
 		wall_tiles[7] = tileSheet.crop(0, height * 5, width, height); // Left Tile
+		
 		
 		// Player animation
 		player_down = new BufferedImage[13];

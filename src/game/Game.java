@@ -1,7 +1,6 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
 /*
@@ -17,7 +16,9 @@ import game.input.KeyManager;
 import game.input.MouseManager;
 import game.states.GameState;
 import game.states.MenuState;
+import game.states.SettingsState;
 import game.states.State;
+import game.states.StoryState;
 
 
 public class Game implements Runnable {
@@ -36,6 +37,8 @@ public class Game implements Runnable {
 	//states
 	public State gameState;
 	public State menuState;
+	public State settingsState;
+	public State storyState;
 	
 	//input
 	private KeyManager keyManager;
@@ -73,9 +76,11 @@ public class Game implements Runnable {
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler , 0, 0); //initializing the game camera
 		
-		//initializing the states 
+		// Initializing the states 
 		gameState = new GameState(handler); 
 		menuState = new MenuState(handler);
+		settingsState = new SettingsState(handler);
+		storyState = new StoryState(handler);
 		State.setState(menuState);
 	}
 	
