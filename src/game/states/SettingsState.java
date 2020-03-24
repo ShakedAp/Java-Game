@@ -7,6 +7,7 @@ import game.gfx.Assets;
 import game.ui.ClickListener;
 import game.ui.UIImage;
 import game.ui.UIImageButton;
+import game.ui.UIImageToggleButton;
 import game.ui.UIManager;
 
 public class SettingsState extends State{
@@ -25,6 +26,15 @@ public class SettingsState extends State{
 				State.setState(handler.getGame().menuState);	
 			}
 		}));
+		
+		uiManager.addObject(new UIImageToggleButton(100, 100 , 115, 52, Assets.btn_toggle, new ClickListener(){ 
+			@Override
+			public void onClick() {
+				
+			}
+		}));
+		
+		
 	
 	}
 

@@ -16,7 +16,7 @@ public class Assets {
 	public static BufferedImage start_menu_background;
 
 	public static BufferedImage[] rocket;
-	public static BufferedImage[] btn_start, btn_settings, btn_menu, btn_pause;
+	public static BufferedImage[] btn_start, btn_settings, btn_menu, btn_pause, btn_toggle;
 	public static BufferedImage[] floor_tiles, wall_tiles;
 
 	public static BufferedImage player_idle;
@@ -64,6 +64,11 @@ public class Assets {
 		btn_menu = new BufferedImage[2];
 		btn_menu[0] = menuSheet.crop(0, 0, 161, 66);
 		btn_menu[1] = menuSheet.crop(0, 66, 161, 66);
+		
+		SpriteSheet toggleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/toggleButton.png"));
+		btn_toggle = new BufferedImage[2];
+		btn_toggle[0] = toggleSheet.crop(0, 0, 115, 52);
+		btn_toggle[1] = toggleSheet.crop(0, 52, 115, 52);
 		
 		
 		btn_pause = new BufferedImage[2];
