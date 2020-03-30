@@ -10,10 +10,10 @@ public class Assets {
 	public static Font font28, font24;
 
 	public static BufferedImage stone, rock, wood, untextured, voidTile, wallTile;
-	public static BufferedImage bullet, choosen, bar, shield_icon, heart_icon, mana_display;
+	public static BufferedImage bullet, chosen, bar, shield_icon, heart_icon, mana_display;
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
-	public static BufferedImage start_menu_background;
+	public static BufferedImage start_menu_background, comic;
 
 	public static BufferedImage[] rocket;
 	public static BufferedImage[] btn_start, btn_settings, btn_menu, btn_pause, btn_toggle;
@@ -70,6 +70,7 @@ public class Assets {
 		btn_toggle[0] = toggleSheet.crop(0, 0, 115, 52);
 		btn_toggle[1] = toggleSheet.crop(0, 52, 115, 52);
 		
+		comic = ImageLoader.loadImage("/textures/startMenu/comic.png");
 		
 		btn_pause = new BufferedImage[2];
 		btn_pause[0] = ImageLoader.loadImage("/textures/pauseButton.png");
@@ -77,7 +78,7 @@ public class Assets {
 		
 		start_menu_background = ImageLoader.loadImage("/textures/startMenu/startMenuBack.png");
 
-		choosen = ImageLoader.loadImage("/textures/chosen.png");
+		chosen = ImageLoader.loadImage("/textures/chosen.png");
 		mana_display = ImageLoader.loadImage("/textures/manaDisplay.png");
 		
 		bar = ImageLoader.loadImage("/textures/bar.png");

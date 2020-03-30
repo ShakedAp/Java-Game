@@ -8,7 +8,7 @@ import game.items.Weapon;
 
 public class BadPistol extends Weapon{
 
-	SoundEffect shoot = new SoundEffect(".//res//sounds//shoot.wav");
+
 	public BadPistol() {
 		super(Assets.bad_pistol, "bad pistol", 0);
 		
@@ -23,6 +23,7 @@ public class BadPistol extends Weapon{
 	
 	@Override
 	public void shoot(Handler handler, float xOrigin, float yOrigin, double dir) {
+		SoundEffect shoot = new SoundEffect(".//res//sounds//shoot.wav", handler);
 		handler.getWorld().getEntityManager().addEntity(new LightBullet(handler, xOrigin, yOrigin, dir + calculateSpread()));
 		shoot.play();
 	}

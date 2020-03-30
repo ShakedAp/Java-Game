@@ -9,7 +9,7 @@ public class UIImageToggleButton extends UIObject {
 
 	private BufferedImage[] images;
 	private ClickListener clicker;
-	private Boolean toggled = false;
+	private Boolean toggled = true;
 
 	public UIImageToggleButton(float x, float y, int width, int height, BufferedImage[] images, ClickListener clicker) {
 		super(x, y, width, height);

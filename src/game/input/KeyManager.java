@@ -9,6 +9,7 @@ public class KeyManager implements KeyListener { // Allows us to get an input wh
 	// Keys booleans
 	public boolean up, down, left, right;
 	public boolean aUp, aDown, aLeft, aRight;
+	public boolean anyKeyPressed;
 
 	public KeyManager() {
 		keys = new boolean[256];
@@ -31,7 +32,14 @@ public class KeyManager implements KeyListener { // Allows us to get an input wh
 			if (!cantPress[i] && keys[i])
 				justPressed[i] = true;
 		}
+		
 
+		for(int i = 0; i < cantPress.length; i++) {
+			if(cantPress[i])
+				anyKeyPressed = false;
+		}
+			
+		
 		// Setting the global keys varriables (holdable)
 		up = keys[KeyEvent.VK_W];
 		down = keys[KeyEvent.VK_S];
@@ -49,6 +57,15 @@ public class KeyManager implements KeyListener { // Allows us to get an input wh
 		if (e.getKeyCode() < 0 || e.getKeyCode() >= keys.length)
 			return;
 		keys[e.getKeyCode()] = true;
+		
+		for (int i = 0; i < justPressed.length; i++) {
+			if(justPressed[i]) {
+				anyKeyPressed= justPressed[i];
+				break;
+			}
+		}
+		
+		anyKeyPressed = true;
 	}
 
 	@Override
@@ -63,7 +80,6 @@ public class KeyManager implements KeyListener { // Allows us to get an input wh
 			return false;
 		return justPressed[keyCode];
 	}
-
 	@Override
 	public void keyTyped(KeyEvent e) {
 

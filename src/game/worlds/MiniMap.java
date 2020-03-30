@@ -9,6 +9,8 @@ public class MiniMap {
 
 	private Handler handler;
 	private SectionManager sectionManager;
+	private int cornerX = 860, cornerY = 30;
+	private int squareWidth = 16, squareHeight = 16;
 	
 	public MiniMap(Handler handler, SectionManager sectionManager) {
 		this.handler = handler;
@@ -30,7 +32,7 @@ public class MiniMap {
 					// If the player has already visted the section
 					else if(!s.isActive()) g.setColor(Color.GRAY);
 					else g.setColor(Color.DARK_GRAY);
-					g.fillRect(100 + x*20, 100 + y*20, 16, 16);
+					g.fillRect(cornerX + x*(squareWidth + 4), cornerY + y*(squareHeight + 4), squareWidth, squareHeight);
 				}
 			}
 		}
@@ -52,6 +54,38 @@ public class MiniMap {
 
 	public void setSectionManager(SectionManager sectionManager) {
 		this.sectionManager = sectionManager;
+	}
+
+	public int getTopX() {
+		return cornerX;
+	}
+
+	public void setTopX(int topX) {
+		this.cornerX = topX;
+	}
+
+	public int getTopY() {
+		return cornerY;
+	}
+
+	public void setTopY(int topY) {
+		this.cornerY = topY;
+	}
+
+	public int getSquareWidth() {
+		return squareWidth;
+	}
+
+	public void setSquareWidth(int squareWidth) {
+		this.squareWidth = squareWidth;
+	}
+
+	public int getSquareHeight() {
+		return squareHeight;
+	}
+
+	public void setSquareHeight(int squareHeight) {
+		this.squareHeight = squareHeight;
 	}
 	
 }

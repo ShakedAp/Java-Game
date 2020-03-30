@@ -45,7 +45,7 @@ public class GameState extends State {
 		
 		// UI
 		uiManager.addObject(equipedWeaponUI);
-		uiManager.addObject(new UIImage(Assets.choosen, 832, 412, 128, 128));
+		uiManager.addObject(new UIImage(Assets.chosen, 832, 412, 128, 128));
 		uiManager.addObject(new UIImage(Assets.mana_display, 832 + 48, 412 + 48 + 49, 30, 30));
 		uiManager.addObject(pauseButton);
 		
@@ -55,13 +55,11 @@ public class GameState extends State {
 
 	@Override
 	public void tick() {
-		
-		// If the inventory isn't active and the escape is pressed then toggle pause
+		// If the inventory isn't active and the escape key is pressed then toggle pause
 		if(!world.getEntityManager().getPlayer().getInventory().isActive() && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) 
 			paused = !paused;
 		
-		if(!paused) 
-			world.tick();
+		if(!paused) world.tick();
 		
 		uiManager.tick();
 		equipedWeaponUI.setTexture(world.getEntityManager().getPlayer().getInventory().getEquippedWeapon().getTexture());
@@ -72,28 +70,18 @@ public class GameState extends State {
 		world.render(g);
 		uiManager.render(g);
 		
+		// Draw mana cost
 		Weapon wpn = (Weapon) world.getEntityManager().getPlayer().getInventory().getEquippedWeapon();
 		Text.drawString(g, Integer.toString(wpn.getManaCost()), 895, 521, true, Color.white, Assets.font24);
+		// Draw player helath bars
+		world.getEntityManager().getPlayer().renderHealthBars(g);
 		
 		
-		//TEST PLAYER HEALTH, SHIELD, MANA BAR
-		int barWidth = 150, barHeight = 32;
-		int barX = 40;
 		
-		g.setColor(Color.RED); // Health
-		g.fillRect(barX+2, 422, barWidth / world.getEntityManager().getPlayer().getMaxHealth() * world.getEntityManager().getPlayer().getHealth() + 2, barHeight);
-		Text.drawString(g, world.getEntityManager().getPlayer().getHealth() + "/" + world.getEntityManager().getPlayer().getMaxHealth(), barX+77, 437, true, Color.WHITE, Assets.font28);
-		g.drawImage(Assets.bar, barX, 420, null);
+		if(paused) g.drawImage(Assets.inventoryScreen, 100, 100, null);
 		
-		g.setColor(Color.GRAY); //Shield
-		g.fillRect(barX+2, 462, barWidth / world.getEntityManager().getPlayer().getMaxShield() * world.getEntityManager().getPlayer().getShield() +2, barHeight);
-		Text.drawString(g, world.getEntityManager().getPlayer().getShield() + "/" + world.getEntityManager().getPlayer().getMaxShield(), barX+77, 479, true, Color.WHITE, Assets.font28);
-		g.drawImage(Assets.bar, barX, 460, null);
 		
-		g.setColor(Color.CYAN); // Mana
-		g.fillRect(barX+2, 502, barWidth * world.getEntityManager().getPlayer().getMana() / world.getEntityManager().getPlayer().getMaxMana() + 2 , barHeight);
-		Text.drawString(g, world.getEntityManager().getPlayer().getMana() + "/" + world.getEntityManager().getPlayer().getMaxMana(), barX+77, 519, true, Color.WHITE, Assets.font28);
-		g.drawImage(Assets.bar, barX, 500, null);
+		
 	}
 
 }

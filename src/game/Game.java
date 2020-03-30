@@ -14,6 +14,7 @@ import game.gfx.Assets;
 import game.gfx.GameCamera;
 import game.input.KeyManager;
 import game.input.MouseManager;
+import game.states.ControlsState;
 import game.states.GameState;
 import game.states.MenuState;
 import game.states.SettingsState;
@@ -28,7 +29,7 @@ public class Game implements Runnable {
 	public String title;
 	private int width, height;
 	
-	boolean running = false;
+	private boolean running = false;
 	private Thread thread;
 	
 	private BufferStrategy bs;
@@ -38,6 +39,7 @@ public class Game implements Runnable {
 	public State gameState;
 	public State menuState;
 	public State settingsState;
+	public State controlsState;
 	public State storyState;
 	
 	//input
@@ -50,6 +52,8 @@ public class Game implements Runnable {
 	//handler
 	private Handler handler;
 	
+	//music
+	private boolean sfxOn = true;
 	
 	public Game(String title, int width, int height) {
 		this.title = title;
@@ -80,6 +84,7 @@ public class Game implements Runnable {
 		gameState = new GameState(handler); 
 		menuState = new MenuState(handler);
 		settingsState = new SettingsState(handler);
+		controlsState = new ControlsState(handler);
 		storyState = new StoryState(handler);
 		State.setState(menuState);
 	}
@@ -189,7 +194,15 @@ public synchronized void stop() {
 			e.printStackTrace();
 		}
 	}
-	
 
+
+public boolean isSfxOn() {
+	return sfxOn;
+}
+
+
+public void setSfxOn(boolean sfxOn) {
+	this.sfxOn = sfxOn;
+}
 
 }	

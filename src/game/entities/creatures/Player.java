@@ -1,11 +1,13 @@
 package game.entities.creatures;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
 import game.gfx.Animation;
 import game.gfx.Assets;
+import game.gfx.Text;
 import game.inventory.Inventory;
 import game.items.Item;
 import game.items.Weapon;
@@ -142,19 +144,6 @@ public class Player extends Creature {
 		System.out.println("GAME OVER");
 	}	
 	
-	private BufferedImage getCurrentAnimationFrame() {
-		if (yMove < 0) // Moving up
-			return animUp.getCurrentFrame();
-		else if (yMove > 0)// Moving down
-			return animDown.getCurrentFrame();
-		else if (xMove < 0) // Moving left
-			return animLeft.getCurrentFrame();
-		else if (xMove > 0) // Moving right
-			return animRight.getCurrentFrame();
-		else
-			return Assets.player_idle;
-	}
-
 	@Override
 	public void hurt(int amount) {
 		if (shield > 0) shield -= amount;
@@ -170,6 +159,41 @@ public class Player extends Creature {
 			die();
 		}
 	}
+	
+	public void renderHealthBars(Graphics g) {
+		int barWidth = 150, barHeight = 32;
+		int barX = 40;
+		
+		g.setColor(Color.RED); // Health
+		g.fillRect(barX+2, 422, barWidth / maxHealth * health + 2, barHeight);
+		Text.drawString(g, health + "/" + maxHealth, barX+77, 437, true, Color.WHITE, Assets.font28);
+		g.drawImage(Assets.bar, barX, 420, null);
+		
+		g.setColor(Color.GRAY); //Shield
+		g.fillRect(barX+2, 462, barWidth / maxShield * shield +2, barHeight);
+		Text.drawString(g, shield + "/" + maxShield, barX+77, 479, true, Color.WHITE, Assets.font28);
+		g.drawImage(Assets.bar, barX, 460, null);
+		
+		g.setColor(Color.CYAN); // Mana
+		g.fillRect(barX+2, 502, barWidth * mana / maxMana + 2 , barHeight);
+		Text.drawString(g, mana + "/" + maxMana, barX+77, 519, true, Color.WHITE, Assets.font28);
+		g.drawImage(Assets.bar, barX, 500, null);
+	}
+	
+	
+	private BufferedImage getCurrentAnimationFrame() {
+		if (yMove < 0) // Moving up
+			return animUp.getCurrentFrame();
+		else if (yMove > 0)// Moving down
+			return animDown.getCurrentFrame();
+		else if (xMove < 0) // Moving left
+			return animLeft.getCurrentFrame();
+		else if (xMove > 0) // Moving right
+			return animRight.getCurrentFrame();
+		else
+			return Assets.player_idle;
+	}
+
 
 	// GETTERS & SETTERS
 	public Inventory getInventory() {
