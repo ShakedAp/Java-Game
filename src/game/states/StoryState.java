@@ -26,23 +26,21 @@ public class StoryState extends State{
 			}
 		}
 	}
+
 	
 	int i = 0;
 	@Override
 	public void tick() {
 		uiManager.tick();
-
-		
+		// If any key is pressed add a new comicFramem, if we have finished all the frames go to the tutorial
 		if(handler.getKeyManager().anyKeyPressed) {
 			if(i < 9) uiManager.addObject(comicFrames[i]);
 			else {
-				handler.getMouseManager().setUiManager(handler.getGame().gameState.getUiManager());
-				State.setState(handler.getGame().gameState);
+				handler.getMouseManager().setUiManager(handler.getGame().tutorialState.getUiManager());
+				State.setState(handler.getGame().tutorialState);
 			}
 			i++;
 		}
-		
-		
 	}
 
 	@Override

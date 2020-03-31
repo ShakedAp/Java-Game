@@ -36,14 +36,11 @@ public class World {
 		itemManager = new ItemManager(handler);
 		sectionManager = new SectionManager(handler, sectionX, sectionY);
 		
-		// Temporary entity code!
-		entityManager.addEntity(new BasicEnemy(handler, 800, 1248));		
 		loadWorld(path);
 		
 		// Spawning the player
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
-		
 		
 		miniMap = new MiniMap(handler, sectionManager);
 	}

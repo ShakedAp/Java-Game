@@ -26,7 +26,7 @@ public class Tile {
 	
 	//STATIC STUFF
 	
-	public static Tile[] tiles = new Tile[999];
+	public static Tile[] tiles = new Tile[256];
 	//The tiles
 	public static Tile voidTile = new VoidTile(0);
 	public static Tile untexturedTile = new UntexturedTile(1);

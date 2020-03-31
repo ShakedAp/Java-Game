@@ -20,6 +20,7 @@ import game.states.MenuState;
 import game.states.SettingsState;
 import game.states.State;
 import game.states.StoryState;
+import game.states.TutorialState;
 
 
 public class Game implements Runnable {
@@ -41,6 +42,7 @@ public class Game implements Runnable {
 	public State settingsState;
 	public State controlsState;
 	public State storyState;
+	public State tutorialState;
 	
 	//input
 	private KeyManager keyManager;
@@ -86,6 +88,7 @@ public class Game implements Runnable {
 		settingsState = new SettingsState(handler);
 		controlsState = new ControlsState(handler);
 		storyState = new StoryState(handler);
+		tutorialState = new TutorialState(handler);
 		State.setState(menuState);
 	}
 	
