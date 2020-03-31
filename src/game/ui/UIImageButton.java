@@ -32,4 +32,22 @@ public class UIImageButton extends UIObject {
 		clicker.onClick(); // For each new clicker we are going pass there will be new action when clicking
 	}
 
+	
+	// GETTERS & SETTERS
+	public BufferedImage[] getImages() {
+		return images;
+	}
+
+	public void setImages(BufferedImage[] images) {
+		this.images = images;
+	}
+
+	public ClickListener getClicker() {
+		return clicker;
+	}
+
+	public void setClicker(ClickListener clicker) {
+		this.clicker = clicker;
+	}
+
 }

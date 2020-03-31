@@ -113,7 +113,7 @@ public class Player extends Creature {
 		if (rangedAttackTimer < rangedAttackCooldown || inventory.isActive())
 			return;
 		
-		for(UIObject o: handler.getGame().gameState.getUiManager().getObjects())
+		for(UIObject o: handler.getGame().tutorialState.getUiManager().getObjects())
 			if(o.isHovering() && o instanceof UIImageButton)
 				return;
 		
@@ -160,7 +160,12 @@ public class Player extends Creature {
 		}
 	}
 	
-	public void renderHealthBars(Graphics g) {
+	public void renderUI(Graphics g) {
+		renderHealthBars(g);
+		renderEquipedUI(g);
+	}
+	
+	private void renderHealthBars(Graphics g) {
 		int barWidth = 150, barHeight = 32;
 		int barX = 40;
 		
@@ -180,6 +185,9 @@ public class Player extends Creature {
 		g.drawImage(Assets.bar, barX, 500, null);
 	}
 	
+	private void renderEquipedUI(Graphics g) {
+		g.drawImage(inventory.getEquippedWeapon().getTexture(), 832, 412, 128, 128, null);
+	}
 	
 	private BufferedImage getCurrentAnimationFrame() {
 		if (yMove < 0) // Moving up

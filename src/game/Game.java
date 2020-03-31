@@ -83,12 +83,12 @@ public class Game implements Runnable {
 		gameCamera = new GameCamera(handler , 0, 0); //initializing the game camera
 		
 		// Initializing the states 
+		tutorialState = new TutorialState(handler);
 		gameState = new GameState(handler); 
 		menuState = new MenuState(handler);
 		settingsState = new SettingsState(handler);
 		controlsState = new ControlsState(handler);
 		storyState = new StoryState(handler);
-		tutorialState = new TutorialState(handler);
 		State.setState(menuState);
 	}
 	
