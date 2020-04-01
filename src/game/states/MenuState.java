@@ -23,28 +23,23 @@ public class MenuState extends State{
 			// Creating a new ClickListener with the action we want to do	
 			@Override
 			public void onClick() {
-				handler.getMouseManager().setUiManager(handler.getGame().storyState.getUiManager());
-				State.setState(handler.getGame().storyState);	
+				handler.goToState(handler.getGame().storyState);	
 			}
 		}));	
 		uiManager.addObject(new UIImageButton(512, 256 , 191, 66, Assets.btn_settings, new ClickListener(){ 
 			@Override
 			public void onClick() {
-				handler.getMouseManager().setUiManager(handler.getGame().settingsState.getUiManager());
-				State.setState(handler.getGame().settingsState);	
+				handler.goToState(handler.getGame().settingsState);	
 			}
 		}));
-
 	}
-	
 	
 	@Override
 	public void tick() {
 		uiManager.tick();
 		
 		// TEMPORARY CODE
-//		handler.getMouseManager().setUiManager(handler.getGame().gameState);
-//		State.setState(handler.getGame().gameState);
+		handler.goToState(handler.getGame().tutorialState);
 	}
 
 	@Override

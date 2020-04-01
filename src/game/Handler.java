@@ -3,6 +3,7 @@ package game;
 import game.gfx.GameCamera;
 import game.input.KeyManager;
 import game.input.MouseManager;
+import game.states.State;
 import game.worlds.World;
 
 public class Handler {
@@ -12,6 +13,11 @@ public class Handler {
 	
 	public Handler(Game game) {
 		this.game = game;
+	}
+	
+	public void goToState(State state){
+		State.setState(state);	
+		game.getMouseManager().setUiManager(state.getUiManager());
 	}
 	
 	
@@ -40,7 +46,6 @@ public class Handler {
 		return game;
 	}
 
-
 	public void setGame(Game game) {
 		this.game = game;
 	}
@@ -49,7 +54,6 @@ public class Handler {
 	public World getWorld() {
 		return world;
 	}
-
 
 	public void setWorld(World world) {
 		this.world = world;

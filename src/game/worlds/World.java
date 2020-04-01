@@ -1,15 +1,18 @@
 package game.worlds;
 
 import java.awt.Graphics;
-
+import java.awt.event.KeyEvent;
 
 import game.Handler;
 import game.entities.EntityManager;
 import game.entities.creatures.BasicEnemy;
 import game.entities.creatures.Player;
 import game.entities.statics.Rock;
+import game.gfx.Assets;
 import game.items.ItemManager;
 import game.tiles.Tile;
+import game.ui.ClickListener;
+import game.ui.UIImageButton;
 import game.utils.Utils;
 
 public class World {
@@ -18,6 +21,13 @@ public class World {
 	private int width, height; //width and height of the world (by tiles)
 	private int spawnX, spawnY; //spawning cords
 	private int [][] tiles; //the tile array of the tiles in the map
+	private boolean paused = false;
+	private UIImageButton pauseButton = new UIImageButton(10, 10, 80, 64, Assets.btn_pause, new ClickListener() {
+		@Override
+		public void onClick() {
+			paused = !paused;
+		}});
+
 	
 	// Entities
 	private EntityManager entityManager;
@@ -32,7 +42,7 @@ public class World {
 	public World(Handler handler, String path, int sectionX, int sectionY) {
 		this.handler = handler;
 		
-		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		entityManager = new EntityManager(handler, new Player(handler, 0, 0));
 		itemManager = new ItemManager(handler);
 		sectionManager = new SectionManager(handler, sectionX, sectionY);
 		
@@ -46,6 +56,11 @@ public class World {
 	}
 	
 	public void tick(){
+		if(!entityManager.getPlayer().getInventory().isActive() && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) 
+			paused = !paused;
+		
+		if(paused) return;
+		
 		itemManager.tick();
 		entityManager.tick();
 		sectionManager.tick();
@@ -79,8 +94,6 @@ public class World {
 			return Tile.untexturedTile;
 		
 		
-		
-		
 		Tile t = Tile.tiles[tiles[x][y]];
 		
 		if (t == null) // For safety (default tile)
@@ -88,12 +101,9 @@ public class World {
 		return t;
 	}
 	
-	
-	
-	
-	private void loadWorld(String path) { //loading the world
+	private void loadWorld(String path) {
 		try {
-		String file = Utils.loadFileAsString(path); //loading our world as string
+		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+"); //Splitting each number to his own "space", but without spaces
 		
 		width = Utils.parseInt(tokens[0]); //setting the width to the first number
@@ -110,6 +120,7 @@ public class World {
 		}
 		}
 		catch (Exception e) {
+
 		}
 	}
 
@@ -160,6 +171,22 @@ public class World {
 
 	public void setSectionManager(SectionManager sectionManager) {
 		this.sectionManager = sectionManager;
+	}
+
+	public boolean isPaused() {
+		return paused;
+	}
+
+	public void setPaused(boolean paused) {
+		this.paused = paused;
+	}
+
+	public UIImageButton getPauseButton() {
+		return pauseButton;
+	}
+
+	public void setPauseButton(UIImageButton pauseButton) {
+		this.pauseButton = pauseButton;
 	}
 
 	

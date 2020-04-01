@@ -19,13 +19,9 @@ import game.worlds.World;
 public class GameState extends State {
 
 	private World world;
-	private boolean paused = false;
-
 	public GameState(Handler handler) {
 		super(handler, handler.getGame().tutorialState.getUiManager());
-		// Importing the world
 		world = new World(handler, "res/worlds/world1.txt", 4, 4);
-		handler.setWorld(world);		
 		
 		// Sections
 		world.getSectionManager().setObject(new Section(handler, 448, 1088, 512, 512), 0, 1);
@@ -38,27 +34,15 @@ public class GameState extends State {
 		world.getSectionManager().setObject(new Section(handler, 2880, 3392, 832, 768), 2, 3);
 		
 		// UI Manager
-		ClickListener pauseListener = new ClickListener() {
-			@Override
-			public void onClick() {
-				paused = !paused;
-			}};
-		
-		for (UIObject o: uiManager.getObjects())
-			if(o instanceof UIImageButton) {
-				((UIImageButton) o).setClicker(pauseListener);
-			}
+		uiManager.addObject(world.getPauseButton());
 	}
 	
-	boolean i = false;
+	
 	@Override
 	public void tick() {
-		// If the inventory isn't active and the escape key is pressed then toggle pause
-		if(!world.getEntityManager().getPlayer().getInventory().isActive() && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) 
-			paused = !paused;
+		if(!handler.getWorld().equals(world)) handler.setWorld(world);
 		
-		if(!paused) world.tick();
-		
+		world.tick();
 		uiManager.tick();
 	}
 
@@ -71,10 +55,7 @@ public class GameState extends State {
 		Weapon wpn = (Weapon) world.getEntityManager().getPlayer().getInventory().getEquippedWeapon();
 		Text.drawString(g, Integer.toString(wpn.getManaCost()), 895, 521, true, Color.white, Assets.font24);
 		// Draw player helath bars
-		world.getEntityManager().getPlayer().renderUI(g);
-		
-		if(paused) g.drawImage(Assets.inventoryScreen, 100, 100, null);
-		
+		world.getEntityManager().getPlayer().renderUI(g);		
 		
 		
 	}

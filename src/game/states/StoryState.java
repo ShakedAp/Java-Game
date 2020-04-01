@@ -36,8 +36,8 @@ public class StoryState extends State{
 		if(handler.getKeyManager().anyKeyPressed) {
 			if(i < 9) uiManager.addObject(comicFrames[i]);
 			else {
-				handler.getMouseManager().setUiManager(handler.getGame().gameState.getUiManager());
-				State.setState(handler.getGame().gameState);
+				handler.getMouseManager().setUiManager(handler.getGame().tutorialState.getUiManager());
+				State.setState(handler.getGame().tutorialState);
 			}
 			i++;
 		}
