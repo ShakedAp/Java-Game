@@ -11,15 +11,14 @@ import game.gfx.Assets;
 
 public class ShotgunBullet extends Projectile {
 	
+	private int minSpeed = 8, maxSpeed = 12;
+	
 	public ShotgunBullet(Handler handler, float x, float y, double dir) {
 		super(handler, x, y, dir, 12, 12);
 		
 		damage = 2;
 		
-		// Random speed generation
-		speed = (float) ThreadLocalRandom.current().nextDouble(8, 12);
-		moveX = speed * Math.cos(angle);
-		moveY = speed * Math.sin(angle);
+		calculateSpeed(minSpeed, maxSpeed);
 	}
 	
 	@Override
@@ -34,9 +33,12 @@ public class ShotgunBullet extends Projectile {
 			}
 		}
 		
+		speed -= 0.1;
+		updateMoveX();
+		updateMoveY();
 		
-		// Optional, to make shotguns be more real
-		if(distancePassed() > range/2) damage = 1;
+		if(speed <= 0) kill();
+
 	}
 
 	@Override
@@ -49,6 +51,13 @@ public class ShotgunBullet extends Projectile {
 	public void die() {
 		
 	}
-
+	
+	private void calculateSpeed(double minSpeed, double maxSpeed) {
+		speed = (float) ThreadLocalRandom.current().nextDouble(minSpeed, maxSpeed);
+		updateMoveX();
+		updateMoveY();
+	}
+	
+	
 	
 }

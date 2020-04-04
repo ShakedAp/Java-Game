@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import game.Handler;
+import game.tiles.Tile;
 
 public class SectionManager {
 
@@ -26,6 +27,11 @@ public class SectionManager {
 				if(s != null) {
 					if(s.isPlayerCollsion()) currentPlayerSection = s;
 					s.tick();
+					
+					if(s.isEnemyCollision() && s.isPlayerCollsion())
+						Tile.wallTile.setTriggered(true);
+					if(!s.isEnemyCollision() && s.isPlayerCollsion())
+						Tile.wallTile.setTriggered(false);
 				}
 			}
 		}

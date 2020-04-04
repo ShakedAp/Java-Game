@@ -2,17 +2,12 @@ package game.states;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
 import game.Handler;
+import game.entities.creatures.BasicEnemy;
 import game.gfx.Assets;
 import game.gfx.Text;
 import game.items.Weapon;
-import game.ui.ClickListener;
-import game.ui.UIImage;
-import game.ui.UIImageButton;
-import game.ui.UIManager;
-import game.ui.UIObject;
 import game.worlds.Section;
 import game.worlds.World;
 
@@ -32,6 +27,9 @@ public class GameState extends State {
 		world.getSectionManager().setObject(new Section(handler, 4224, 832, 1024, 1024), 3, 1);
 		world.getSectionManager().setObject(new Section(handler, 3072, 2304, 448, 448), 2, 2);
 		world.getSectionManager().setObject(new Section(handler, 2880, 3392, 832, 768), 2, 3);
+		
+		world.getEntityManager().addEntity(new BasicEnemy(handler, 648*3, 1288));
+		world.getEntityManager().addEntity(new BasicEnemy(handler, 648*3, 1288*2));
 		
 		// UI Manager
 		uiManager.addObject(world.getPauseButton());

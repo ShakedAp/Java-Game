@@ -13,7 +13,7 @@ public class Section {
 	private Handler handler;
 	private int x, y, width, height;
 	private Rectangle bounds;
-	private boolean active = true, playerCollsion;
+	private boolean active = true, playerCollsion, enemyCollision;
 	
 	public Section(Handler handler, int x, int y, int width, int height){
 		this.handler = handler;
@@ -32,14 +32,22 @@ public class Section {
 		}
 		else
 			playerCollsion = false;
-		//TODO: find a better way to do that
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()) {
-			if(e instanceof Enemy && bounds.contains(e.getCollisonBounds(0, 0))) {
-				if(active) ((Enemy) e).setFrozen(true);
-				if(!active) ((Enemy) e).setFrozen(false);
-			}
-		}
-			
+		
+		for(Entity e : handler.getWorld().getEntityManager().getEntities())
+			if( bounds.contains(e.getCollisonBounds(0, 0)))
+				if(e instanceof Enemy) {
+					if(active) ((Enemy) e).setFrozen(true);
+					if(!active) ((Enemy) e).setFrozen(false);
+				}
+		
+		
+		for(Entity e : handler.getWorld().getEntityManager().getEntities())
+			if( bounds.contains(e.getCollisonBounds(0, 0)))
+				if(e instanceof Enemy) {
+					enemyCollision = true;
+					return;
+				}
+		enemyCollision = false;
 	}
 	
 	public void render(Graphics g) {
@@ -73,6 +81,14 @@ public class Section {
 
 	public void setPlayerCollsion(boolean playerCollsion) {
 		this.playerCollsion = playerCollsion;
+	}
+
+	public boolean isEnemyCollision() {
+		return enemyCollision;
+	}
+
+	public void setEnemyCollision(boolean enemyCollision) {
+		this.enemyCollision = enemyCollision;
 	}
 	
 	

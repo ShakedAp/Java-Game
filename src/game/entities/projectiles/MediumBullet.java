@@ -12,7 +12,6 @@ public class MediumBullet extends Projectile{
 	public MediumBullet(Handler handler, float x, float y, double dir) {
 		super(handler, x, y, dir, 8, 8);
 		speed = 11;
-		range = 400;
 		damage = 2;
 	}
 

@@ -21,9 +21,7 @@ public class Rocket extends Projectile {
 		
 		rocketAnim = new Animation(animSpeed, Assets.rocket);
 		
-		damage = 10;
-		range = 999999999;
-		
+		damage = 10;		
 		bounds.x = 34;
 		bounds.y = 55;
 		bounds.width = 84;

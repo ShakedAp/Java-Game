@@ -31,7 +31,7 @@ public class Tile {
 	public static Tile voidTile = new VoidTile(0);
 	public static Tile untexturedTile = new UntexturedTile(1);
 	public static Tile rockTile = new RockTile(3);
-	public static Tile wallTile = new WallTile(4);
+	public static WallTile wallTile = new WallTile(4);
 	//floor
 	public static Tile middleFloorTile = new MiddleFloorTile(5);
 	public static Tile topLeftFloorTile = new TopLeftFloorTile(6);
@@ -53,7 +53,6 @@ public class Tile {
 	public static Tile rightWallTile = new RightWallTile(19);
 	public static Tile bottomWallTile = new BottomWallTile(20);
 	public static Tile leftWallTile = new LeftWallTile(21);
-	
 	
 	//CLASS
 	protected BufferedImage texture;
@@ -86,6 +85,5 @@ public class Tile {
 	public int getId() {
 		return id;
 	}
-	
 	
 }

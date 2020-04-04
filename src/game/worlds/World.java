@@ -90,34 +90,32 @@ public class World {
 	
 	
 	public Tile getTile(int x, int y) {
-		if(x < 0 || y < 0 || x >= width || y>= height) // If we are out of the map size (safty)
+		if(x < 0 || y < 0 || x >= width || y>= height) // If we are out of the map size
 			return Tile.untexturedTile;
 		
 		
 		Tile t = Tile.tiles[tiles[x][y]];
-		
-		if (t == null) // For safety (default tile)
-			return Tile.untexturedTile;
+		if (t == null)  return Tile.untexturedTile;
 		return t;
 	}
 	
 	private void loadWorld(String path) {
 		try {
-		String file = Utils.loadFileAsString(path);
-		String[] tokens = file.split("\\s+"); //Splitting each number to his own "space", but without spaces
-		
-		width = Utils.parseInt(tokens[0]); //setting the width to the first number
-		height = Utils.parseInt(tokens[1]);//setting the height to the second number
-		spawnX = Utils.parseInt(tokens[2]);//setting the spawnX to the third number
-		spawnY = Utils.parseInt(tokens[3]);//setting the spawnY to the forth number
-		
-		tiles = new int[width][height];
-		
-		for(int y = 0; y < height; y++) {
-			for(int x = 0; x < width; x++) {
-				tiles[x][y] = Utils.parseInt(tokens[(x + y * width)  + 4]); 
+			String file = Utils.loadFileAsString(path);
+			String[] tokens = file.split("\\s+"); //Splitting each number to his own "space", but without spaces
+			
+			width = Utils.parseInt(tokens[0]); //setting the width to the first number
+			height = Utils.parseInt(tokens[1]);//setting the height to the second number
+			spawnX = Utils.parseInt(tokens[2]);//setting the spawnX to the third number
+			spawnY = Utils.parseInt(tokens[3]);//setting the spawnY to the forth number
+			
+			tiles = new int[width][height];
+			
+			for(int y = 0; y < height; y++) {
+				for(int x = 0; x < width; x++) {
+					tiles[x][y] = Utils.parseInt(tokens[(x + y * width)  + 4]); 
+				}
 			}
-		}
 		}
 		catch (Exception e) {
 
