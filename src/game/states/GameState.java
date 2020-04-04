@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import game.Handler;
 import game.entities.creatures.BasicEnemy;
+import game.entities.statics.Sign;
 import game.gfx.Assets;
 import game.gfx.Text;
 import game.items.Weapon;
@@ -29,6 +30,7 @@ public class GameState extends State {
 		world.getSectionManager().setObject(new Section(handler, 2880, 3392, 832, 768), 2, 3);
 		
 		world.getEntityManager().addEntity(new BasicEnemy(handler, 648*3, 1288));
+		world.getEntityManager().addEntity(new Sign(handler, 648*3, 1288 - 64));
 		world.getEntityManager().addEntity(new BasicEnemy(handler, 648*3, 1288*2));
 		
 		// UI Manager

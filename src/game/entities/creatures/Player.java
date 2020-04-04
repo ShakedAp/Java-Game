@@ -31,6 +31,7 @@ public class Player extends Creature {
 
 		health = 6;
 		speed  = 20;
+		speed = 10;
 		
 		// Bounds
 		bounds.x = 43;
@@ -100,10 +101,8 @@ public class Player extends Creature {
 	private long lastRangedAttackTimer, rangedAttackCooldown = 100, rangedAttackTimer = rangedAttackCooldown;
 
 	private void checkShooting() {
-		Item a = (Weapon) inventory.getEquippedWeapon();
-		Weapon b = null;
-		b = (Weapon) a;
-		rangedAttackCooldown = (long) (1000 / b.getBps());
+		Weapon currentEquipedWeapon = (Weapon) inventory.getEquippedWeapon();
+		rangedAttackCooldown = (long) (1000 / currentEquipedWeapon.getBps());
 
 		// Attack timer
 		rangedAttackTimer += System.currentTimeMillis() - lastRangedAttackTimer;
@@ -129,9 +128,9 @@ public class Player extends Creature {
 		double dy = mouseY - playerY;
 		double dir = Math.atan2(dy, dx);
 
-		if (handler.getMouseManager().isLeftPressed() && mana > 0) {
-			b.shoot(handler, x + bounds.x + 10, y + bounds.y + 10, dir);
-			mana -= b.getManaCost();
+		if (handler.getMouseManager().isLeftPressed() && mana > 0 && mana-currentEquipedWeapon.getManaCost() >= 0) {
+			currentEquipedWeapon.shoot(handler, x + bounds.x + 10, y + bounds.y + 10, dir);
+			mana -= currentEquipedWeapon.getManaCost();
 		} else
 			return;
 
