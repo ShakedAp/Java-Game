@@ -58,6 +58,9 @@ public class Game implements Runnable {
 	//music
 	private boolean sfxOn = true;
 	
+	//zoom
+	private double zoomScale = 1, currentZoomScale = 1;;
+	
 	public Game(String title, int width, int height) {
 		this.title = title;
 		this.width = width;
@@ -96,7 +99,7 @@ public class Game implements Runnable {
 	private void tick() { 
 		keyManager.tick();
 		
-		if (State.getState() != null) // if we have an actual state on, do the tick method
+		if (State.getState() != null)
 			State.getState().tick();
 	}
 
@@ -114,8 +117,10 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		//Draw here!
 		
-		if (State.getState() != null) // if we have an actual state on, do the render method
+		if (State.getState() != null) {
+			updateZoom(g);
 			State.getState().render(g);
+		}
 		
 		//End drawing!
 		bs.show();
@@ -150,29 +155,23 @@ public class Game implements Runnable {
 		stop();
 	}
 	
-	
-	//getters
-	public KeyManager getKeyManager() {
-		return keyManager;
-	}
-	
-	public MouseManager getMouseManager() {
-		return mouseManager;
-	}
-	
-	
-	public GameCamera getGameCamera() {
-		return gameCamera;
-	}
-	
-	public int getWidth() {
-		return width;
-	}
-	
-	public int getHeight() {
-		return height;
-	}
-	
+	private void updateZoom(Graphics g){
+		
+		if(zoomScale > currentZoomScale)
+			currentZoomScale += 0.02;
+		if(zoomScale < currentZoomScale)
+			currentZoomScale -= 0.02;
+		
+		
+		if(currentZoomScale != 1) {
+		Graphics2D g2 = (Graphics2D) g;
+		int w = width;
+		int h = height;
+		g2.translate(w/2, h/2);
+		g2.scale(currentZoomScale, currentZoomScale);
+		g2.translate(-w/2, -h/2);
+		}
+	}	
 	
 	
 	
@@ -199,14 +198,43 @@ public synchronized void stop() {
 		}
 	}
 
+	//GETTERS & SETTERS
+	public KeyManager getKeyManager() {
+		return keyManager;
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
+	}
+	
+	
+	public GameCamera getGameCamera() {
+		return gameCamera;
+	}
+	
+	public int getWidth() {
+		return width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	public boolean isSfxOn() {
+		return sfxOn;
+	}
+	
+	
+	public void setSfxOn(boolean sfxOn) {
+		this.sfxOn = sfxOn;
+	}
 
-public boolean isSfxOn() {
-	return sfxOn;
+
+	public double getZoomScale() {
+		return zoomScale;
+	}
+
+
+	public void setZoomScale(double zoomScale) {
+		this.zoomScale = zoomScale;
+	}
 }
-
-
-public void setSfxOn(boolean sfxOn) {
-	this.sfxOn = sfxOn;
-}
-
-}	
