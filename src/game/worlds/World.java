@@ -5,9 +5,7 @@ import java.awt.event.KeyEvent;
 
 import game.Handler;
 import game.entities.EntityManager;
-import game.entities.creatures.BasicEnemy;
 import game.entities.creatures.Player;
-import game.entities.statics.Rock;
 import game.gfx.Assets;
 import game.items.ItemManager;
 import game.tiles.Tile;
@@ -31,6 +29,7 @@ public class World {
 	
 	// Entities
 	private EntityManager entityManager;
+	
 	
 	// Items
 	private ItemManager itemManager;

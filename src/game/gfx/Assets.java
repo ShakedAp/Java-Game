@@ -13,7 +13,7 @@ public class Assets {
 	public static BufferedImage bullet, chosen, bar, shield_icon, heart_icon, mana_display;
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
-	public static BufferedImage start_menu_background, comic;
+	public static BufferedImage start_menu_background, comic, convBox;
 
 	public static BufferedImage[] rocket;
 	public static BufferedImage[] btn_start, btn_settings, btn_menu, btn_pause, btn_toggle;
@@ -71,6 +71,7 @@ public class Assets {
 		btn_toggle[1] = toggleSheet.crop(0, 52, 115, 52);
 		
 		comic = ImageLoader.loadImage("/textures/startMenu/comic.png");
+		convBox =  ImageLoader.loadImage("/textures/convBox.png");
 		
 		btn_pause = new BufferedImage[2];
 		btn_pause[0] = ImageLoader.loadImage("/textures/pauseButton.png");

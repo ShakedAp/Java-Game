@@ -237,4 +237,14 @@ public synchronized void stop() {
 	public void setZoomScale(double zoomScale) {
 		this.zoomScale = zoomScale;
 	}
+
+
+	public double getCurrentZoomScale() {
+		return currentZoomScale;
+	}
+
+
+	public void setCurrentZoomScale(double currentZoomScale) {
+		this.currentZoomScale = currentZoomScale;
+	}
 }

@@ -25,11 +25,7 @@ public class TutorialState extends State {
 		handler.setWorld(world);		
 
 		// UI
-		uiManager.addObject(new UIImage(Assets.chosen, 832, 412, 128, 128));
-		uiManager.addObject(new UIImage(Assets.mana_display, 832 + 48, 412 + 48 + 49, 30, 30));
 		uiManager.addObject(world.getPauseButton());
-		uiManager.addObject(new UIImage(Assets.shield_icon, 7, 465, 24, 30));
-		uiManager.addObject(new UIImage(Assets.heart_icon, 5, 425, 30, 30));
 	}
 
 	@Override
@@ -47,11 +43,6 @@ public class TutorialState extends State {
 	public void render(Graphics g) {
 		world.render(g);
 		uiManager.render(g);
-		
-		
-		// Draw mana cost
-		Weapon wpn = (Weapon) world.getEntityManager().getPlayer().getInventory().getEquippedWeapon();
-		Text.drawString(g, Integer.toString(wpn.getManaCost()), 895, 521, true, Color.white, Assets.font24);
 		// Draw player UI
 		world.getEntityManager().getPlayer().renderUI(g);
 		

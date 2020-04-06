@@ -51,12 +51,7 @@ public class GameState extends State {
 		world.render(g);
 		uiManager.render(g);
 		
-		// Draw mana cost
-		Weapon wpn = (Weapon) world.getEntityManager().getPlayer().getInventory().getEquippedWeapon();
-		Text.drawString(g, Integer.toString(wpn.getManaCost()), 895, 521, true, Color.white, Assets.font24);
-		// Draw player helath bars
 		world.getEntityManager().getPlayer().renderUI(g);		
-		
 		
 	}
 

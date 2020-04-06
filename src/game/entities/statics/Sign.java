@@ -14,6 +14,9 @@ public class Sign extends StaticEntity{
 	public Sign(Handler handler, float x, float y) {
 		super(handler, x, y, 48, 48);
 		
+		
+		health = 999;
+		
 		bounds.x = 21;
 		bounds.y = 22;
 		bounds.width = 4;

@@ -11,6 +11,7 @@ import game.gfx.Text;
 import game.inventory.Inventory;
 import game.items.Item;
 import game.items.Weapon;
+import game.ui.UIImage;
 import game.ui.UIImageButton;
 import game.ui.UIObject;
 
@@ -61,6 +62,7 @@ public class Player extends Creature {
 	public void postRender(Graphics g) {
 		// Anything that we want to render after the player)
 		inventory.render(g);
+//		g.drawImage(Assets.convBox, 166, 350, null);
 	}
 
 	@Override
@@ -159,24 +161,35 @@ public class Player extends Creature {
 		}
 	}
 	
+	int xOffset = 0;	
 	public void renderUI(Graphics g) {
-		renderHealthBars(g);
-		renderEquipedUI(g);
+		
+		// Zoom move out effect
+		if(handler.getGame().getCurrentZoomScale() > 1 && xOffset > -150) 
+			xOffset -= 5;
+		
+		if(handler.getGame().getCurrentZoomScale() == 1 && xOffset < 0) 
+			xOffset += 5;
+		
+		renderHealthBars(g, xOffset);
+		renderEquipedUI(g, xOffset);
 	}
 	
-	private void renderHealthBars(Graphics g) {
+	private void renderHealthBars(Graphics g, int xOffset) {
 		int barWidth = 150, barHeight = 32;
-		int barX = 40;
+		int barX = 40 + xOffset;
 		
 		g.setColor(Color.RED); // Health
 		g.fillRect(barX+2, 422, barWidth / maxHealth * health + 2, barHeight);
 		Text.drawString(g, health + "/" + maxHealth, barX+77, 437, true, Color.WHITE, Assets.font28);
 		g.drawImage(Assets.bar, barX, 420, null);
-		
+		g.drawImage(Assets.heart_icon, 5 + xOffset, 425, 30, 30, null);
+
 		g.setColor(Color.GRAY); //Shield
 		g.fillRect(barX+2, 462, barWidth / maxShield * shield +2, barHeight);
 		Text.drawString(g, shield + "/" + maxShield, barX+77, 479, true, Color.WHITE, Assets.font28);
 		g.drawImage(Assets.bar, barX, 460, null);
+		g.drawImage(Assets.shield_icon, 7 + xOffset, 465, 24, 30, null);
 		
 		g.setColor(Color.CYAN); // Mana
 		g.fillRect(barX+2, 502, barWidth * mana / maxMana + 2 , barHeight);
@@ -184,8 +197,14 @@ public class Player extends Creature {
 		g.drawImage(Assets.bar, barX, 500, null);
 	}
 	
-	private void renderEquipedUI(Graphics g) {
-		g.drawImage(inventory.getEquippedWeapon().getTexture(), 832, 412, 128, 128, null);
+	private void renderEquipedUI(Graphics g, int xOffset) {
+		g.drawImage(Assets.chosen, 832 + -xOffset, 412, 128, 128, null);
+		g.drawImage(inventory.getEquippedWeapon().getTexture(), 832 + -xOffset, 412, 128, 128, null);
+		
+		// mana cost
+		g.drawImage(Assets.mana_display, 880 + -xOffset, 509, 30, 30, null);
+		Weapon wpn = (Weapon) inventory.getEquippedWeapon();
+		Text.drawString(g, Integer.toString(wpn.getManaCost()), 895 + -xOffset, 521, true, Color.white, Assets.font24);
 	}
 	
 	private BufferedImage getCurrentAnimationFrame() {
