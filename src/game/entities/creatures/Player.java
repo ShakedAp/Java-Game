@@ -26,6 +26,7 @@ public class Player extends Creature {
 	private int shield = 5, mana = 200;
 
 	private Inventory inventory;
+	private boolean conversation = false;
 
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, 128, 128);
@@ -62,7 +63,9 @@ public class Player extends Creature {
 	public void postRender(Graphics g) {
 		// Anything that we want to render after the player)
 		inventory.render(g);
-//		g.drawImage(Assets.convBox, 166, 350, null);
+		if(conversation)
+			g.drawImage(Assets.convBox, 166, 350, null);
+
 	}
 
 	@Override
@@ -268,6 +271,14 @@ public class Player extends Creature {
 
 	public void setMana(int mana) {
 		this.mana = mana;
+	}
+
+	public boolean isConversation() {
+		return conversation;
+	}
+
+	public void setConversation(boolean conversation) {
+		this.conversation = conversation;
 	}
 
 }

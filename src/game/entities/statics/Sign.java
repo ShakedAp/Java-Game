@@ -22,16 +22,19 @@ public class Sign extends StaticEntity{
 		bounds.width = 4;
 		bounds.height = 24;
 		
-		
 		zoomArea = new Rectangle((int) (x - 50), (int) (y - 50), 150, 150);
 	}
 
 	@Override
 	public void tick() {
-		if(zoomArea.intersects(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0, 0)))
+		if(zoomArea.intersects(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0, 0))) {
 			handler.getGame().setZoomScale(1.2);
-		else 
+			handler.getWorld().getEntityManager().getPlayer().setConversation(true);
+		}
+		else {
 			handler.getGame().setZoomScale(1);
+			handler.getWorld().getEntityManager().getPlayer().setConversation(false);
+		}
 		
 	}
 
