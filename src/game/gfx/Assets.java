@@ -7,7 +7,7 @@ public class Assets {
 
 	private static final int width = 128, height = 128;
 
-	public static Font font28, font24;
+	public static Font font28, font24, font21;
 
 	public static BufferedImage sign, stone, untextured, voidTile, wallTile;
 	public static BufferedImage bullet, chosen, bar, shield_icon, heart_icon, mana_display;
@@ -27,6 +27,7 @@ public class Assets {
 		// Fonts
 		font28 = FontLoader.loadFont("res/fonts/slkscr.ttf", 28);
 		font24 = FontLoader.loadFont("res/fonts/tiny.ttf", 24);
+		font21 = FontLoader.loadFont("res/fonts/smol.ttf", 21);
 
 		// Sprite-Sheets	
 		SpriteSheet robotSheet = new SpriteSheet(ImageLoader.loadImage("/textures/robotSheet.png"));

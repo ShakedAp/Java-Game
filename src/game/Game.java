@@ -157,11 +157,12 @@ public class Game implements Runnable {
 	
 	private void updateZoom(Graphics g){
 		
+		currentZoomScale = Math.round(currentZoomScale * 100.0) / 100.0;
+		
 		if(zoomScale > currentZoomScale)
 			currentZoomScale += 0.02;
 		if(zoomScale < currentZoomScale)
 			currentZoomScale -= 0.02;
-		
 		
 		if(currentZoomScale != 1) {
 		Graphics2D g2 = (Graphics2D) g;
