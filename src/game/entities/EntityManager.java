@@ -8,6 +8,7 @@ import java.util.Iterator;
 
 import game.Handler;
 import game.entities.creatures.Player;
+import game.entities.statics.Sign;
 public class EntityManager {
 	
 	private Handler handler;
@@ -33,13 +34,17 @@ public class EntityManager {
 		addEntity(player);
 	}
 	
+	
 	public void tick() { //TODO: fix the flickering bullet bug
+		boolean signZoom = false;
 		for(int i = 0;i < entities.size();i++){
 			Entity e = entities.get(i);
 			e.tick();
-			if(!e.isActive())
-				entities.remove(e);
+			if(!e.isActive()) entities.remove(e);
+			if(e instanceof Sign && ((Sign) e).isPlayerNear()) signZoom = true;
 		}
+		
+		if(!signZoom) handler.getGame().setZoomScale(1);
 		entities.sort(renderSorter);
 	}
 	

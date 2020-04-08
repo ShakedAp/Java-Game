@@ -28,9 +28,6 @@ public class GameState extends State {
 		world.getSectionManager().setObject(new Section(handler, 4224, 832, 1024, 1024), 3, 1);
 		world.getSectionManager().setObject(new Section(handler, 3072, 2304, 448, 448), 2, 2);
 		world.getSectionManager().setObject(new Section(handler, 2880, 3392, 832, 768), 2, 3);
-		
-		world.getEntityManager().addEntity(new Sign(handler, 648*3, 1288 - 64, "Hello! Welcome to our game! To control your character use the WDASD keys. Good luck, have fun in your adventures! "));
-		world.getEntityManager().addEntity(new Sign(handler, 648*3, 1288 - 64 - 64, "Hello! Welcome to our game! To control your character use the WDASD keys. Good luck, have fun in your adventures! "));
 
 		
 		world.getEntityManager().addEntity(new BasicEnemy(handler, 648*3, 1288));

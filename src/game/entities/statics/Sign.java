@@ -5,17 +5,18 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import game.Handler;
+import game.entities.Entity;
 import game.gfx.Assets;
 import game.gfx.Text;
 
 public class Sign extends StaticEntity{
 	
-	private Rectangle zoomArea;
+	private Rectangle zoomBounds;
 	private String text;
-	private boolean textActive;
+	private boolean playerNear;
 	
 	public Sign(Handler handler, float x, float y, String text) {
-		super(handler, x, y, 48, 48);
+		super(handler, x, y, 48, 64);
 		health = 999;
 		
 		this.text = text;
@@ -25,34 +26,27 @@ public class Sign extends StaticEntity{
 		bounds.width = 4;
 		bounds.height = 24;
 		
-		zoomArea = new Rectangle((int) (x - 50), (int) (y - 50), 150, 150);
+		zoomBounds = new Rectangle((int) (x - 50), (int) (y - 50), 150, 150);
 	}
 
 	@Override
 	public void tick() {
-		if(zoomArea.intersects(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0, 0))) {
+		if(zoomBounds.intersects(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0, 0))) {
 			handler.getGame().setZoomScale(1.2);
-			textActive = true;
-			System.out.println(handler.getGame().getCurrentZoomScale());
-		}	
-		else {
-			System.out.println(handler.getGame().getCurrentZoomScale());
-			handler.getGame().setZoomScale(1);
-			textActive = false;
-		}
-		
+			playerNear = true;
+			}
+		else
+			playerNear = false;	
 	}
 
 	@Override
 	public void render(Graphics g) {		
 		g.drawImage(Assets.sign,(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-		
-		if(textActive)
-		convRender(g);
+		if(playerNear) convRender(g);
 		
 		
 		g.setColor(Color.black);
-		g.drawRect((int) (zoomArea.x - handler.getGameCamera().getxOffset()), (int) (zoomArea.y - handler.getGameCamera().getyOffset()), zoomArea.width, zoomArea.height);
+		g.drawRect((int) (zoomBounds.x - handler.getGameCamera().getxOffset()), (int) (zoomBounds.y - handler.getGameCamera().getyOffset()), zoomBounds.width, zoomBounds.height);
 	}
 	
 		int convIndex = 0;
@@ -84,5 +78,19 @@ public class Sign extends StaticEntity{
 	@Override
 	public void die() {
 		
+	}
+
+	
+	// GETTERS & SETTERS
+	public Rectangle getZoomBounds() {
+		return zoomBounds;
+	}
+
+	public void setZoomBounds(Rectangle zoomBounds) {
+		this.zoomBounds = zoomBounds;
+	}
+
+	public boolean isPlayerNear() {
+		return playerNear;
 	}
 }

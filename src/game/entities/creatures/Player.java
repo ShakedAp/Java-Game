@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
+import game.entities.Entity;
+import game.entities.statics.Sign;
 import game.gfx.Animation;
 import game.gfx.Assets;
 import game.gfx.Text;
