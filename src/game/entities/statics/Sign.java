@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import game.Handler;
-import game.entities.Entity;
 import game.gfx.Assets;
 import game.gfx.Text;
 
@@ -61,12 +60,12 @@ public class Sign extends StaticEntity{
 				if(convIndex < digitsPerLine)
 				Text.drawString(g, text.substring(0,convIndex), 180, 380, false, Color.black ,Assets.font21);
 				
-				if(text.length() >= digitsPerLine && convIndex >= digitsPerLine && convIndex < 121) {
+				if(text.length() >= digitsPerLine && convIndex >= digitsPerLine && convIndex <= digitsPerLine*2) {
 					Text.drawString(g, text.substring(0, digitsPerLine), 180, 380, false, Color.black ,Assets.font21);
 					Text.drawString(g, text.substring(digitsPerLine, convIndex), 180, 400, false, Color.black ,Assets.font21);
 				}
 				
-				if(text.length() >= digitsPerLine*2 && convIndex >= digitsPerLine*2) {
+				if(text.length() > digitsPerLine*2 && convIndex > digitsPerLine*2) {
 					Text.drawString(g, text.substring(0, digitsPerLine), 180, 380, false, Color.black ,Assets.font21);
 					Text.drawString(g, text.substring(digitsPerLine, digitsPerLine*2), 180, 400, false, Color.black ,Assets.font21);
 					Text.drawString(g, text.substring(digitsPerLine*2, convIndex), 180, 420, false, Color.black ,Assets.font21);

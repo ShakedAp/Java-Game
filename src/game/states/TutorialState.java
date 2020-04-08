@@ -36,12 +36,12 @@ public class TutorialState extends State {
 		world.getEntityManager().addEntity(new Sign(handler, 12*64, 20*64, 
 				"now press E to open the invetory, and navigate using the      "
 				+ "W and A keys until you find the weapon. after that press ENTER"
-				+ "to equip it, and you are ready to gow."));
+				+ "to equip it, and you are ready to go."));
 		
 		world.getEntityManager().addEntity(new Sign(handler, 12*64, 12*64, 
-				"Oh its an enemy! you can shoot it the LEFT MOUSE BUTTON.      "
-				+ "You have to clear the enemies in the room before you will be  "
-				+ "able to continue."));
+				"Oh its an enemy! you can shoot it with the LEFT MOUSE BUTTON.  "
+				+ "You have to clear all the enemies in the room before you will "
+				+ "be able to continue."));
 	
 		world.getEntityManager().addEntity(new Sign(handler, 20*64, 7*64, 
 				">_<"));
