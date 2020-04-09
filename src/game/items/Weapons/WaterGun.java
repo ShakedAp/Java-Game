@@ -8,7 +8,7 @@ import game.items.Weapon;
 public class WaterGun extends Weapon{
 
 	public WaterGun() {
-		super(Assets.water_gun, "water gun", 5);
+		super(Assets.water_gun, "Water gun", 5);
 		
 		manaCost = 0;
 		

@@ -19,7 +19,7 @@ public class Rocket extends Projectile {
 	public Rocket(Handler handler, float x, float y, double dir) { //TODO: fix bugs!
 		super(handler, x, y, dir, 128, 128);
 		
-		rocketAnim = new Animation(animSpeed, Assets.rocket);
+		rocketAnim = new Animation(animSpeed, Assets.rocket, true);
 		
 		damage = 10;		
 		bounds.x = 34;

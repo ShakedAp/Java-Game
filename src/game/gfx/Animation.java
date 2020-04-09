@@ -8,11 +8,13 @@ public class Animation {
 
 	private int speed, index; //The speed per frame (till we switch a frame)
 	private long lastTime, deltaTime;
+	private boolean loop;
 	private BufferedImage[] frames; 
 	
-	public Animation(int speed, BufferedImage[] frames) {
+	public Animation(int speed, BufferedImage[] frames, boolean loop) {
 		this.speed = speed;
 		this.frames = frames;
+		this.loop = loop;
 		index = 0;
 		
 		//Timer
@@ -21,6 +23,9 @@ public class Animation {
 	}
 	
 	public void update() {
+		if(index >= frames.length-1 && !loop) {
+			return;
+		}
 		deltaTime += System.currentTimeMillis() - lastTime; //Calculating the elapsed time
 		lastTime = System.currentTimeMillis(); //Updating the current time
 		
@@ -30,7 +35,7 @@ public class Animation {
 			index ++;
 		} 
 
-		if(index >= frames.length) index = 0; //restarting the loop 
+		if(index >= frames.length && loop) index = 0; //restarting the loop 
 	}
 	
 	

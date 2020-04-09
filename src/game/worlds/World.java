@@ -80,8 +80,10 @@ public class World {
 		}
 		
 		
-		itemManager.render(g);
+		
 		entityManager.render(g);
+		itemManager.render(g);
+		entityManager.getPlayer().postRender(g);
 		sectionManager.render(g);
 		miniMap.render(g);
 	}

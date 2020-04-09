@@ -9,14 +9,13 @@ import game.Handler;
 import game.gfx.Assets;
 import game.gfx.Text;
 import game.items.Item;
-import game.items.Weapon;
 
 public class Inventory {
 
 	Handler handler;
 	public boolean active = false;
 	private boolean equipMenuActive = false, equipButtonChosen = true;
-	private Item equippedWeapon = Item.shotgun;
+	private Item equippedWeapon = Item.badPistol;
 	private ArrayList<Item> inventoryItems;
 	
 	private int invX = 224, invY = 78,
@@ -39,11 +38,6 @@ public class Inventory {
 		
 		//Test code
 		addItem(Item.badPistol);
-		addItem(Item.RPG);
-		addItem(Item.shotgun);
-		addItem(Item.smg);
-		addItem(Item.ak47);
-		addItem(Item.waterGun);
 	}
 	
 	//Ticking

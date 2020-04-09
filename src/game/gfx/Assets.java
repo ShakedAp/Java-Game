@@ -17,7 +17,7 @@ public class Assets {
 
 	public static BufferedImage[] rocket;
 	public static BufferedImage[] btn_start, btn_settings, btn_menu, btn_pause, btn_toggle;
-	public static BufferedImage[] floor_tiles, wall_tiles;
+	public static BufferedImage[] floor_tiles, wall_tiles, chest;
 
 	public static BufferedImage player_idle;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -115,6 +115,13 @@ public class Assets {
 		wallTile = tileSheet.crop(width * 3, 0, width, height);
 	
 		sign = ImageLoader.loadImage("/textures/sign.png");
+		
+		SpriteSheet chestSheet = new SpriteSheet(ImageLoader.loadImage("/textures/chestSheet.png"));
+		chest = new BufferedImage[3];
+		chest[0] = chestSheet.crop(0, 0, width, height);
+		chest[1] = chestSheet.crop(width, 0, width, height);
+		chest[2] = chestSheet.crop(0, height, width, height);
+		
 		
 		//floor
 		floor_tiles = new BufferedImage[9];

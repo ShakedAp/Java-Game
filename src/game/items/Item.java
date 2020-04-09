@@ -15,7 +15,7 @@ import game.items.Weapons.WaterGun;
 public class Item {
 
 	// Item handler
-	public static Item[] items = new Item[256];
+	public static Item[] items = new Item[6];
 
 	// Description limit: 16 letters per spot
 	public static Weapon badPistol = new BadPistol();
@@ -28,7 +28,7 @@ public class Item {
 	// Class
 	public static final int ITEM_WIDTH = 48, ITEM_HEIGHT = 48;
 
-	protected static Handler handler;
+	protected Handler handler;
 	protected BufferedImage texture;
 	protected String name;
 	protected String descLine1, descLine2, descLine3, descLine4, descLine5, descLine6, descLine7;
@@ -74,9 +74,15 @@ public class Item {
 		g.drawImage(texture, x, y, ITEM_WIDTH, ITEM_HEIGHT, null);
 	}
 
-	// Spawn new item in the game itself
-	public Item spawnNew(int x, int y) {
+	public Item createNew(int x, int y) {
 		Item i = new Item(texture, name, id);
+		i.setDescLine1(descLine1);
+		i.setDescLine2(descLine2);
+		i.setDescLine3(descLine3);
+		i.setDescLine4(descLine4);
+		i.setDescLine5(descLine5);
+		i.setDescLine6(descLine6);
+		i.setDescLine7(descLine7);
 		i.setPosition(x, y);
 		return i;
 	}
@@ -92,7 +98,7 @@ public class Item {
 	public Handler getHandler() {
 		return handler;
 	}
-
+	
 	public void setHandler(Handler handler) {
 		this.handler = handler;
 	}

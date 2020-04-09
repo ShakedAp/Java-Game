@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
-import game.entities.Entity;
-import game.entities.statics.Sign;
 import game.gfx.Animation;
 import game.gfx.Assets;
 import game.gfx.Text;
@@ -41,10 +39,10 @@ public class Player extends Creature {
 		bounds.height = 50;
 
 		// Animations
-		animDown = new Animation(animSpeed, Assets.player_down);
-		animUp = new Animation(animSpeed, Assets.player_up);
-		animLeft = new Animation(animSpeed, Assets.player_left);
-		animRight = new Animation(animSpeed, Assets.player_right);
+		animDown = new Animation(animSpeed, Assets.player_down, true);
+		animUp = new Animation(animSpeed, Assets.player_up, true);
+		animLeft = new Animation(animSpeed, Assets.player_left, true);
+		animRight = new Animation(animSpeed, Assets.player_right, true);
 
 		inventory = new Inventory(handler);
 	}

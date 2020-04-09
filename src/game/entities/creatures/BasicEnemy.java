@@ -3,7 +3,6 @@ package game.entities.creatures;
 import java.awt.Graphics;
 
 import game.Handler;
-import game.entities.projectiles.LightBullet;
 import game.gfx.Assets;
 
 public class BasicEnemy extends Enemy{

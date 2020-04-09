@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import game.Handler;
+import game.entities.statics.Chest;
 import game.entities.statics.Sign;
 import game.ui.UIManager;
 import game.worlds.World;
@@ -20,7 +21,6 @@ public class TutorialState extends State {
 		// UI
 		uiManager.addObject(world.getPauseButton());
 		
-		
 		// Signs
 		// "                                                              "
 		world.getEntityManager().addEntity(new Sign(handler, 12*64, 35*64, 
@@ -30,8 +30,11 @@ public class TutorialState extends State {
 		
 		world.getEntityManager().addEntity(new Sign(handler, 12*64, 24*64, 
 				"If you wanna save us, we gotta get you some weapons aren't we?"
-				+ "use the LEFT MOUSE BUTTON to open the chest, and press it     "
+				+ "use the RIGHT MOUSE BUTTON to open the chest, and press it     "
 				+ "again to pick up the weapon."));
+		
+		world.getEntityManager().addEntity(new Chest(handler, 9*64, 24*64));
+		
 		
 		world.getEntityManager().addEntity(new Sign(handler, 12*64, 20*64, 
 				"now press E to open the invetory, and navigate using the      "

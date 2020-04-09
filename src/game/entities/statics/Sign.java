@@ -40,7 +40,7 @@ public class Sign extends StaticEntity{
 
 	@Override
 	public void render(Graphics g) {		
-		g.drawImage(Assets.sign,(int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+		g.drawImage(Assets.sign, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 		if(playerNear) convRender(g);
 		
 		

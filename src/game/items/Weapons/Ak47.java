@@ -9,7 +9,7 @@ import game.items.Weapon;
 public class Ak47 extends Weapon{
 
 	public Ak47() {
-		super(Assets.ak47, "ak47", 4);
+		super(Assets.ak47, "Ak47", 4);
 		
 		bps = 5;
 		

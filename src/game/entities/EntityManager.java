@@ -3,8 +3,6 @@ package game.entities;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
-
 
 import game.Handler;
 import game.entities.creatures.Player;
@@ -55,8 +53,6 @@ public class EntityManager {
 			Entity e = entities.get(i);
 			e.render(g);
 		}
-		//Everything that we want that will be over all of the entities (like inventory)
-		player.postRender(g); 
 	}
 
 

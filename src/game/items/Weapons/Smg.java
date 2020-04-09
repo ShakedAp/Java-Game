@@ -1,7 +1,5 @@
 package game.items.Weapons;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import game.Handler;
 import game.entities.projectiles.LightBullet;
 import game.gfx.Assets;
@@ -10,7 +8,7 @@ import game.items.Weapon;
 public class Smg extends Weapon{
 	
 	public Smg() {
-		super(Assets.smg, "smg", 3);
+		super(Assets.smg, "Smg", 3);
 		
 		bps = 10;
 		spread = 6;

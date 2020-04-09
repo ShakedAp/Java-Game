@@ -1,9 +1,6 @@
 package game.items.Weapons;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import game.Handler;
-import game.entities.projectiles.LightBullet;
 import game.entities.projectiles.ShotgunBullet;
 import game.gfx.Assets;
 import game.items.Weapon;
@@ -11,7 +8,7 @@ import game.items.Weapon;
 public class Shotgun extends Weapon{
 
 	public Shotgun() {
-		super(Assets.shotgun, "shotgun", 2);
+		super(Assets.shotgun, "Shotgun", 2);
 		
 		bps = 1;
 		spread = 20;
