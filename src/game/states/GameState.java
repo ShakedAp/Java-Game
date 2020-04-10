@@ -1,14 +1,9 @@
 package game.states;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import game.Handler;
 import game.entities.creatures.BasicEnemy;
-import game.entities.statics.Sign;
-import game.gfx.Assets;
-import game.gfx.Text;
-import game.items.Weapon;
 import game.worlds.Section;
 import game.worlds.World;
 

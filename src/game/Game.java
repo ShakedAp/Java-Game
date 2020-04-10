@@ -13,6 +13,7 @@ import java.awt.image.BufferStrategy;
 import game.display.Display;
 import game.gfx.Assets;
 import game.gfx.GameCamera;
+import game.gfx.sounds.MusicPlayer;
 import game.input.KeyManager;
 import game.input.MouseManager;
 import game.states.ControlsState;
@@ -67,6 +68,11 @@ public class Game implements Runnable {
 		this.height = height;
 		keyManager = new KeyManager();
 		mouseManager = new MouseManager();
+		
+		
+		
+		MusicPlayer musicPlayer = new MusicPlayer("cool.wav", "shoot.wav");
+		
 	}
 	
 	
@@ -104,7 +110,6 @@ public class Game implements Runnable {
 	}
 
 	private void render() {
-		
 		bs = display.getCanvas().getBufferStrategy(); //setting the BufferedStrategy to the currently bufferStrategy of this canvas
 		
 		if(bs == null) { //if the canvas has no bufferStrategy

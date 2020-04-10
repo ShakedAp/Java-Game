@@ -7,7 +7,6 @@ import game.gfx.Assets;
 import game.ui.ClickListener;
 import game.ui.UIImage;
 import game.ui.UIImageButton;
-import game.ui.UIImageToggleButton;
 import game.ui.UIManager;
 
 public class ControlsState extends State{

@@ -6,7 +6,6 @@ import game.Handler;
 import game.gfx.Assets;
 import game.gfx.SpriteSheet;
 import game.ui.UIComicFrame;
-import game.ui.UIImage;
 import game.ui.UIManager;
 
 public class StoryState extends State{

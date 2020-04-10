@@ -9,6 +9,7 @@ import game.items.Weapon;
 public class BadPistol extends Weapon{
 
 
+	
 	public BadPistol() {
 		super(Assets.bad_pistol, "Bad Pistol", 0);
 		

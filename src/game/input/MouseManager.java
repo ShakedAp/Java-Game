@@ -60,8 +60,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	       System.out.println("Mouse clicked (# of clicks: "
-                   + e.getClickCount() + ")");
+		
 	}
 
 	@Override
