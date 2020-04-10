@@ -3,8 +3,6 @@ package game.ui;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import game.states.State;
-
 public class UIImageToggleButton extends UIObject {
 
 	private BufferedImage[] images;

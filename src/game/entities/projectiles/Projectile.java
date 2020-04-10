@@ -1,7 +1,5 @@
 package game.entities.projectiles;
 
-import java.awt.Graphics;
-
 import game.Handler;
 import game.entities.Entity;
 import game.tiles.Tile;

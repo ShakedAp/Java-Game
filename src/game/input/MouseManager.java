@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import game.Handler;
 import game.ui.UIManager;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
@@ -14,6 +13,7 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 	private UIManager uiManager;
 
 	public MouseManager() {
+		
 	}
 
 	public void setUiManager(UIManager uiManager) {
@@ -60,7 +60,8 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
+	       System.out.println("Mouse clicked (# of clicks: "
+                   + e.getClickCount() + ")");
 	}
 
 	@Override

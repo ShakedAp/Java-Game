@@ -1,7 +1,6 @@
 package game.items.Weapons;
 
 import game.Handler;
-import game.entities.projectiles.LightBullet;
 import game.entities.projectiles.MediumBullet;
 import game.gfx.Assets;
 import game.items.Weapon;

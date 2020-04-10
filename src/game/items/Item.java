@@ -1,5 +1,6 @@
 package game.items;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -34,7 +35,7 @@ public class Item {
 	protected String descLine1, descLine2, descLine3, descLine4, descLine5, descLine6, descLine7;
 	protected final int id;
 
-	protected Rectangle bounds;
+	protected Rectangle bounds, pickBounds;
 
 	protected int x, y;
 	protected boolean pickedUp = false;
@@ -52,13 +53,15 @@ public class Item {
 		this.id = id;
 
 		bounds = new Rectangle(x, y, ITEM_WIDTH, ITEM_HEIGHT);
+		pickBounds = new Rectangle(x, y, 100, 100);
 
 		items[id] = this;
 	}
 
 	public void tick() {
 		// Pick up
-		if (handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0f, 0f).intersects(bounds)) {
+		if (handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0f, 0f).intersects(pickBounds)
+				&& handler.getMouseManager().isRightPressed()) {
 			pickedUp = true;
 			handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(this);
 		}
@@ -67,11 +70,18 @@ public class Item {
 	public void render(Graphics g) { // Render in the world
 		if (handler == null)
 			return;
+
+		g.setColor(Color.black);
+		g.drawRect((int) (pickBounds.x - handler.getGameCamera().getxOffset()),
+				(int) (pickBounds.y - handler.getGameCamera().getyOffset()), pickBounds.width, pickBounds.height);
 		render(g, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()));
 	}
 
 	public void render(Graphics g, int x, int y) { // Render in the inventory
 		g.drawImage(texture, x, y, ITEM_WIDTH, ITEM_HEIGHT, null);
+		g.setColor(Color.black);
+		g.drawRect((int) (pickBounds.x - handler.getGameCamera().getxOffset()),
+				(int) (pickBounds.y - handler.getGameCamera().getyOffset()), pickBounds.width, pickBounds.height);
 	}
 
 	public Item createNew(int x, int y) {
@@ -92,13 +102,16 @@ public class Item {
 		this.y = y;
 		bounds.x = x;
 		bounds.y = y;
+
+		pickBounds.x = x - 25;
+		pickBounds.y = y - 25;
 	}
 
 	// GETTERS & SETTERS
 	public Handler getHandler() {
 		return handler;
 	}
-	
+
 	public void setHandler(Handler handler) {
 		this.handler = handler;
 	}

@@ -2,8 +2,6 @@ package game.gfx;
 
 import java.awt.image.BufferedImage;
 
-import game.utils.Utils;
-
 public class Animation {
 
 	private int speed, index; //The speed per frame (till we switch a frame)

@@ -1,7 +1,6 @@
 package game.entities.projectiles;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 import game.Handler;
 import game.entities.Entity;
