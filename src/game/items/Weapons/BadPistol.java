@@ -3,12 +3,12 @@ package game.items.Weapons;
 import game.Handler;
 import game.entities.projectiles.LightBullet;
 import game.gfx.Assets;
-import game.gfx.sounds.Sound;
+import game.gfx.sounds.SoundEffect;
 import game.items.Weapon;
 
 public class BadPistol extends Weapon{
 
-	Sound sound = new Sound("shoot.wav", false, handler);
+	SoundEffect sound = new SoundEffect("shoot.wav", handler);
 	
 	public BadPistol() {
 		super(Assets.bad_pistol, "Bad Pistol", 0);

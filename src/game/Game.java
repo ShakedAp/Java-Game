@@ -56,7 +56,7 @@ public class Game implements Runnable {
 	private Handler handler;
 	
 	//music
-	private boolean sfxOn = true;
+	private boolean sfxOn = true, musicOn = true;;
 	
 	//zoom
 	private double zoomScale = 1, currentZoomScale = 1;;
@@ -246,5 +246,15 @@ public synchronized void stop() {
 
 	public void setCurrentZoomScale(double currentZoomScale) {
 		this.currentZoomScale = currentZoomScale;
+	}
+
+
+	public boolean isMusicOn() {
+		return musicOn;
+	}
+
+
+	public void setMusicOn(boolean musicOn) {
+		this.musicOn = musicOn;
 	}
 }
