@@ -15,6 +15,7 @@ import game.gfx.Assets;
 import game.gfx.GameCamera;
 import game.input.KeyManager;
 import game.input.MouseManager;
+import game.sounds.MusicPlayer;
 import game.states.ControlsState;
 import game.states.GameState;
 import game.states.MenuState;
@@ -94,6 +95,10 @@ public class Game implements Runnable {
 		controlsState = new ControlsState(handler);
 		storyState = new StoryState(handler);
 		State.setState(menuState);
+		
+		MusicPlayer musicPlayer = new MusicPlayer(this, 
+				"bricks", "classic", "funky", "groov", "neon");
+		musicPlayer.start();
 	}
 	
 	private void tick() { 
@@ -256,5 +261,25 @@ public synchronized void stop() {
 
 	public void setMusicOn(boolean musicOn) {
 		this.musicOn = musicOn;
+	}
+
+
+	public Handler getHandler() {
+		return handler;
+	}
+
+
+	public void setHandler(Handler handler) {
+		this.handler = handler;
+	}
+
+
+	public boolean isRunning() {
+		return running;
+	}
+
+
+	public void setRunning(boolean running) {
+		this.running = running;
 	}
 }

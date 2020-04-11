@@ -38,7 +38,7 @@ public class SettingsState extends State{
 		uiManager.addObject(new UIImageToggleButton(600, 250 , 115, 52, Assets.btn_toggle, new ClickListener(){ 
 		@Override
 		public void onClick() {
-					
+			handler.getGame().setMusicOn(!handler.getGame().isMusicOn());
 			}
 		}));
 		
