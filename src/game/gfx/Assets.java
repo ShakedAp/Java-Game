@@ -17,7 +17,8 @@ public class Assets {
 
 	public static BufferedImage[] rocket;
 	public static BufferedImage[] btn_start, btn_settings, btn_menu, btn_pause, btn_toggle;
-	public static BufferedImage[] floor_tiles, wall_tiles, chest;
+	public static BufferedImage[] floor_tiles, wall_tiles;
+	public static BufferedImage[] chest, portal_spin, portal_open, portal_close;
 
 	public static BufferedImage player_idle;
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
@@ -93,12 +94,44 @@ public class Assets {
 		popupInv = ImageLoader.loadImage("/textures/popupInv.png");
 
 		
+		// Static entities
+		sign = ImageLoader.loadImage("/textures/sign.png");
 		
+		SpriteSheet chestSheet = new SpriteSheet(ImageLoader.loadImage("/textures/chestSheet.png"));
+		chest = new BufferedImage[3];
+		chest[0] = chestSheet.crop(0, 0, width, height);
+		chest[1] = chestSheet.crop(width, 0, width, height);
+		chest[2] = chestSheet.crop(0, height, width, height);
 		
+		int PW = 64, PH = 64;
+		SpriteSheet portalSheet = new SpriteSheet(ImageLoader.loadImage("/textures/portalSheet.png"));
+		portal_spin = new BufferedImage[8];
+		portal_spin[0] = portalSheet.crop(0, 0, PW, PH);
+		portal_spin[1] = portalSheet.crop(PW, 0, PW, PH);
+		portal_spin[2] = portalSheet.crop(PW*2, 0, PW, PH);
+		portal_spin[3] = portalSheet.crop(PW*3, 0, PW, PH);
+		portal_spin[4] = portalSheet.crop(PW*4, 0, PW, PH);
+		portal_spin[5] = portalSheet.crop(PW*5, 0, PW, PH);
+		portal_spin[6] = portalSheet.crop(PW*6, 0, PW, PH);
+		portal_spin[7] = portalSheet.crop(PW*7, 0, PW, PH);
 		
+		portal_open = new BufferedImage[8];
+		portal_open[0] = portalSheet.crop(0, PH, PW, PH);
+		portal_open[1] = portalSheet.crop(PW, PH, PW, PH);
+		portal_open[2] = portalSheet.crop(PW*2, PH, PW, PH);
+		portal_open[3] = portalSheet.crop(PW*3, PH, PW, PH);
+		portal_open[4] = portalSheet.crop(PW*4, PH, PW, PH);
+		portal_open[5] = portalSheet.crop(PW*5, PH, PW, PH);
+		portal_open[6] = portalSheet.crop(PW*6, PH, PW, PH);
+		portal_open[7] = portalSheet.crop(PW*7, PH, PW, PH);
 		
-		
-		
+		portal_close = new BufferedImage[6];
+		portal_close[0] = portalSheet.crop(0, PH*2, PW, PH);
+		portal_close[1] = portalSheet.crop(PW, PH*2, PW, PH);
+		portal_close[2] = portalSheet.crop(PW*2, PH*2, PW, PH);
+		portal_close[3] = portalSheet.crop(PW*3, PH*2, PW, PH);
+		portal_close[4] = portalSheet.crop(PW*4, PH*2, PW, PH);
+		portal_close[5] = portalSheet.crop(PW*5, PH*2, PW, PH);
 		
 		
 		
@@ -113,15 +146,6 @@ public class Assets {
 		stone = tileSheet.crop(width, 0, width, height);
 		voidTile = tileSheet.crop(width * 2, 0, width, height);
 		wallTile = tileSheet.crop(width * 3, 0, width, height);
-	
-		sign = ImageLoader.loadImage("/textures/sign.png");
-		
-		SpriteSheet chestSheet = new SpriteSheet(ImageLoader.loadImage("/textures/chestSheet.png"));
-		chest = new BufferedImage[3];
-		chest[0] = chestSheet.crop(0, 0, width, height);
-		chest[1] = chestSheet.crop(width, 0, width, height);
-		chest[2] = chestSheet.crop(0, height, width, height);
-		
 		
 		//floor
 		floor_tiles = new BufferedImage[9];

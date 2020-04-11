@@ -6,7 +6,7 @@ public class Animation {
 
 	private int speed, index; //The speed per frame (till we switch a frame)
 	private long lastTime, deltaTime;
-	private boolean loop;
+	private boolean loop, finished = false;
 	private BufferedImage[] frames; 
 	
 	public Animation(int speed, BufferedImage[] frames, boolean loop) {
@@ -33,11 +33,21 @@ public class Animation {
 			index ++;
 		} 
 
-		if(index >= frames.length && loop) index = 0; //restarting the loop 
+		if(index >= frames.length && loop) index = 0;
+		if(index == frames.length-1 && !loop) finished=true;
 	}
 	
 	
 	public BufferedImage getCurrentFrame() {
 		return frames[index];
+	}
+	
+	//GETTERS & SETTERS
+	public boolean isFinished() {
+		return finished;
+	}
+
+	public void setFinished(boolean finished) {
+		this.finished = finished;
 	}
 }

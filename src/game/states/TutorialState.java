@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 
 import game.Handler;
 import game.entities.statics.Chest;
+import game.entities.statics.Portal;
 import game.entities.statics.Sign;
 import game.ui.UIManager;
 import game.worlds.World;
@@ -35,7 +36,6 @@ public class TutorialState extends State {
 		
 		world.getEntityManager().addEntity(new Chest(handler, 9*64, 24*64));
 		
-		
 		world.getEntityManager().addEntity(new Sign(handler, 12*64, 20*64, 
 				"now press E to open the invetory, and navigate using the      "
 				+ "W and A keys until you find the weapon. after that press ENTER"
@@ -53,13 +53,18 @@ public class TutorialState extends State {
 
 	@Override
 	public void tick() {
+		
+		//TEST CODE
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Z))
+			world.getEntityManager().addEntity(new Portal(handler, 10*64, 37*64, handler.getGame().gameState));
+		
+		
 		uiManager.tick();
 		world.tick();
 		
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE)) {
-			handler.getMouseManager().setUiManager(handler.getGame().gameState.getUiManager());
-			State.setState(handler.getGame().gameState);
-		}
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE))
+			handler.goToState(handler.getGame().gameState);
+
 	}
 
 	@Override

@@ -4,12 +4,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferStrategy;
 
-/*
- * buffers are "hidden" computer screen which you can draw to.
- * for example, you draw to the first buffer, then to the second, then to the actual screen.
- * BUFFER -> BUFFER -> SCREEN
- * this way you prevent flickering
- */
 import game.display.Display;
 import game.gfx.Assets;
 import game.gfx.GameCamera;
