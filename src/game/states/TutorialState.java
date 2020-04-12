@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import game.Handler;
+import game.entities.creatures.BasicEnemy;
 import game.entities.statics.Chest;
 import game.entities.statics.Portal;
 import game.entities.statics.Sign;
@@ -35,10 +36,11 @@ public class TutorialState extends State {
 				+ "again to pick up the weapon."));
 		
 		world.getEntityManager().addEntity(new Chest(handler, 9*64, 24*64));
+		world.getEntityManager().addEntity(new BasicEnemy(handler, 10*64, 9*64));
 		
 		world.getEntityManager().addEntity(new Sign(handler, 12*64, 20*64, 
 				"now press E to open the invetory, and navigate using the      "
-				+ "W and A keys until you find the weapon. after that press ENTER"
+				+ "W and S keys until you find the weapon. after that press ENTER"
 				+ "to equip it, and you are ready to go."));
 		
 		world.getEntityManager().addEntity(new Sign(handler, 12*64, 12*64, 
@@ -47,7 +49,9 @@ public class TutorialState extends State {
 				+ "be able to continue."));
 	
 		world.getEntityManager().addEntity(new Sign(handler, 20*64, 7*64, 
-				">_<"));
+				  "Oh! One thing I forgot to mention is your ammo - You shoot    "
+				+ "aclo-gel bullets. But watch out, you can run out of alco-gel, "
+				+ "and then you have to get close and hit'em with your own fists!"));
 	
 	}
 

@@ -17,7 +17,7 @@ public class MusicPlayer extends Thread{
 	}
 	
 	@Override
-	public void run() {
+	public void run() {		
 		AudioFile song = playList.get(currentSongIndex);
 		song.play();
 		while(game.isRunning()) {
@@ -29,11 +29,11 @@ public class MusicPlayer extends Thread{
 			}
 			try {Thread.sleep(1);} catch (InterruptedException e) {}
 			
-			if(!game.isMusicOn())
+			if(!game.isMusicOn() || game.getHandler().getWorld().isPaused())
 				song.pause();
-			if(song.isPaused() && game.isMusicOn())
-				song.resume();
-				
+				if(song.isPaused() && game.isMusicOn() && !game.getHandler().getWorld().isPaused() )
+					song.resume();
+			
 		}
 	}
 }
