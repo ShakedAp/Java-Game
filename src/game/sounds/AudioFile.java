@@ -13,11 +13,13 @@ import game.Handler;
 public class AudioFile implements LineListener {
 	
 	private Clip clip;
+	private String path;
 	private Handler handler;
 	private long lastPosition;
 	private volatile boolean playing, paused = false;
 	
 	public AudioFile(String path){
+		this.path = path;
 		clip = loadClip(path);
 	}
 	
@@ -119,5 +121,13 @@ public class AudioFile implements LineListener {
 
 	public void setPaused(boolean paused) {
 		this.paused = paused;
+	}
+
+	public String getPath() {
+		return path;
+	}
+
+	public void setPath(String path) {
+		this.path = path;
 	}
 }

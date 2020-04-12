@@ -122,7 +122,16 @@ public class World {
 
 		}
 	}
-
+	
+	
+	public void updateCurrentPlayer(Player player) {
+		player.setX(spawnX);
+		player.setY(spawnY);
+		handler.getWorld().getEntityManager().getPlayer().setVisible(true);
+		entityManager.removeEntity(entityManager.getPlayer());
+		entityManager.addEntity(player);
+		entityManager.setPlayer(player);
+	}
 	
 	
 	

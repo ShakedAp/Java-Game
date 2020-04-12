@@ -18,6 +18,7 @@ public class Player extends Creature {
 	// Player animations
 	private Animation animDown, animUp, animLeft, animRight;
 	private int animSpeed = 100;
+	private boolean visible = true;
 
 	// Health
 	private int maxHealth = 6, maxShield = 5 , maxMana = 200;
@@ -64,11 +65,12 @@ public class Player extends Creature {
 
 	@Override
 	public void tick() {
-		if (!inventory.isActive()) { // If the inventory is active we dont want to move
+		if (!inventory.isActive()) {
 			getInput();
 			move();
 		}
-		handler.getGameCamera().centerOnEntity(this);
+		
+		if(visible) handler.getGameCamera().centerOnEntity(this);
 
 		// Animations
 		animDown.update();
@@ -205,6 +207,9 @@ public class Player extends Creature {
 	}
 	
 	private BufferedImage getCurrentAnimationFrame() {
+		if(!visible)
+			return null;
+		
 		if (yMove < 0) // Moving up
 			return animUp.getCurrentFrame();
 		else if (yMove > 0)// Moving down
@@ -265,6 +270,14 @@ public class Player extends Creature {
 
 	public void setMana(int mana) {
 		this.mana = mana;
+	}
+
+	public boolean isVisible() {
+		return visible;
+	}
+
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 
 }

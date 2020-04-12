@@ -35,7 +35,10 @@ public class GameState extends State {
 	
 	@Override
 	public void tick() {
-		if(!handler.getWorld().equals(world)) handler.setWorld(world);
+		if(!handler.getWorld().equals(world)) {
+			world.updateCurrentPlayer(handler.getWorld().getEntityManager().getPlayer());
+			handler.setWorld(world);
+		}
 		
 		world.tick();
 		uiManager.tick();

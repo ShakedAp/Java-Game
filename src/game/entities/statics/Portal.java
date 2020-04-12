@@ -1,6 +1,5 @@
 package game.entities.statics;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -38,8 +37,11 @@ public class Portal extends StaticEntity {
 		else close.update();
 		if(closed && close.isFinished()) kill();
 		
-		if(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0, 0).intersects(getCollisonBounds(0,0)))
-				closed = true;
+		if(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0, 0).intersects(getCollisonBounds(0,0))) {
+			closed = true;
+			handler.getWorld().getEntityManager().getPlayer().setVisible(false);
+		}
+		
 	}
 	
 	
@@ -47,14 +49,11 @@ public class Portal extends StaticEntity {
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame() , (int) (x - handler.getGameCamera().getxOffset()),
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-		
-		g.setColor(Color.black);
-		g.drawRect((int) (x  + bounds.x - handler.getGameCamera().getxOffset()),
-				(int) (y + bounds.y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 	}
 
 	@Override
 	public void die() {
+		try {Thread.sleep(500);} catch (InterruptedException e) {}
 		handler.goToState(destination);
 	}
 	

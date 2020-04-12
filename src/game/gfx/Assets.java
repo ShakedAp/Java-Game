@@ -125,15 +125,15 @@ public class Assets {
 		portal_open[6] = portalSheet.crop(PW*6, PH, PW, PH);
 		portal_open[7] = portalSheet.crop(PW*7, PH, PW, PH);
 		
-		portal_close = new BufferedImage[6];
+		portal_close = new BufferedImage[8];
 		portal_close[0] = portalSheet.crop(0, PH*2, PW, PH);
 		portal_close[1] = portalSheet.crop(PW, PH*2, PW, PH);
 		portal_close[2] = portalSheet.crop(PW*2, PH*2, PW, PH);
 		portal_close[3] = portalSheet.crop(PW*3, PH*2, PW, PH);
 		portal_close[4] = portalSheet.crop(PW*4, PH*2, PW, PH);
 		portal_close[5] = portalSheet.crop(PW*5, PH*2, PW, PH);
-		
-		
+		portal_close[6] = portalSheet.crop(PW*6, PH*2, PW, PH);
+		portal_close[7] = portalSheet.crop(PW*7, PH*2, PW, PH);
 		
 		
 		
