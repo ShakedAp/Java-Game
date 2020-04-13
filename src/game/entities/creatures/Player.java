@@ -78,7 +78,7 @@ public class Player extends Creature {
 		animLeft.update();
 		animRight.update();
 		// Attack
-		checkShooting();
+		checkAttacks();
 
 		inventory.tick();
 	}
@@ -99,18 +99,18 @@ public class Player extends Creature {
 			xMove += speed; // Move right
 	}
 
-	private long lastRangedAttackTimer, rangedAttackCooldown = 100, rangedAttackTimer = rangedAttackCooldown;
+	private long lastAttackTimer, attackCooldown = 100, attackTimer = attackCooldown;
 
-	private void checkShooting() {
+	private void checkAttacks() {
 		Weapon currentEquipedWeapon = (Weapon) inventory.getEquippedWeapon();
-		rangedAttackCooldown = (long) (1000 / currentEquipedWeapon.getBps());
+		attackCooldown = (long) (1000 / currentEquipedWeapon.getBps());
 
 		// Attack timer
-		rangedAttackTimer += System.currentTimeMillis() - lastRangedAttackTimer;
-		lastRangedAttackTimer = System.currentTimeMillis(); // = The current time (in miliseconds)
+		attackTimer += System.currentTimeMillis() - lastAttackTimer;
+		lastAttackTimer = System.currentTimeMillis();
 
 		// Allow us to shoot only when the cooldown has reached and the inventory is not open
-		if (rangedAttackTimer < rangedAttackCooldown || inventory.isActive())
+		if (attackTimer < attackCooldown || inventory.isActive())
 			return;
 		
 		for(UIObject o: handler.getGame().tutorialState.getUiManager().getObjects())
@@ -136,7 +136,7 @@ public class Player extends Creature {
 			return;
 
 		// Restarting the timer
-		rangedAttackTimer = 0;
+		attackTimer = 0;
 	}
 
 	@Override

@@ -4,7 +4,7 @@ import game.Handler;
 
 public abstract class Enemy extends Creature{
 
-	private boolean frozen = false;
+	protected boolean frozen = false;
 
 	
 	public Enemy(Handler handler, float x, float y, int width, int height) {
