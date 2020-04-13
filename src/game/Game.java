@@ -51,7 +51,8 @@ public class Game implements Runnable {
 	private Handler handler;
 	
 	//music
-	private boolean sfxOn = true, musicOn = true;;
+	private boolean sfxOn = true, musicOn = true;
+	private MusicPlayer musicPlayer;
 	
 	//zoom
 	private double zoomScale = 1, currentZoomScale = 1;;
@@ -90,7 +91,7 @@ public class Game implements Runnable {
 		storyState = new StoryState(handler);
 		State.setState(menuState);
 		
-		MusicPlayer musicPlayer = new MusicPlayer(this, 
+		musicPlayer = new MusicPlayer(this, 
 				"bricks", "classic", "funky", "groov", "neon");
 		musicPlayer.start();
 	}
@@ -172,7 +173,10 @@ public class Game implements Runnable {
 		}
 	}	
 	
-	
+	public void close() {
+		running = false;
+		display.getJframe().dispose();
+	}
 	
 	//threads
 	public synchronized void start() {

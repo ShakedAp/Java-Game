@@ -20,6 +20,10 @@ public class Handler {
 		game.getMouseManager().setUiManager(state.getUiManager());
 	}
 	
+	public State getCurrentState() {
+		return State.getState();
+	}
+	
 	
 	//GETTERS SETTERS
 	public KeyManager getKeyManager() {

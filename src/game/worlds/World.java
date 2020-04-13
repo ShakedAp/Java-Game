@@ -11,6 +11,7 @@ import game.items.ItemManager;
 import game.tiles.Tile;
 import game.ui.ClickListener;
 import game.ui.UIImageButton;
+import game.ui.UIImageToggleButton;
 import game.utils.Utils;
 
 public class World {
@@ -20,12 +21,57 @@ public class World {
 	private int spawnX, spawnY; //spawning cords
 	private int [][] tiles; //the tile array of the tiles in the map
 	private boolean paused = false;
+	
+	// UI
 	private UIImageButton pauseButton = new UIImageButton(10, 10, 80, 64, Assets.btn_pause, new ClickListener() {
 		@Override
 		public void onClick() {
+			if(!paused) {
+				handler.getCurrentState().getUiManager().addObject(resumeButton);
+				handler.getCurrentState().getUiManager().addObject(exitButton);
+				handler.getCurrentState().getUiManager().addObject(sfxToggle);
+				handler.getCurrentState().getUiManager().addObject(musicToggle);
+			}
+			else{
+				handler.getCurrentState().getUiManager().removeObject(resumeButton);
+				handler.getCurrentState().getUiManager().removeObject(exitButton);
+				handler.getCurrentState().getUiManager().removeObject(sfxToggle);
+				handler.getCurrentState().getUiManager().removeObject(musicToggle);
+			}
+			paused = !paused;
+			
+		}});
+	
+	private UIImageButton resumeButton = new UIImageButton(100, 100, 150, 64, Assets.btn_start, new ClickListener() {
+		@Override
+		public void onClick() {
+			handler.getCurrentState().getUiManager().removeObject(resumeButton);
+			handler.getCurrentState().getUiManager().removeObject(exitButton);
+			handler.getCurrentState().getUiManager().removeObject(sfxToggle);
+			handler.getCurrentState().getUiManager().removeObject(musicToggle);
 			paused = !paused;
 		}});
-
+	
+	private UIImageToggleButton sfxToggle = new UIImageToggleButton(600, 150 , 115, 52, Assets.btn_toggle, new ClickListener(){ 
+		@Override
+		public void onClick() {
+			handler.getGame().setSfxOn(!handler.getGame().isSfxOn());
+		}
+	});
+	
+	private UIImageToggleButton musicToggle = new UIImageToggleButton(600, 250 , 115, 52, Assets.btn_toggle, new ClickListener(){ 
+		@Override
+		public void onClick() {
+			handler.getGame().setMusicOn(!handler.getGame().isMusicOn());
+		}
+	});
+	
+	private UIImageButton exitButton = new UIImageButton(100, 200, 150, 64, Assets.btn_start, new ClickListener() {
+		@Override
+		public void onClick() {
+			handler.getGame().close();
+		}});
+	
 	
 	// Entities
 	private EntityManager entityManager;
@@ -55,9 +101,21 @@ public class World {
 	}
 	
 	public void tick(){
-		if(!entityManager.getPlayer().getInventory().isActive() && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) 
+		if(!entityManager.getPlayer().getInventory().isActive() && handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
+			if(!paused) {
+				handler.getCurrentState().getUiManager().addObject(resumeButton);
+				handler.getCurrentState().getUiManager().addObject(exitButton);
+				handler.getCurrentState().getUiManager().addObject(sfxToggle);
+				handler.getCurrentState().getUiManager().addObject(musicToggle);
+			}
+			else{
+				handler.getCurrentState().getUiManager().removeObject(resumeButton);
+				handler.getCurrentState().getUiManager().removeObject(exitButton);
+				handler.getCurrentState().getUiManager().removeObject(sfxToggle);
+				handler.getCurrentState().getUiManager().removeObject(musicToggle);
 			paused = !paused;
-		
+			}
+		}
 		if(paused) return;
 		
 		itemManager.tick();
