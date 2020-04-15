@@ -30,7 +30,7 @@ public class Chest extends StaticEntity {
 	@Override
 	public void tick() {
 		if (handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0, 0).intersects(openBounds)
-				&& handler.getMouseManager().isRightPressed() && !open) {
+				&& handler.getMouseManager().isRightJustPressed() && !open) {
 			open = true;
 
 			int wpnX = (int) (x + bounds.x / 2);

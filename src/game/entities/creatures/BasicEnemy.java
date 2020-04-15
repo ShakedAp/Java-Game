@@ -24,10 +24,12 @@ public class BasicEnemy extends Enemy {
 	public void tick() {
 		
 		
-		shoot();
 		
-		if(!frozen)
+		
+		if(!frozen) {
 		move();
+		shoot();
+		}
 
 	}
 	

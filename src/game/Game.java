@@ -98,6 +98,8 @@ public class Game implements Runnable {
 	
 	private void tick() { 
 		keyManager.tick();
+		mouseManager.tick();
+		
 		
 		if (State.getState() != null)
 			State.getState().tick();

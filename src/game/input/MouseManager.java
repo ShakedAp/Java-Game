@@ -8,14 +8,30 @@ import game.ui.UIManager;
 
 public class MouseManager implements MouseListener, MouseMotionListener {
 
-	private boolean leftPressed, rightPressed;
+	private boolean leftPressed, rightPressed, rightJustPressed, rightCantPress;
 	private int mouseX, mouseY;
 	private UIManager uiManager;
-
+	
 	public MouseManager() {
 		
 	}
 
+	public void tick(){
+		if(!rightPressed && rightCantPress) 
+			rightCantPress = false;
+			
+			else if (rightJustPressed) {
+				rightCantPress = true;
+				rightJustPressed = false;
+			}
+		
+		if(rightPressed && !rightCantPress) {
+			rightJustPressed = true;
+			rightCantPress = true;
+		}
+		
+	}
+	
 	public void setUiManager(UIManager uiManager) {
 		this.uiManager = uiManager;
 	}
@@ -88,6 +104,10 @@ public class MouseManager implements MouseListener, MouseMotionListener {
 
 	public int getMouseY() {
 		return mouseY;
+	}
+
+	public boolean isRightJustPressed() {
+		return rightJustPressed;
 	}
 
 }

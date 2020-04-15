@@ -107,13 +107,14 @@ public class World {
 				handler.getCurrentState().getUiManager().addObject(exitButton);
 				handler.getCurrentState().getUiManager().addObject(sfxToggle);
 				handler.getCurrentState().getUiManager().addObject(musicToggle);
+				paused = !paused;
 			}
 			else{
 				handler.getCurrentState().getUiManager().removeObject(resumeButton);
 				handler.getCurrentState().getUiManager().removeObject(exitButton);
 				handler.getCurrentState().getUiManager().removeObject(sfxToggle);
 				handler.getCurrentState().getUiManager().removeObject(musicToggle);
-			paused = !paused;
+				paused = !paused;
 			}
 		}
 		if(paused) return;

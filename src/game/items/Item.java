@@ -61,7 +61,7 @@ public class Item {
 	public void tick() {
 		// Pick up
 		if (handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0f, 0f).intersects(pickBounds)
-				&& handler.getMouseManager().isRightPressed()) {
+				&& handler.getMouseManager().isRightJustPressed()) {
 			pickedUp = true;
 			handler.getWorld().getEntityManager().getPlayer().getInventory().addItem(this);
 		}

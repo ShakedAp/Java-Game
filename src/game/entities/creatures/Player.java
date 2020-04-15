@@ -77,9 +77,11 @@ public class Player extends Creature {
 		animUp.update();
 		animLeft.update();
 		animRight.update();
-		// Attack
+	
 		checkAttacks();
-
+		
+		checkShieldRegeneration();
+		
 		inventory.tick();
 	}
 
@@ -99,8 +101,30 @@ public class Player extends Creature {
 			xMove += speed; // Move right
 	}
 
-	private long lastAttackTimer, attackCooldown = 100, attackTimer = attackCooldown;
+	private long lastRegenTimer, regenCooldown = 4000, regenTimer;
+	private void checkShieldRegeneration(){	
+		if(shield == maxShield) {
+			regenTimer = 0;
+			lastRegenTimer = System.currentTimeMillis();
+			return;
+		}
+		
+		regenTimer += System.currentTimeMillis() - lastRegenTimer;
+		lastRegenTimer = System.currentTimeMillis();
+		
+		if (regenTimer < regenCooldown)
+			return;
 
+		if(regenTimer > regenCooldown + 1000) {
+			shield++;
+			regenTimer = regenCooldown;
+		}
+		
+		
+	}
+	
+	
+	private long lastAttackTimer, attackCooldown = 100, attackTimer = attackCooldown;
 	private void checkAttacks() {
 		Weapon currentEquipedWeapon = (Weapon) inventory.getEquippedWeapon();
 		attackCooldown = (long) (1000 / currentEquipedWeapon.getBps());
@@ -154,6 +178,8 @@ public class Player extends Creature {
 			shield = 0;
 		}
 
+		regenTimer = 0;
+		
 		if (health <= 0) {
 			active = false;
 			die();
