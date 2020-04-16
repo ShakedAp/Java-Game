@@ -14,6 +14,7 @@ public class Assets {
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
 	public static BufferedImage start_menu_background, comic, convBox;
+	public static BufferedImage mana_orb;
 
 	public static BufferedImage[] rocket;
 	public static BufferedImage[] btn_start, btn_settings, btn_menu, btn_pause, btn_toggle;
@@ -94,8 +95,10 @@ public class Assets {
 		popupInv = ImageLoader.loadImage("/textures/popupInv.png");
 
 		
-		// Static entities
+		// Entities
 		sign = ImageLoader.loadImage("/textures/sign.png");
+		
+		mana_orb = ImageLoader.loadImage("/textures/manaOrb.png");
 		
 		SpriteSheet chestSheet = new SpriteSheet(ImageLoader.loadImage("/textures/chestSheet.png"));
 		chest = new BufferedImage[3];

@@ -46,9 +46,6 @@ public class Chest extends StaticEntity {
 	public void render(Graphics g) {
 		g.drawImage(anim.getCurrentFrame(), (int) (x - handler.getGameCamera().getxOffset()),
 				(int) (y - handler.getGameCamera().getyOffset()), width, height, null);
-
-//		g.setColor(Color.black);
-//		g.drawRect((int) (openBounds.x - handler.getGameCamera().getxOffset()), (int) (openBounds.y - handler.getGameCamera().getyOffset()), openBounds.width, openBounds.height);
 	}
 
 	@Override

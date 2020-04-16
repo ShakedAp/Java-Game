@@ -70,18 +70,11 @@ public class Item {
 	public void render(Graphics g) { // Render in the world
 		if (handler == null)
 			return;
-
-		g.setColor(Color.black);
-		g.drawRect((int) (pickBounds.x - handler.getGameCamera().getxOffset()),
-				(int) (pickBounds.y - handler.getGameCamera().getyOffset()), pickBounds.width, pickBounds.height);
 		render(g, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()));
 	}
 
 	public void render(Graphics g, int x, int y) { // Render in the inventory
 		g.drawImage(texture, x, y, ITEM_WIDTH, ITEM_HEIGHT, null);
-		g.setColor(Color.black);
-		g.drawRect((int) (pickBounds.x - handler.getGameCamera().getxOffset()),
-				(int) (pickBounds.y - handler.getGameCamera().getyOffset()), pickBounds.width, pickBounds.height);
 	}
 
 	public Item createNew(int x, int y) {
