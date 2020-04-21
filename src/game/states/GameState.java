@@ -1,6 +1,7 @@
 package game.states;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import game.Handler;
 import game.entities.creatures.BasicEnemy;
@@ -42,7 +43,8 @@ public class GameState extends State {
 
 		world.tick();
 		uiManager.tick();
-		world.getEntityManager().addEntity(new ManaOrb(handler, world.getEntityManager().getPlayer().getX(),
+		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_1))
+			world.getEntityManager().addEntity(new ManaOrb(handler, world.getEntityManager().getPlayer().getX() + 128,
 				world.getEntityManager().getPlayer().getY()));
 	}
 
