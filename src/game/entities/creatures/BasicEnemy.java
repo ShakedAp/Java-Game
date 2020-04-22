@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import game.Handler;
+import game.entities.orbs.ManaOrb;
 import game.entities.projectiles.EnemyBullet;
 import game.gfx.Assets;
 
@@ -65,7 +66,6 @@ public class BasicEnemy extends Enemy {
 		
 		handler.getWorld().getEntityManager().addEntity(new EnemyBullet(handler, enemyX, enemyY, dir));
 		timer = 0;
-					
 	}
 	
 	
@@ -97,7 +97,7 @@ public class BasicEnemy extends Enemy {
 
 	@Override
 	public void die() {
-
+		handler.getWorld().getEntityManager().addEntity(new ManaOrb(handler, getCollisonBounds(0,0).x +  bounds.width/2, getCollisonBounds(0,0).y + bounds.height/2));	
 	}
 
 }

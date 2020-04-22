@@ -11,7 +11,7 @@ public class EntityManager {
 	
 	private Handler handler;
 	private Player player;
-	private ArrayList<Entity> entities;
+	private ArrayList<Entity> entities, toRemove, toAdd;
 	private Comparator<Entity> renderSorter = new Comparator<Entity>() {
 		@Override
 		public int compare(Entity entity1, Entity entity2) {
@@ -29,41 +29,47 @@ public class EntityManager {
 		this.handler = handler;
 		this.player = player;
 		entities = new ArrayList<Entity>();
+		toRemove =  new ArrayList<Entity>();
+		toAdd = new ArrayList<Entity>();
 		addEntity(player);
 	}
 	
 	
-	public void tick() { //TODO: fix the flickering bullet bug
+	public void tick() {
 		boolean signZoom = false;
-		for(int i = 0;i < entities.size();i++){
-			Entity e = entities.get(i);
+		for(Entity e : entities){
 			e.tick();
-			if(!e.isActive()) entities.remove(e);
+			if(!e.isActive()) toRemove.add(e);
 			if(e instanceof Sign && ((Sign) e).isPlayerNear()) signZoom = true;
 		}
 		
 		if(!signZoom) handler.getGame().setZoomScale(1);
+		entities.removeAll(toRemove);
+		entities.addAll(toAdd);
+		toRemove.clear();
+		toAdd.clear();
 		entities.sort(renderSorter);
 	}
 	
 	
 	public void render(Graphics g) {
-		//looping thru each of the entities and rendering them
-		for (int i = 0; i < entities.size(); i++) {
-			Entity e = entities.get(i);
+		for(Entity e : entities) 
 			e.render(g);
-		}
 	}
 
 
 	public void addEntity(Entity e) {
-		entities.add(e);
+		toAdd.add(e);
 	}
 	
 	public void removeEntity(Entity e) {
-		entities.remove(e);
+		toRemove.add(e);
 	}
 
+	public void removeEntityToAdd(Entity e) {
+		toAdd.remove(e);
+	}
+	
 	//GETTERS & SETTERS
 	public Handler getHandler() {
 		return handler;
@@ -92,6 +98,11 @@ public class EntityManager {
 
 	public void setEntities(ArrayList<Entity> entities) {
 		this.entities = entities;
+	}
+
+
+	public ArrayList<Entity> getToAdd() {
+		return toAdd;
 	}
 	
 	

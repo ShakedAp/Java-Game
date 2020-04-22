@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
 import game.Handler;
+import game.entities.Entity;
 import game.entities.EntityManager;
 import game.entities.creatures.Player;
 import game.gfx.Assets;
@@ -190,6 +191,13 @@ public class World {
 		entityManager.removeEntity(entityManager.getPlayer());
 		entityManager.addEntity(player);
 		entityManager.setPlayer(player);
+		
+		for(Entity e : entityManager.getToAdd())
+			if(e instanceof Player) {
+				entityManager.removeEntityToAdd(e);
+				break;
+			}
+			
 	}
 	
 	
