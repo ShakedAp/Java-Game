@@ -10,7 +10,7 @@ import game.gfx.Assets;
 import game.gfx.Text;
 import game.inventory.Inventory;
 import game.items.Weapon;
-import game.ui.UIImageButton;
+import game.ui.UIImageToggleButton;
 import game.ui.UIObject;
 
 public class Player extends Creature {
@@ -138,7 +138,7 @@ public class Player extends Creature {
 			return;
 		
 		for(UIObject o: handler.getGame().tutorialState.getUiManager().getObjects())
-			if(o.isHovering() && o instanceof UIImageButton)
+			if(o.isHovering() && o instanceof UIImageToggleButton)
 				return;
 		
 

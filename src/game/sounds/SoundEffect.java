@@ -5,6 +5,7 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 import game.Handler;
 
@@ -20,10 +21,19 @@ public class SoundEffect {
 		clip = loadClip("./res/sounds/" + path + ".wav");
 	}
 	
+	private void reduceVolume(float amt) {
+		if(amt > 0)
+			amt = -amt;
+		FloatControl gainControl = 
+			    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(amt); 
+	}
+	
 	public void play(){
 		if(handler != null && !handler.getGame().isSfxOn())
 			return;
 		clip.setFramePosition(0);
+		reduceVolume(25);
 		clip.start();
 	}
 

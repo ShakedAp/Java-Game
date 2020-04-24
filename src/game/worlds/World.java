@@ -24,7 +24,7 @@ public class World {
 	private boolean paused = false;
 	
 	// UI
-	private UIImageButton pauseButton = new UIImageButton(10, 10, 80, 64, Assets.btn_pause, new ClickListener() {
+	private UIImageToggleButton pauseButton = new UIImageToggleButton(10, 10, 64, 64, Assets.btn_pause, new ClickListener() {
 		@Override
 		public void onClick() {
 			if(!paused) {
@@ -39,8 +39,7 @@ public class World {
 				handler.getCurrentState().getUiManager().removeObject(sfxToggle);
 				handler.getCurrentState().getUiManager().removeObject(musicToggle);
 			}
-			paused = !paused;
-			
+			paused = !paused;	
 		}});
 	
 	private UIImageButton resumeButton = new UIImageButton(100, 100, 150, 64, Assets.btn_start, new ClickListener() {
@@ -51,16 +50,17 @@ public class World {
 			handler.getCurrentState().getUiManager().removeObject(sfxToggle);
 			handler.getCurrentState().getUiManager().removeObject(musicToggle);
 			paused = !paused;
+			pauseButton.setToggled(true);
 		}});
 	
-	private UIImageToggleButton sfxToggle = new UIImageToggleButton(600, 150 , 115, 52, Assets.btn_toggle, new ClickListener(){ 
+	private UIImageToggleButton sfxToggle = new UIImageToggleButton(600, 150 , 64, 64, Assets.btn_toggle, new ClickListener(){ 
 		@Override
 		public void onClick() {
 			handler.getGame().setSfxOn(!handler.getGame().isSfxOn());
 		}
 	});
 	
-	private UIImageToggleButton musicToggle = new UIImageToggleButton(600, 250 , 115, 52, Assets.btn_toggle, new ClickListener(){ 
+	private UIImageToggleButton musicToggle = new UIImageToggleButton(600, 250 , 64, 64, Assets.btn_toggle, new ClickListener(){ 
 		@Override
 		public void onClick() {
 			handler.getGame().setMusicOn(!handler.getGame().isMusicOn());
@@ -108,16 +108,20 @@ public class World {
 				handler.getCurrentState().getUiManager().addObject(exitButton);
 				handler.getCurrentState().getUiManager().addObject(sfxToggle);
 				handler.getCurrentState().getUiManager().addObject(musicToggle);
-				paused = !paused;
 			}
 			else{
 				handler.getCurrentState().getUiManager().removeObject(resumeButton);
 				handler.getCurrentState().getUiManager().removeObject(exitButton);
 				handler.getCurrentState().getUiManager().removeObject(sfxToggle);
 				handler.getCurrentState().getUiManager().removeObject(musicToggle);
-				paused = !paused;
-			}
+			}	
+			pauseButton.setToggled(paused);
+			paused = !paused;
 		}
+		
+		sfxToggle.setToggled(handler.getGame().isSfxOn());
+		musicToggle.setToggled(handler.getGame().isMusicOn());
+		
 		if(paused) return;
 		
 		itemManager.tick();
@@ -256,11 +260,11 @@ public class World {
 		this.paused = paused;
 	}
 
-	public UIImageButton getPauseButton() {
+	public UIImageToggleButton getPauseButton() {
 		return pauseButton;
 	}
 
-	public void setPauseButton(UIImageButton pauseButton) {
+	public void setPauseButton(UIImageToggleButton pauseButton) {
 		this.pauseButton = pauseButton;
 	}
 

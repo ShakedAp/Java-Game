@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import game.Handler;
 import game.entities.creatures.BasicEnemy;
 import game.entities.orbs.ManaOrb;
+import game.ui.UIManager;
 import game.worlds.Section;
 import game.worlds.World;
 
@@ -14,7 +15,7 @@ public class GameState extends State {
 	private World world;
 
 	public GameState(Handler handler) {
-		super(handler, handler.getGame().tutorialState.getUiManager());
+		super(handler, new UIManager(handler));
 		world = new World(handler, "res/worlds/world1.txt", 4, 4);
 
 		// Sections
@@ -31,9 +32,10 @@ public class GameState extends State {
 		world.getEntityManager().addEntity(new BasicEnemy(handler, 648 * 3, 1288 * 2));
 
 		// UI Manager
+		uiManager.getObjects().addAll(handler.getGame().tutorialState.getUiManager().getObjects());
+		uiManager.removeObject(handler.getWorld().getPauseButton());
 		uiManager.addObject(world.getPauseButton());
 	}
-
 	@Override
 	public void tick() {
 		if (!handler.getWorld().equals(world)) {

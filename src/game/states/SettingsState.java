@@ -28,14 +28,14 @@ public class SettingsState extends State{
 			}
 		}));
 		// Toggle sfx button
-		uiManager.addObject(new UIImageToggleButton(600, 150 , 115, 52, Assets.btn_toggle, new ClickListener(){ 
+		uiManager.addObject(new UIImageToggleButton(600, 150 , 64, 64, Assets.btn_toggle, new ClickListener(){ 
 			@Override
 			public void onClick() {
 				handler.getGame().setSfxOn(!handler.getGame().isSfxOn());
 			}
 		}));
 		// Toggle music button
-		uiManager.addObject(new UIImageToggleButton(600, 250 , 115, 52, Assets.btn_toggle, new ClickListener(){ 
+		uiManager.addObject(new UIImageToggleButton(600, 250 , 64, 64, Assets.btn_toggle, new ClickListener(){ 
 		@Override
 		public void onClick() {
 			handler.getGame().setMusicOn(!handler.getGame().isMusicOn());

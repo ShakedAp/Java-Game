@@ -1,6 +1,9 @@
 package game.entities.projectiles;
 
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -21,7 +24,7 @@ public class Rocket extends Projectile {
 		
 		rocketAnim = new Animation(animSpeed, Assets.rocket, true);
 		
-		damage = 10;		
+		damage = 10;
 		bounds.x = 34;
 		bounds.y = 55;
 		bounds.width = 84;
@@ -48,13 +51,18 @@ public class Rocket extends Projectile {
 		
 		
 		// Rotating sprite
-		AffineTransform transform = new AffineTransform();
-	    transform.rotate(angle, img.getWidth()/2 , img.getHeight()/2);
-	    AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+		AffineTransform af = new AffineTransform();
+	    af.rotate(angle, img.getWidth()/2 , img.getHeight()/2);
+	    AffineTransformOp op = new AffineTransformOp(af, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
 	    img = op.filter(img, null);
+	    
 		
 		g.drawImage(img ,(int) (x + bounds.x - bounds.width/2 - handler.getGameCamera().getxOffset()),
 				(int) (y - bounds.y - bounds.height/2 - handler.getGameCamera().getyOffset()), width, height, null);
+		
+		g.setColor(Color.black);
+		g.drawRect((int) (getCollisonBounds(0,0).x - handler.getGameCamera().getxOffset()), 
+				(int) (getCollisonBounds(0,0).y - handler.getGameCamera().getyOffset()), bounds.width, bounds.height);
 	}
 	
 

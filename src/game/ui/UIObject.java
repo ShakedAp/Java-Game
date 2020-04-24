@@ -26,15 +26,14 @@ public abstract class UIObject {
 
 	public abstract void onClick();
 
-	public void onMouseMove(MouseEvent e) { // Every time the mouse moved and hovering the object set "hovering" to true
+	public void onMouseMove(MouseEvent e) { 
 		if (bounds.contains(e.getX(), e.getY()) )
 			hovering = true;
 		else
 			hovering = false;
 	}
 
-	public void onMouseRelease(MouseEvent e) { // Whenever the user is releasing the mouse when hovering the object he is clicking it
-												
+	public void onMouseRelease(MouseEvent e) {					
 		if (hovering)
 			onClick();
 

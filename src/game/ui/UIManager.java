@@ -9,16 +9,26 @@ import game.Handler;
 public class UIManager {
 	
 	private Handler handler;
-	private ArrayList<UIObject> objects;
+	private ArrayList<UIObject> objects, toAdd, toRemove;
 	
 	public UIManager(Handler handler) {
 		this.handler = handler;
 		objects = new ArrayList<UIObject>();
+		toAdd = new ArrayList<UIObject>();
+		toRemove = new ArrayList<UIObject>();
 	}
 	
 	public void tick() {
 		for(UIObject o : objects) 
 			o.tick();
+		if(toAdd.size() > 0) {
+			objects.addAll(toAdd);
+			toAdd.clear();
+		}
+		if(toRemove.size() > 0) {
+			objects.removeAll(toRemove);
+			toRemove.clear();
+		}
 	}
 	
 	public void render(Graphics g) {
@@ -37,11 +47,11 @@ public class UIManager {
 	}
 	
 	public void addObject(UIObject o) {
-		objects.add(o);
+		toAdd.add(o);
 	}
 	
 	public void removeObject(UIObject o) {
-		objects.remove(o);
+		toRemove.add(o);
 	}
 	
 	

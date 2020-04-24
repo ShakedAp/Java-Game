@@ -39,7 +39,7 @@ public class MenuState extends State{
 		uiManager.tick();
 		
 		// TEMPORARY CODE
-		handler.goToState(handler.getGame().tutorialState);
+//		handler.goToState(handler.getGame().tutorialState);
 	}
 
 	@Override

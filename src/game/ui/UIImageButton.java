@@ -29,7 +29,7 @@ public class UIImageButton extends UIObject {
 
 	@Override
 	public void onClick() {
-		clicker.onClick(); // For each new clicker we are going pass there will be new action when clicking
+		clicker.onClick();
 	}
 
 	

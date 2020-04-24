@@ -44,10 +44,16 @@ public class EntityManager {
 		}
 		
 		if(!signZoom) handler.getGame().setZoomScale(1);
-		entities.removeAll(toRemove);
-		entities.addAll(toAdd);
-		toRemove.clear();
-		toAdd.clear();
+		
+		if(toRemove.size() > 0) {
+			entities.removeAll(toRemove);
+			toRemove.clear();
+		}
+		if(toAdd.size() > 0) {
+			entities.addAll(toAdd);
+			toAdd.clear();
+		}
+
 		entities.sort(renderSorter);
 	}
 	

@@ -31,8 +31,8 @@ public class UIImageToggleButton extends UIObject {
 
 	@Override
 	public void onClick() {
-		clicker.onClick();
 		toggled = !toggled;
+		clicker.onClick();
 	}
 
 	// GETTERS & SETTERS

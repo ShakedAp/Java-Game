@@ -5,6 +5,7 @@ import java.io.File;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineEvent;
 import javax.sound.sampled.LineListener;
 
@@ -23,8 +24,17 @@ public class AudioFile implements LineListener {
 		clip = loadClip(path);
 	}
 	
+	private void reduceVolume(float amt) {
+		if(amt > 0)
+			amt = -amt;
+		FloatControl gainControl = 
+			    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(amt); 
+	}
+	
 	public void play(){
 		clip.setFramePosition(0);
+		reduceVolume(25);
 		clip.start();
 		playing = true;
 	}

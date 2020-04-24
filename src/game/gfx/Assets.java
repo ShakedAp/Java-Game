@@ -68,17 +68,19 @@ public class Assets {
 		btn_menu[0] = menuSheet.crop(0, 0, 161, 66);
 		btn_menu[1] = menuSheet.crop(0, 66, 161, 66);
 		
-		SpriteSheet toggleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/toggleButton.png"));
+		SpriteSheet toggleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/toggleSoundButton.png"));
 		btn_toggle = new BufferedImage[2];
-		btn_toggle[0] = toggleSheet.crop(0, 0, 115, 52);
-		btn_toggle[1] = toggleSheet.crop(0, 52, 115, 52);
+		btn_toggle[0] = toggleSheet.crop(0, 0, 64, 64);
+		btn_toggle[1] = toggleSheet.crop(0, 64, 64, 64);
 		
 		comic = ImageLoader.loadImage("/textures/startMenu/comic.png");
 		convBox =  ImageLoader.loadImage("/textures/convBox.png");
 		
 		btn_pause = new BufferedImage[2];
-		btn_pause[0] = ImageLoader.loadImage("/textures/pauseButton.png");
-		btn_pause[1] = ImageLoader.loadImage("/textures/pauseButton.png");
+		SpriteSheet pauseSheet = new SpriteSheet(ImageLoader.loadImage("/textures/pauseButton.png"));
+		btn_pause[0] = pauseSheet.crop(0, 0, 64, 64);
+		btn_pause[1] = pauseSheet.crop(0, 64, 64, 64);
+
 		
 		start_menu_background = ImageLoader.loadImage("/textures/startMenu/startMenuBack.png");
 
