@@ -17,7 +17,7 @@ public class Assets {
 	public static BufferedImage mana_orb;
 
 	public static BufferedImage[] rocket;
-	public static BufferedImage[] btn_start, btn_settings, btn_menu, btn_pause, btn_toggle;
+	public static BufferedImage[] btn_home, btn_start, btn_settings, btn_pause, btn_toggle;
 	public static BufferedImage[] floor_tiles, wall_tiles;
 	public static BufferedImage[] chest, portal_spin, portal_open, portal_close;
 
@@ -53,20 +53,21 @@ public class Assets {
 		water_gun = gunSheet.crop(0, height * 5, width, height);
 
 		// UI
+		SpriteSheet homeSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/homeSheet.png"));
+		btn_home = new BufferedImage[2];
+		btn_home[0] = homeSheet.crop(0, 0, 21, 17);
+		btn_home[1] = homeSheet.crop(0, 17, 21, 20);
+		
 		SpriteSheet startSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/startSheet.png"));
 		btn_start = new BufferedImage[2];
-		btn_start[0] = startSheet.crop(0, 0, 152, 66);
-		btn_start[1] = startSheet.crop(0, 66, 152, 66);
+		btn_start[0] = startSheet.crop(0, 0, 43, 18);
+		btn_start[1] = startSheet.crop(0, 18, 43, 22);
 
 		SpriteSheet settingsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/settingsSheet.png"));
 		btn_settings = new BufferedImage[2];
 		btn_settings[0] = settingsSheet.crop(0, 0, 191, 66);
 		btn_settings[1] = settingsSheet.crop(0, 66, 191, 66);
 		
-		SpriteSheet menuSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/menuSheet.png"));
-		btn_menu = new BufferedImage[2];
-		btn_menu[0] = menuSheet.crop(0, 0, 161, 66);
-		btn_menu[1] = menuSheet.crop(0, 66, 161, 66);
 		
 		SpriteSheet toggleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/toggleSoundButton.png"));
 		btn_toggle = new BufferedImage[2];

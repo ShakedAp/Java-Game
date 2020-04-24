@@ -19,8 +19,7 @@ public class MenuState extends State{
 		// UI objects
 		uiManager.addObject(new UIImage(Assets.start_menu_background, 0, 0, 960, 540));
 		
-		uiManager.addObject(new UIImageButton(256, 128 , 152, 66, Assets.btn_start, new ClickListener(){ 
-			// Creating a new ClickListener with the action we want to do	
+		uiManager.addObject(new UIImageButton(256, 128 , 172, 72, Assets.btn_start, new ClickListener(){ 
 			@Override
 			public void onClick() {
 				handler.goToState(handler.getGame().storyState);	

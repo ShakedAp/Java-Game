@@ -20,11 +20,10 @@ public class SettingsState extends State{
 		uiManager.addObject(new UIImage(Assets.start_menu_background, 0, 0, 960, 540));
 		
 		// Back to menu
-		uiManager.addObject(new UIImageButton(25, 25 , 161, 66, Assets.btn_menu, new ClickListener(){
+		uiManager.addObject(new UIImageButton(25, 25 , 84, 68, Assets.btn_home, new ClickListener(){
 			@Override
 			public void onClick() {
-				handler.getMouseManager().setUiManager(handler.getGame().menuState.getUiManager());
-				State.setState(handler.getGame().menuState);	
+				handler.goToState(handler.getGame().menuState);
 			}
 		}));
 		// Toggle sfx button
@@ -42,13 +41,6 @@ public class SettingsState extends State{
 			}
 		}));
 		
-		uiManager.addObject(new UIImageButton(400, 400 , 161, 66, Assets.btn_start, new ClickListener(){
-			@Override
-			public void onClick() {
-				handler.getMouseManager().setUiManager(handler.getGame().controlsState.getUiManager());
-				State.setState(handler.getGame().controlsState);	
-			}
-		}));
 	}
 
 	@Override
