@@ -112,34 +112,34 @@ public class Assets {
 		int PW = 64, PH = 64;
 		SpriteSheet portalSheet = new SpriteSheet(ImageLoader.loadImage("/textures/portalSheet.png"));
 		portal_spin = new BufferedImage[8];
-		portal_spin[0] = portalSheet.crop(0, 0, PW, PH);
-		portal_spin[1] = portalSheet.crop(PW, 0, PW, PH);
-		portal_spin[2] = portalSheet.crop(PW*2, 0, PW, PH);
-		portal_spin[3] = portalSheet.crop(PW*3, 0, PW, PH);
-		portal_spin[4] = portalSheet.crop(PW*4, 0, PW, PH);
-		portal_spin[5] = portalSheet.crop(PW*5, 0, PW, PH);
-		portal_spin[6] = portalSheet.crop(PW*6, 0, PW, PH);
-		portal_spin[7] = portalSheet.crop(PW*7, 0, PW, PH);
+		portal_spin[7] = portalSheet.crop(0, 0, PW, PH);
+		portal_spin[6] = portalSheet.crop(PW, 0, PW, PH);
+		portal_spin[5] = portalSheet.crop(PW*2, 0, PW, PH);
+		portal_spin[4] = portalSheet.crop(PW*3, 0, PW, PH);
+		portal_spin[3] = portalSheet.crop(PW*4, 0, PW, PH);
+		portal_spin[2] = portalSheet.crop(PW*5, 0, PW, PH);
+		portal_spin[1] = portalSheet.crop(PW*6, 0, PW, PH);
+		portal_spin[0] = portalSheet.crop(PW*7, 0, PW, PH);
 		
 		portal_open = new BufferedImage[8];
-		portal_open[0] = portalSheet.crop(0, PH, PW, PH);
-		portal_open[1] = portalSheet.crop(PW, PH, PW, PH);
-		portal_open[2] = portalSheet.crop(PW*2, PH, PW, PH);
-		portal_open[3] = portalSheet.crop(PW*3, PH, PW, PH);
-		portal_open[4] = portalSheet.crop(PW*4, PH, PW, PH);
-		portal_open[5] = portalSheet.crop(PW*5, PH, PW, PH);
-		portal_open[6] = portalSheet.crop(PW*6, PH, PW, PH);
-		portal_open[7] = portalSheet.crop(PW*7, PH, PW, PH);
+		portal_open[7] = portalSheet.crop(0, PH, PW, PH);
+		portal_open[6] = portalSheet.crop(PW, PH, PW, PH);
+		portal_open[5] = portalSheet.crop(PW*2, PH, PW, PH);
+		portal_open[4] = portalSheet.crop(PW*3, PH, PW, PH);
+		portal_open[3] = portalSheet.crop(PW*4, PH, PW, PH);
+		portal_open[2] = portalSheet.crop(PW*5, PH, PW, PH);
+		portal_open[1] = portalSheet.crop(PW*6, PH, PW, PH);
+		portal_open[0] = portalSheet.crop(PW*7, PH, PW, PH);
 		
 		portal_close = new BufferedImage[8];
-		portal_close[0] = portalSheet.crop(0, PH*2, PW, PH);
-		portal_close[1] = portalSheet.crop(PW, PH*2, PW, PH);
-		portal_close[2] = portalSheet.crop(PW*2, PH*2, PW, PH);
-		portal_close[3] = portalSheet.crop(PW*3, PH*2, PW, PH);
-		portal_close[4] = portalSheet.crop(PW*4, PH*2, PW, PH);
-		portal_close[5] = portalSheet.crop(PW*5, PH*2, PW, PH);
-		portal_close[6] = portalSheet.crop(PW*6, PH*2, PW, PH);
-		portal_close[7] = portalSheet.crop(PW*7, PH*2, PW, PH);
+		portal_close[7] = portalSheet.crop(0, PH*2, PW, PH);
+		portal_close[6] = portalSheet.crop(PW, PH*2, PW, PH);
+		portal_close[5] = portalSheet.crop(PW*2, PH*2, PW, PH);
+		portal_close[4] = portalSheet.crop(PW*3, PH*2, PW, PH);
+		portal_close[3] = portalSheet.crop(PW*4, PH*2, PW, PH);
+		portal_close[2] = portalSheet.crop(PW*5, PH*2, PW, PH);
+		portal_close[1] = portalSheet.crop(PW*6, PH*2, PW, PH);
+		portal_close[0] = portalSheet.crop(PW*7, PH*2, PW, PH);
 		
 		
 		

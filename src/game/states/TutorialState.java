@@ -1,7 +1,6 @@
 package game.states;
 
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
 import game.Handler;
 import game.entities.creatures.BasicEnemy;
@@ -52,22 +51,21 @@ public class TutorialState extends State {
 				  "Oh! One thing I forgot to mention is your ammo - You shoot    "
 				+ "aclo-gel bullets. But watch out, you can run out of alco-gel, "
 				+ "and then you have to get close and hit'em with your own fists!"));
-	
+		
 	}
 
+	boolean i = false;
 	@Override
-	public void tick() {
+	public void tick() {		
+		if(!i) {
+			world.getEntityManager().addEntity(new Portal(handler, 27*64 + 32, 6*64, handler.getGame().gameState));
+			i = true;
+		}
 		
-		//TEST CODE
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_Z))
-			world.getEntityManager().addEntity(new Portal(handler, 10*64, 37*64, handler.getGame().gameState));
 		
 		
 		uiManager.tick();
 		world.tick();
-		
-		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_SPACE))
-			handler.goToState(handler.getGame().gameState);
 
 	}
 
