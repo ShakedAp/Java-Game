@@ -10,12 +10,14 @@ import game.entities.Entity;
 import game.entities.creatures.Player;
 import game.gfx.Animation;
 import game.gfx.Assets;
+import game.sounds.SoundEffect;
 import game.tiles.Tile;
 
 public class Rocket extends Projectile {
 	
 	private Animation anim, explosion;
 	private Boolean exploded = false;
+	private SoundEffect explosionSound;
 	
 	public Rocket(Handler handler, float x, float y, double dir) {
 		super(handler, x, y, dir, 128, 128);
@@ -26,7 +28,9 @@ public class Rocket extends Projectile {
 
 		anim = new Animation(100, animation, true);
 		explosion = new Animation(50, Assets.explosion, false);
-
+		
+		explosionSound = new SoundEffect("explosion", handler);
+		
 		damage = 10;
 		bounds.x = 34;
 		bounds.y = 55;
@@ -65,15 +69,20 @@ public class Rocket extends Projectile {
 	
 	@Override
 	protected void checkCollisons(){
-		if(collisionWithTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT))
+		if(collisionWithTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT)) {
 			exploded = true;
-		if(handler.getWorld().getTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT) == Tile.wallTile)
-			exploded = true;
+			explosionSound.play();
+		}
+		if(handler.getWorld().getTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT) == Tile.wallTile) {
+			exploded = true;				
+			explosionSound.play();
+		}
 		
 		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { 
 			if(e.equals(this) || e instanceof Player) continue;
 			if(e.getCollisonBounds(0f,0f).intersects(getCollisonBounds(0f, 0f)) && e.isSolid() && !exploded) {
 				e.hurt(damage);
+				explosionSound.play();
 				exploded = true;
 			}
 		}

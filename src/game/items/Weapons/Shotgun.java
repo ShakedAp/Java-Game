@@ -4,9 +4,10 @@ import game.Handler;
 import game.entities.projectiles.ShotgunBullet;
 import game.gfx.Assets;
 import game.items.Weapon;
+import game.sounds.SoundEffect;
 
 public class Shotgun extends Weapon{
-
+	
 	public Shotgun() {
 		super(Assets.shotgun, "Shotgun", 2);
 		

@@ -3,6 +3,7 @@ package game.entities.creatures;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.Random;
 
 import game.Handler;
 import game.gfx.Animation;
@@ -10,6 +11,7 @@ import game.gfx.Assets;
 import game.gfx.Text;
 import game.inventory.Inventory;
 import game.items.Weapon;
+import game.sounds.SoundEffect;
 import game.ui.UIImageToggleButton;
 import game.ui.UIObject;
 
@@ -168,16 +170,38 @@ public class Player extends Creature {
 		System.out.println("GAME OVER");
 	}	
 	
+	private SoundEffect cough1 = new SoundEffect("cough/cough1", handler),
+			cough2 = new SoundEffect("cough/cough2", handler),
+			cough3 = new SoundEffect("cough/cough3", handler),
+			shieldBreak = new SoundEffect("cough/shieldBreak", handler);
+	private int lastShield = shield;
+	
 	@Override
 	public void hurt(int amount) {
-		if (shield > 0) shield -= amount;
-		else health -= amount;
-
+		if (shield > 0) {
+			shield -= amount;
+		}else {
+			health -= amount;
+			int r = new Random().nextInt(3);
+			
+			switch(r) {
+				case 0:
+					cough1.play();
+				case 1:
+					cough2.play();
+				case 2:
+					cough3.play();
+			}
+		}
+		
 		if (shield < 0) {
 			health += shield;
 			shield = 0;
 		}
-
+		if(lastShield > 0 && shield ==0)
+			shieldBreak.play();
+		lastShield = shield;
+		
 		regenTimer = 0;
 		
 		if (health <= 0) {

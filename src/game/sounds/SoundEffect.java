@@ -33,7 +33,7 @@ public class SoundEffect {
 		if(handler != null && !handler.getGame().isSfxOn())
 			return;
 		clip.setFramePosition(0);
-		reduceVolume(25);
+		reduceVolume(15);
 		clip.start();
 	}
 

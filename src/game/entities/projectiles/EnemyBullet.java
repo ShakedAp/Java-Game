@@ -3,8 +3,6 @@ package game.entities.projectiles;
 import java.awt.Graphics;
 
 import game.Handler;
-import game.entities.Entity;
-import game.entities.creatures.Player;
 import game.gfx.Assets;
 import game.tiles.Tile;
 
