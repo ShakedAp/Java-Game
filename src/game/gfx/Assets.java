@@ -16,7 +16,7 @@ public class Assets {
 	public static BufferedImage start_menu_background, settings_title, menu_title, comic, convBox;
 	public static BufferedImage mana_orb;
 
-	public static BufferedImage[] rocket;
+	public static BufferedImage[] rocket, explosion;
 	public static BufferedImage[] btn_home, btn_start, btn_settings, btn_pause, btn_toggle;
 	public static BufferedImage[] floor_tiles, wall_tiles;
 	public static BufferedImage[] chest, portal_spin, portal_open, portal_close;
@@ -35,13 +35,29 @@ public class Assets {
 		SpriteSheet robotSheet = new SpriteSheet(ImageLoader.loadImage("/textures/robotSheet.png"));
 		SpriteSheet gunSheet = new SpriteSheet(ImageLoader.loadImage("/textures/gunSheet.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tileSheet.png"));
-		SpriteSheet rocketSheet = new SpriteSheet(ImageLoader.loadImage("/textures/rocket.png"));
 
 		// Ammo
 		rocket = new BufferedImage[2];
+		SpriteSheet rocketSheet = new SpriteSheet(ImageLoader.loadImage("/textures/rocket.png"));
 		rocket[0] = rocketSheet.crop(0, 0, width, height);
 		rocket[1] = rocketSheet.crop(0, height, width, height);
 
+		explosion = new  BufferedImage[10];
+		SpriteSheet explosionSheet = new SpriteSheet(ImageLoader.loadImage("/textures/explosion.png"));
+		explosion[0] = explosionSheet.crop(0, 0, width, height);
+		explosion[1] = explosionSheet.crop(width, 0, width, height);
+		explosion[2] = explosionSheet.crop(width*2, 0, width, height);
+		explosion[3] = explosionSheet.crop(0, height, width, height);
+		explosion[4] = explosionSheet.crop(width, height, width, height);
+		explosion[5] = explosionSheet.crop(width*2, height, width, height);
+		explosion[6] = explosionSheet.crop(0, height*2, width, height);
+		explosion[7] = explosionSheet.crop(width, height*2, width, height);
+		explosion[8] = explosionSheet.crop(width*2, height*2, width, height);
+		explosion[8] = explosionSheet.crop(0, height*3, width, height);
+		
+		
+		
+		
 		bullet = ImageLoader.loadImage("/textures/bullet.png");
 
 		// Guns

@@ -156,7 +156,7 @@ public class Game implements Runnable {
 			frames++;
 			
 			if(timer >= 1000000000){
-				display.getJframe().setTitle(title + " | ticks: " + ticks + ", fps: " + frames);
+				display.getJframe().setTitle(title + " | fps: " + frames);
 				ticks = 0;
 				frames = 0;
 				timer = 0;

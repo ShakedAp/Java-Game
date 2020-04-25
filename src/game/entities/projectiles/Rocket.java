@@ -10,11 +10,12 @@ import game.entities.Entity;
 import game.entities.creatures.Player;
 import game.gfx.Animation;
 import game.gfx.Assets;
+import game.tiles.Tile;
 
 public class Rocket extends Projectile {
 	
-	private Animation anim;
-	private int animSpeed = 100;
+	private Animation anim, explosion;
+	private Boolean exploded = false;
 	
 	public Rocket(Handler handler, float x, float y, double dir) {
 		super(handler, x, y, dir, 128, 128);
@@ -23,39 +24,65 @@ public class Rocket extends Projectile {
 		animation[0] = rotateImage(angle, Assets.rocket[0]);
 		animation[1] = rotateImage(angle, Assets.rocket[1]);
 
-		anim = new Animation(animSpeed, animation, true);
-		
+		anim = new Animation(100, animation, true);
+		explosion = new Animation(50, Assets.explosion, false);
+
 		damage = 10;
 		bounds.x = 34;
 		bounds.y = 55;
 		bounds.width = 84;
 		bounds.height = 20;
-		
-
 	}
 	
 	@Override
 	public void tick() {
-		move(); 
-		anim.update();
-		
-		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { 
-			if(e.equals(this) || e instanceof Player) continue;
-			if(e.getCollisonBounds(0f,0f).intersects(getCollisonBounds(0f, 0f)) && e.isSolid()) {
-				e.hurt(damage);
-				kill();
-			}
+		if(!exploded) {
+			move(); 
+			anim.update();
 		}
+		else
+			explosion.update();
+		
+		if(exploded && explosion.isFinished())
+			kill();
+		
+
 	}
 
 	@Override
 	public void render(Graphics g) {		
-		g.drawImage(anim.getCurrentFrame() ,(int) (x + bounds.x - bounds.width/2 - handler.getGameCamera().getxOffset()),
+		g.drawImage(getCurrentFrame() ,(int) (x + bounds.x - bounds.width/2 - handler.getGameCamera().getxOffset()),
 				(int) (y - bounds.y - bounds.height/2 - handler.getGameCamera().getyOffset()), width, height, null);
 	}
 	
+	private BufferedImage getCurrentFrame() {
+		if(!exploded)
+			return anim.getCurrentFrame();
+		else {
+			return explosion.getCurrentFrame();
+		}
+	}
+	
+	@Override
+	protected void checkCollisons(){
+		if(collisionWithTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT))
+			exploded = true;
+		if(handler.getWorld().getTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT) == Tile.wallTile)
+			exploded = true;
+		
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { 
+			if(e.equals(this) || e instanceof Player) continue;
+			if(e.getCollisonBounds(0f,0f).intersects(getCollisonBounds(0f, 0f)) && e.isSolid() && !exploded) {
+				e.hurt(damage);
+				exploded = true;
+			}
+		}
+	}
+	
+	
+	
+	
  	private BufferedImage rotateImage(double angle, BufferedImage bimg) {
-
 	    int w = bimg.getWidth();    
 	    int h = bimg.getHeight();
 

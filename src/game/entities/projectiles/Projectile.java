@@ -2,6 +2,7 @@ package game.entities.projectiles;
 
 import game.Handler;
 import game.entities.Entity;
+import game.entities.creatures.Player;
 import game.tiles.Tile;
 
 public abstract class Projectile extends Entity {
@@ -32,15 +33,27 @@ public abstract class Projectile extends Entity {
 		if(distancePassed() > 1280)
 			kill();
 		
-		// Tile collisions
+		checkCollisons();
+		
+		x += moveX;
+		y += moveY;
+	}
+	
+	protected void checkCollisons(){
 		if(collisionWithTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT))
 			kill();
 		if(handler.getWorld().getTile((int) x/Tile.TILE_WIDTH, (int) y/Tile.TILE_HEIGHT) == Tile.wallTile)
 			kill();
 		
-		x += moveX;
-		y += moveY;
+		for(Entity e : handler.getWorld().getEntityManager().getEntities()) { 
+			if(e.equals(this) || e instanceof Player) continue;
+			if(e.getCollisonBounds(0f,0f).intersects(this.getCollisonBounds(0f, 0f)) && e.isSolid()) {
+				e.hurt(damage);
+				kill();
+			}
+		}
 	}
+	
 	
 	protected double distancePassed() {
 		double dist = 0;
