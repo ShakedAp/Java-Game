@@ -13,7 +13,7 @@ public class ManaOrb extends Orb {
 	private float range = 13f;
 	
 	public ManaOrb(Handler handler, float x, float y) {
-		super(handler, x, y, 8, 8);
+		super(handler, x, y, 16, 16);
 		speed = 7.5f;
 	}
 

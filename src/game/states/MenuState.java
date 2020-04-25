@@ -19,18 +19,25 @@ public class MenuState extends State{
 		// UI objects
 		uiManager.addObject(new UIImage(Assets.start_menu_background, 0, 0, 960, 540));
 		
-		uiManager.addObject(new UIImageButton(256, 128 , 172, 72, Assets.btn_start, new ClickListener(){ 
+		uiManager.addObject(new UIImageButton(540/2 + 172 /2 + 15, 128 , 172, 72, Assets.btn_start, new ClickListener(){ 
 			@Override
 			public void onClick() {
 				handler.goToState(handler.getGame().storyState);	
 			}
 		}));	
-		uiManager.addObject(new UIImageButton(512, 256 , 191, 66, Assets.btn_settings, new ClickListener(){ 
+		uiManager.addObject(new UIImageButton(540/2 + 191/2, 256 , 191, 66, Assets.btn_settings, new ClickListener(){ 
 			@Override
 			public void onClick() {
 				handler.goToState(handler.getGame().settingsState);	
 			}
 		}));
+		
+		uiManager.addObject(new UIImageButton(540/2 + 172 /2 + 15, 256+128, 172, 72, Assets.btn_start, new ClickListener() {
+			@Override
+			public void onClick() {
+				handler.getGame().close();
+			}}));
+		
 	}
 	
 	@Override
@@ -38,7 +45,7 @@ public class MenuState extends State{
 		uiManager.tick();
 		
 		// TEMPORARY CODE
-		handler.goToState(handler.getGame().tutorialState);
+//		handler.goToState(handler.getGame().tutorialState);
 	}
 
 	@Override
