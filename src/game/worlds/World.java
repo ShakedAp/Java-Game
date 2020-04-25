@@ -59,7 +59,7 @@ public class World {
 			handler.getGame().setSfxOn(!handler.getGame().isSfxOn());
 		}
 	});
-	
+		
 	private UIImageToggleButton musicToggle = new UIImageToggleButton(600, 250 , 64, 64, Assets.btn_toggle, new ClickListener(){ 
 		@Override
 		public void onClick() {
@@ -73,10 +73,8 @@ public class World {
 			handler.getGame().close();
 		}});
 	
-	
 	// Entities
 	private EntityManager entityManager;
-	
 	
 	// Items
 	private ItemManager itemManager;

@@ -13,7 +13,7 @@ public class Assets {
 	public static BufferedImage bullet, chosen, bar, shield_icon, heart_icon, mana_display;
 	public static BufferedImage bad_pistol, RPG, shotgun, smg, ak47, water_gun;
 	public static BufferedImage inventoryScreen, popupInv;
-	public static BufferedImage start_menu_background, comic, convBox;
+	public static BufferedImage start_menu_background, settings_title, menu_title, comic, convBox;
 	public static BufferedImage mana_orb;
 
 	public static BufferedImage[] rocket;
@@ -84,6 +84,9 @@ public class Assets {
 
 		
 		start_menu_background = ImageLoader.loadImage("/textures/startMenu/startMenuBack.png");
+		settings_title = ImageLoader.loadImage("/textures/startMenu/settingsTitle.png");
+		menu_title = ImageLoader.loadImage("/textures/startMenu/menuTitle.png");
+
 
 		chosen = ImageLoader.loadImage("/textures/chosen.png");
 		mana_display = ImageLoader.loadImage("/textures/manaDisplay.png");

@@ -126,28 +126,42 @@ public class Game implements Runnable {
 	}
 	
 	
-	public void run() { //activating when the thread initialize
+	public void run() {
 		init();
 		
 		int fps = 60;
-		double timePerTick = 1000000000 / fps; // max time allowed till we have to tick/render
+		double timePerTick = 1000000000 / fps;
 		double deltaTime = 0; 
 		long now; 
-		long lastTime = System.nanoTime(); 
-		
+		long lastTime = System.nanoTime();
+		long timer = 0;
+		int ticks = 0;
+		int frames = 0;
 		
 				
 		while(running) {
-			now  = System.nanoTime(); //the current time in nano-seconds
-			deltaTime += now - lastTime; //the elapsed time since we have called the update and render methods again
+			now  = System.nanoTime(); 
+			deltaTime += now - lastTime;
+			timer += now - lastTime;
 			lastTime = now;
 			
 			
 			if(deltaTime >= timePerTick) {
 				tick();
-				render();
 				deltaTime -= timePerTick;
+				ticks++;
 			}
+			
+			render();
+			frames++;
+			
+			if(timer >= 1000000000){
+				display.getJframe().setTitle(title + " | ticks: " + ticks + ", fps: " + frames);
+				ticks = 0;
+				frames = 0;
+				timer = 0;
+			}
+			
 		}
 		
 		stop();

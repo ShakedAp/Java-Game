@@ -24,30 +24,29 @@ public class Display {
 	
 	private void createDispaly() {
 		//initializing the JFrame
-		jframe = new JFrame(title); //creating a window with the title given
+		jframe = new JFrame(title);
 		
 		//giving arguments to the JFrame
 		jframe.setSize(width, height);
-		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //makes sure that the window close down properly
+		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		jframe.setResizable(false);
-		jframe.setLocationRelativeTo(null); // make sure the window pops out in the middle of the screen
+		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(true);
 		
 		//initializing the Canvas
 		canvas = new Canvas();
 		
-		//giving arguments to the Canvas
 		canvas.setPreferredSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
-		canvas.setFocusable(false); //letting us use the keyboard
+		canvas.setFocusable(false);
 		
-		//adding the canvas to the window
 		jframe.add(canvas);
 		jframe.pack();
 	}
 	
-	public Canvas getCanvas() { //allow other class get canvas
+	//GETTERS & SETTERS
+	public Canvas getCanvas() {
 		return canvas;
 	}
 	
