@@ -1,14 +1,15 @@
 package game.display;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
 public class Display {
 	
-	private JFrame jframe; //creating a new JFrame object (window)
-	private Canvas canvas; //creating the canvas so we can paint (images and shapes)
+	private JFrame jframe;
+	private Canvas canvas;
 	
 	private String title; 
 	int width,height;

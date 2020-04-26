@@ -10,6 +10,7 @@ import game.gfx.GameCamera;
 import game.input.KeyManager;
 import game.input.MouseManager;
 import game.sounds.MusicPlayer;
+import game.states.DeathState;
 import game.states.GameState;
 import game.states.MenuState;
 import game.states.SettingsState;
@@ -32,11 +33,8 @@ public class Game implements Runnable {
 	private Graphics g; 
 	
 	//states
-	public State gameState;
-	public State menuState;
-	public State settingsState;
-	public State storyState;
-	public State tutorialState;
+	public State gameState, menuState, settingsState, storyState, tutorialState;
+	public State deathState;
 	
 	//input
 	private KeyManager keyManager;
@@ -86,6 +84,7 @@ public class Game implements Runnable {
 		menuState = new MenuState(handler);
 		settingsState = new SettingsState(handler);
 		storyState = new StoryState(handler);
+		deathState = new DeathState(handler);
 		State.setState(menuState);
 		
 		musicPlayer = new MusicPlayer(this, 

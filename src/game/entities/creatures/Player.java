@@ -169,7 +169,7 @@ public class Player extends Creature {
 	public void die() {
 		x = 0;
 		y = 0;
-//		handler.getGame().close();
+		handler.goToState(handler.getGame().deathState);
 	}	
 	
 	private SoundEffect cough1 = new SoundEffect("cough/cough1", handler),
