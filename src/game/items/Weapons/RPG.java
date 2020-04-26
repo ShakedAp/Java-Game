@@ -8,7 +8,7 @@ import game.sounds.SoundEffect;
 
 public class RPG extends Weapon{
 
-	private SoundEffect shoot =  new SoundEffect("RPGShoot", handler);
+	private SoundEffect shoot =  new SoundEffect("shootSounds/RPGShoot", handler);
 	
 	public RPG() {
 		super(Assets.RPG, "RPG", 1);

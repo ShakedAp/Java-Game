@@ -8,7 +8,7 @@ import game.sounds.SoundEffect;
 
 public class BadPistol extends Weapon{
 
-	SoundEffect sound = new SoundEffect("shoot", handler);
+	SoundEffect sound = new SoundEffect("shootSounds/shoot", handler);
 	
 	public BadPistol() {
 		super(Assets.bad_pistol, "Bad Pistol", 0);

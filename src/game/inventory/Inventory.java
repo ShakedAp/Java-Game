@@ -15,7 +15,7 @@ public class Inventory {
 	Handler handler;
 	public boolean active = false;
 	private boolean equipMenuActive = false, equipButtonChosen = true;
-	private Item equippedWeapon = Item.shotgun;
+	private Item equippedWeapon = Item.RPG;
 	private ArrayList<Item> inventoryItems;
 	
 	private int invX = 224, invY = 78,
@@ -73,7 +73,7 @@ public class Inventory {
 			
 			else if(equipButtonChosen == true) { //if the equip button has been chosen
 					equippedWeapon = inventoryItems.get(selectedItem);
-					active = false; //TODO: ask de mates id dats oke
+					active = false;
 				}
 			
 			else equipMenuActive = false; // if the cancel button has been chosen

@@ -8,6 +8,8 @@ import game.sounds.SoundEffect;
 
 public class Shotgun extends Weapon{
 	
+	private SoundEffect shoot =  new SoundEffect("shootSounds/shotgunShoot", handler);
+	
 	public Shotgun() {
 		super(Assets.shotgun, "Shotgun", 2);
 		
@@ -26,6 +28,10 @@ public class Shotgun extends Weapon{
 	
 	@Override
 	public void shoot(Handler handler, float xOrigin, float yOrigin, double dir) {
+		if(shoot.getHandler() != handler)
+			shoot.setHandler(handler);
+		
+		shoot.play();
 		for(int i=0; i < 5; i++)
 			handler.getWorld().getEntityManager().addEntity(new ShotgunBullet(handler, xOrigin, yOrigin, dir + calculateSpread()));
 		

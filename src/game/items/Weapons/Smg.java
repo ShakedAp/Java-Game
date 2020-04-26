@@ -4,8 +4,11 @@ import game.Handler;
 import game.entities.projectiles.LightBullet;
 import game.gfx.Assets;
 import game.items.Weapon;
+import game.sounds.SoundEffect;
 
 public class Smg extends Weapon{
+	
+	private SoundEffect shoot =  new SoundEffect("shootSounds/smgShoot", handler);
 	
 	public Smg() {
 		super(Assets.smg, "Smg", 3);
@@ -24,7 +27,10 @@ public class Smg extends Weapon{
 
 	@Override
 	public void shoot(Handler handler, float xOrigin, float yOrigin, double dir) {
+		if(shoot.getHandler() != handler)
+			shoot.setHandler(handler);
 		
+		shoot.play();
 		handler.getWorld().getEntityManager().addEntity(new LightBullet(handler, xOrigin, yOrigin, dir + calculateSpread()));
 	}
 	

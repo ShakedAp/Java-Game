@@ -29,7 +29,7 @@ public class Rocket extends Projectile {
 		anim = new Animation(100, animation, true);
 		explosion = new Animation(50, Assets.explosion, false);
 		
-		explosionSound = new SoundEffect("explosion", handler);
+		explosionSound = new SoundEffect("shootSounds/explosion", handler);
 		
 		damage = 10;
 		bounds.x = 34;

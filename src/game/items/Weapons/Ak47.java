@@ -8,7 +8,7 @@ import game.sounds.SoundEffect;
 
 public class Ak47 extends Weapon{
 
-	private SoundEffect shoot =  new SoundEffect("ak47Shoot", handler);
+	private SoundEffect shoot =  new SoundEffect("shootSounds/ak47Shoot", handler);
 
 	
 	public Ak47() {
