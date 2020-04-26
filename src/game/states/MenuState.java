@@ -1,6 +1,11 @@
 package game.states;
 
 import java.awt.Graphics;
+import java.awt.Image;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.swing.ImageIcon;
 
 import game.Handler;
 import game.gfx.Assets;
@@ -28,14 +33,14 @@ public class MenuState extends State{
 				handler.goToState(handler.getGame().storyState);	
 			}
 		}));	
-		uiManager.addObject(new UIImageButton(960/2 - 191/2, 256 , 191, 66, Assets.btn_settings, new ClickListener(){ 
+		uiManager.addObject(new UIImageButton(960/2 - 172/2, 256 , 172, 72, Assets.btn_settings, new ClickListener(){ 
 			@Override
 			public void onClick() {
 				handler.goToState(handler.getGame().settingsState);	
 			}
 		}));
 		
-		uiManager.addObject(new UIImageButton(960/2 - 172/2, 256+128, 172, 72, Assets.btn_start, new ClickListener() {
+		uiManager.addObject(new UIImageButton(960/2 - 172/2, 256+128, 172, 72, Assets.btn_exit, new ClickListener() {
 			@Override
 			public void onClick() {
 				handler.getGame().close();
@@ -54,6 +59,9 @@ public class MenuState extends State{
 	@Override
 	public void render(Graphics g) {
 		uiManager.render(g);
+		
+
+
 	}
 
 }

@@ -17,7 +17,7 @@ public class Assets {
 	public static BufferedImage mana_orb;
 
 	public static BufferedImage[] rocket, explosion;
-	public static BufferedImage[] btn_home, btn_start, btn_settings, btn_pause, btn_toggle;
+	public static BufferedImage[] btn_home, btn_start, btn_settings, btn_exit, btn_pause, btn_resume, btn_toggle;
 	public static BufferedImage[] floor_tiles, wall_tiles;
 	public static BufferedImage[] chest, portal_spin, portal_open, portal_close;
 
@@ -81,8 +81,14 @@ public class Assets {
 
 		SpriteSheet settingsSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/settingsSheet.png"));
 		btn_settings = new BufferedImage[2];
-		btn_settings[0] = settingsSheet.crop(0, 0, 191, 66);
-		btn_settings[1] = settingsSheet.crop(0, 66, 191, 66);
+		btn_settings[0] = settingsSheet.crop(0, 0, 172, 72);
+		btn_settings[1] = settingsSheet.crop(0, 72, 172, 88);
+		
+		SpriteSheet exitSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/exitSheet.png"));
+		btn_exit = new BufferedImage[2];
+		btn_exit[0] = exitSheet.crop(0, 0, 172, 72);
+		btn_exit[1] = exitSheet.crop(0, 72, 172, 88);
+		
 		
 		
 		SpriteSheet toggleSheet = new SpriteSheet(ImageLoader.loadImage("/textures/startMenu/toggleSoundButton.png"));
@@ -98,6 +104,11 @@ public class Assets {
 		btn_pause[0] = pauseSheet.crop(0, 0, 64, 64);
 		btn_pause[1] = pauseSheet.crop(0, 64, 64, 64);
 
+		btn_resume = new BufferedImage[2];
+		SpriteSheet resumeSheet = new SpriteSheet(ImageLoader.loadImage("/textures/resumeButton.png"));
+		btn_resume[0] = resumeSheet.crop(0, 0, 172, 72);
+		btn_resume[1] = resumeSheet.crop(0, 72, 172, 88);
+		
 		
 		start_menu_background = ImageLoader.loadImage("/textures/startMenu/startMenuBack.png");
 		settings_title = ImageLoader.loadImage("/textures/startMenu/settingsTitle.png");

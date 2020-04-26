@@ -23,17 +23,15 @@ public class Display {
 	}
 	
 	private void createDispaly() {
-		//initializing the JFrame
 		jframe = new JFrame(title);
 		
-		//giving arguments to the JFrame
-		jframe.setSize(width, height);
+				jframe.setSize(width, height);
 		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		jframe.setResizable(false);
 		jframe.setLocationRelativeTo(null);
 		jframe.setVisible(true);
 		
-		//initializing the Canvas
+		// Canvas
 		canvas = new Canvas();
 		
 		canvas.setPreferredSize(new Dimension(width, height));

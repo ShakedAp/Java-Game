@@ -7,9 +7,11 @@ import game.gfx.Assets;
 import game.tiles.Tile;
 
 public class EnemyBullet extends Projectile {
-	
+		
 	public EnemyBullet(Handler handler, float x, float y, double dir) {
 		super(handler, x, y, dir, 8, 8);
+		
+		damage = 10;
 	}
 	
 	@Override
@@ -33,7 +35,7 @@ public class EnemyBullet extends Projectile {
 		
 		
 		if(getCollisonBounds(0,0).intersects(handler.getWorld().getEntityManager().getPlayer().getCollisonBounds(0, 0))) {
-			handler.getWorld().getEntityManager().getPlayer().hurt(1);
+			handler.getWorld().getEntityManager().getPlayer().hurt(damage);
 			kill();
 		}
 	}

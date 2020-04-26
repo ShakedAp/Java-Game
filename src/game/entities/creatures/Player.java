@@ -72,7 +72,7 @@ public class Player extends Creature {
 			move();
 		}
 		
-		if(visible) handler.getGameCamera().centerOnEntity(this);
+		if(visible && active) handler.getGameCamera().centerOnEntity(this);
 
 		// Animations
 		animDown.update();
@@ -167,7 +167,9 @@ public class Player extends Creature {
 
 	@Override
 	public void die() {
-		System.out.println("GAME OVER");
+		x = 0;
+		y = 0;
+//		handler.getGame().close();
 	}	
 	
 	private SoundEffect cough1 = new SoundEffect("cough/cough1", handler),
@@ -205,6 +207,7 @@ public class Player extends Creature {
 		regenTimer = 0;
 		
 		if (health <= 0) {
+			health = 0;
 			active = false;
 			die();
 		}

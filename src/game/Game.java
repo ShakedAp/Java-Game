@@ -135,7 +135,6 @@ public class Game implements Runnable {
 		long now; 
 		long lastTime = System.nanoTime();
 		long timer = 0;
-		int ticks = 0;
 		int frames = 0;
 		
 				
@@ -149,7 +148,6 @@ public class Game implements Runnable {
 			if(deltaTime >= timePerTick) {
 				tick();
 				deltaTime -= timePerTick;
-				ticks++;
 			}
 			
 			render();
@@ -157,7 +155,6 @@ public class Game implements Runnable {
 			
 			if(timer >= 1000000000){
 				display.getJframe().setTitle(title + " | fps: " + frames);
-				ticks = 0;
 				frames = 0;
 				timer = 0;
 			}

@@ -24,11 +24,8 @@ public class BasicEnemy extends Enemy {
 	@Override
 	public void tick() {
 		
-		
-		
-		
 		if(!frozen) {
-		move();
+			move();
 		shoot();
 		}
 
@@ -38,11 +35,8 @@ public class BasicEnemy extends Enemy {
 	
 	long lastTimer, cooldown = 1000, timer = cooldown;
 	private void shoot() {
-		xMove = 0;
-		yMove = 0;
-		
-	
-		
+		if(!handler.getWorld().getEntityManager().getPlayer().isActive())
+			return;
 		
 		timer += System.currentTimeMillis() -  lastTimer;
 		lastTimer = System.currentTimeMillis();
@@ -67,7 +61,6 @@ public class BasicEnemy extends Enemy {
 		handler.getWorld().getEntityManager().addEntity(new EnemyBullet(handler, enemyX, enemyY, dir));
 		timer = 0;
 	}
-	
 	
 	
 	

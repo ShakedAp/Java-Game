@@ -42,7 +42,7 @@ public class World {
 			paused = !paused;	
 		}});
 	
-	private UIImageButton resumeButton = new UIImageButton(100, 100, 150, 64, Assets.btn_start, new ClickListener() {
+	private UIImageButton resumeButton = new UIImageButton(100, 100, 172, 72, Assets.btn_resume, new ClickListener() {
 		@Override
 		public void onClick() {
 			handler.getCurrentState().getUiManager().removeObject(resumeButton);
@@ -67,7 +67,7 @@ public class World {
 		}
 	});
 	
-	private UIImageButton exitButton = new UIImageButton(100, 200, 150, 64, Assets.btn_start, new ClickListener() {
+	private UIImageButton exitButton = new UIImageButton(100, 200, 172, 72, Assets.btn_exit, new ClickListener() {
 		@Override
 		public void onClick() {
 			handler.getGame().close();
